@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16B54A80B7B47B636EBCCDDE /* Pods_BoredBets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E78CCF20A5766BA0841F330F /* Pods_BoredBets.framework */; };
+		22BEE46D1DBD90FD007B3982 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22BEE46C1DBD90FD007B3982 /* GoogleService-Info.plist */; };
+		22BEE46E1DBD90FD007B3982 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22BEE46C1DBD90FD007B3982 /* GoogleService-Info.plist */; };
+		22BEE46F1DBD90FD007B3982 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22BEE46C1DBD90FD007B3982 /* GoogleService-Info.plist */; };
+		3AA2FC0184F23F6A2A9AC3E6 /* Pods_BoredBetsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23EB6C866FFFAFAF31BD121 /* Pods_BoredBetsTests.framework */; };
 		4A839FF41DBD902C0078A616 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A839FF31DBD902C0078A616 /* AppDelegate.swift */; };
 		4A839FF61DBD902C0078A616 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A839FF51DBD902C0078A616 /* RootViewController.swift */; };
 		4A839FF81DBD902C0078A616 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A839FF71DBD902C0078A616 /* DataViewController.swift */; };
@@ -16,6 +21,7 @@
 		4A83A0021DBD902C0078A616 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A83A0001DBD902C0078A616 /* LaunchScreen.storyboard */; };
 		4A83A00D1DBD902C0078A616 /* BoredBetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A83A00C1DBD902C0078A616 /* BoredBetsTests.swift */; };
 		4A83A0181DBD902C0078A616 /* BoredBetsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A83A0171DBD902C0078A616 /* BoredBetsUITests.swift */; };
+		5EAB74206AD099E126896460 /* Pods_BoredBetsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F34160DDCA1543AA755AFC /* Pods_BoredBetsUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0575511BDFC8A31F6E5A41B8 /* Pods-BoredBets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoredBets.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoredBets/Pods-BoredBets.debug.xcconfig"; sourceTree = "<group>"; };
+		22BEE46C1DBD90FD007B3982 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		30DC04C337F5B676E9D1EC61 /* Pods-BoredBets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoredBets.release.xcconfig"; path = "Pods/Target Support Files/Pods-BoredBets/Pods-BoredBets.release.xcconfig"; sourceTree = "<group>"; };
+		3A6912D3CCACE242E7CD5EF2 /* Pods-BoredBetsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoredBetsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoredBetsTests/Pods-BoredBetsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3EE1D4CA85B702B2ADBDD973 /* Pods-BoredBetsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoredBetsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BoredBetsUITests/Pods-BoredBetsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4A839FF01DBD902C0078A616 /* BoredBets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoredBets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A839FF31DBD902C0078A616 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A839FF51DBD902C0078A616 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +62,11 @@
 		4A83A0131DBD902C0078A616 /* BoredBetsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoredBetsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A83A0171DBD902C0078A616 /* BoredBetsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoredBetsUITests.swift; sourceTree = "<group>"; };
 		4A83A0191DBD902C0078A616 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D124EDD7F091C863A3DEBB1 /* Pods-BoredBetsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoredBetsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BoredBetsTests/Pods-BoredBetsTests.release.xcconfig"; sourceTree = "<group>"; };
+		50F34160DDCA1543AA755AFC /* Pods_BoredBetsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BoredBetsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E8C6FB1082242944FA4CB22 /* Pods-BoredBetsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoredBetsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoredBetsUITests/Pods-BoredBetsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C23EB6C866FFFAFAF31BD121 /* Pods_BoredBetsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BoredBetsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E78CCF20A5766BA0841F330F /* Pods_BoredBets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BoredBets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16B54A80B7B47B636EBCCDDE /* Pods_BoredBets.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AA2FC0184F23F6A2A9AC3E6 /* Pods_BoredBetsTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EAB74206AD099E126896460 /* Pods_BoredBetsUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +104,8 @@
 				4A83A00B1DBD902C0078A616 /* BoredBetsTests */,
 				4A83A0161DBD902C0078A616 /* BoredBetsUITests */,
 				4A839FF11DBD902C0078A616 /* Products */,
+				8929391E86F5073D7AD6DA8F /* Pods */,
+				522160B07984FAC06891347A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +130,7 @@
 				4A839FFE1DBD902C0078A616 /* Assets.xcassets */,
 				4A83A0001DBD902C0078A616 /* LaunchScreen.storyboard */,
 				4A83A0031DBD902C0078A616 /* Info.plist */,
+				22BEE46C1DBD90FD007B3982 /* GoogleService-Info.plist */,
 			);
 			path = BoredBets;
 			sourceTree = "<group>";
@@ -131,6 +153,29 @@
 			path = BoredBetsUITests;
 			sourceTree = "<group>";
 		};
+		522160B07984FAC06891347A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E78CCF20A5766BA0841F330F /* Pods_BoredBets.framework */,
+				C23EB6C866FFFAFAF31BD121 /* Pods_BoredBetsTests.framework */,
+				50F34160DDCA1543AA755AFC /* Pods_BoredBetsUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8929391E86F5073D7AD6DA8F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0575511BDFC8A31F6E5A41B8 /* Pods-BoredBets.debug.xcconfig */,
+				30DC04C337F5B676E9D1EC61 /* Pods-BoredBets.release.xcconfig */,
+				3A6912D3CCACE242E7CD5EF2 /* Pods-BoredBetsTests.debug.xcconfig */,
+				4D124EDD7F091C863A3DEBB1 /* Pods-BoredBetsTests.release.xcconfig */,
+				9E8C6FB1082242944FA4CB22 /* Pods-BoredBetsUITests.debug.xcconfig */,
+				3EE1D4CA85B702B2ADBDD973 /* Pods-BoredBetsUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,9 +183,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A83A01C1DBD902C0078A616 /* Build configuration list for PBXNativeTarget "BoredBets" */;
 			buildPhases = (
+				B6EA3305993CFE7BDA3AA084 /* [CP] Check Pods Manifest.lock */,
 				4A839FEC1DBD902B0078A616 /* Sources */,
 				4A839FED1DBD902B0078A616 /* Frameworks */,
 				4A839FEE1DBD902B0078A616 /* Resources */,
+				E31878AF6BD1B50559C041CC /* [CP] Embed Pods Frameworks */,
+				D56974F736078B97C9DE133D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -155,9 +203,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A83A01F1DBD902C0078A616 /* Build configuration list for PBXNativeTarget "BoredBetsTests" */;
 			buildPhases = (
+				2E45F00F3FC434A3AD6EEC57 /* [CP] Check Pods Manifest.lock */,
 				4A83A0041DBD902C0078A616 /* Sources */,
 				4A83A0051DBD902C0078A616 /* Frameworks */,
 				4A83A0061DBD902C0078A616 /* Resources */,
+				99D2A5FAEAC89C5D3E90D16D /* [CP] Embed Pods Frameworks */,
+				1B6A8E6CF785E1D91C0AB311 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -173,9 +224,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A83A0221DBD902C0078A616 /* Build configuration list for PBXNativeTarget "BoredBetsUITests" */;
 			buildPhases = (
+				12F837F7FE2E5E5D17A43579 /* [CP] Check Pods Manifest.lock */,
 				4A83A00F1DBD902C0078A616 /* Sources */,
 				4A83A0101DBD902C0078A616 /* Frameworks */,
 				4A83A0111DBD902C0078A616 /* Resources */,
+				06CF351B61168F59F2590D0A /* [CP] Embed Pods Frameworks */,
+				DDD9C302B297B6F57C0D430F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -239,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A83A0021DBD902C0078A616 /* LaunchScreen.storyboard in Resources */,
+				22BEE46D1DBD90FD007B3982 /* GoogleService-Info.plist in Resources */,
 				4A839FFF1DBD902C0078A616 /* Assets.xcassets in Resources */,
 				4A839FFD1DBD902C0078A616 /* Main.storyboard in Resources */,
 			);
@@ -248,6 +303,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22BEE46E1DBD90FD007B3982 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,10 +311,149 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22BEE46F1DBD90FD007B3982 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		06CF351B61168F59F2590D0A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BoredBetsUITests/Pods-BoredBetsUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		12F837F7FE2E5E5D17A43579 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		1B6A8E6CF785E1D91C0AB311 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BoredBetsTests/Pods-BoredBetsTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2E45F00F3FC434A3AD6EEC57 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		99D2A5FAEAC89C5D3E90D16D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BoredBetsTests/Pods-BoredBetsTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B6EA3305993CFE7BDA3AA084 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D56974F736078B97C9DE133D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BoredBets/Pods-BoredBets-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DDD9C302B297B6F57C0D430F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BoredBetsUITests/Pods-BoredBetsUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E31878AF6BD1B50559C041CC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BoredBets/Pods-BoredBets-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4A839FEC1DBD902B0078A616 /* Sources */ = {
@@ -416,6 +611,7 @@
 		};
 		4A83A01D1DBD902C0078A616 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0575511BDFC8A31F6E5A41B8 /* Pods-BoredBets.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BoredBets/Info.plist;
@@ -428,6 +624,7 @@
 		};
 		4A83A01E1DBD902C0078A616 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30DC04C337F5B676E9D1EC61 /* Pods-BoredBets.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BoredBets/Info.plist;
@@ -440,6 +637,7 @@
 		};
 		4A83A0201DBD902C0078A616 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A6912D3CCACE242E7CD5EF2 /* Pods-BoredBetsTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -454,6 +652,7 @@
 		};
 		4A83A0211DBD902C0078A616 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D124EDD7F091C863A3DEBB1 /* Pods-BoredBetsTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -468,6 +667,7 @@
 		};
 		4A83A0231DBD902C0078A616 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E8C6FB1082242944FA4CB22 /* Pods-BoredBetsUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = BoredBetsUITests/Info.plist;
@@ -481,6 +681,7 @@
 		};
 		4A83A0241DBD902C0078A616 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3EE1D4CA85B702B2ADBDD973 /* Pods-BoredBetsUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = BoredBetsUITests/Info.plist;
@@ -511,6 +712,7 @@
 				4A83A01E1DBD902C0078A616 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4A83A01F1DBD902C0078A616 /* Build configuration list for PBXNativeTarget "BoredBetsTests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +721,7 @@
 				4A83A0211DBD902C0078A616 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4A83A0221DBD902C0078A616 /* Build configuration list for PBXNativeTarget "BoredBetsUITests" */ = {
 			isa = XCConfigurationList;
@@ -527,6 +730,7 @@
 				4A83A0241DBD902C0078A616 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

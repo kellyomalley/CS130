@@ -1,0 +1,6 @@
+framework module Pods_BoredBetsUITests {
+  umbrella header "Pods-BoredBetsUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
