@@ -253,6 +253,7 @@
 				TargetAttributes = {
 					4A839FEF1DBD902B0078A616 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 8YXPR9XYQK;
 						ProvisioningStyle = Automatic;
 					};
 					4A83A0071DBD902C0078A616 = {
@@ -614,6 +615,7 @@
 			baseConfigurationReference = 0575511BDFC8A31F6E5A41B8 /* Pods-BoredBets.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8YXPR9XYQK;
 				INFOPLIST_FILE = BoredBets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nottiApps.BoredBets;
@@ -627,6 +629,7 @@
 			baseConfigurationReference = 30DC04C337F5B676E9D1EC61 /* Pods-BoredBets.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8YXPR9XYQK;
 				INFOPLIST_FILE = BoredBets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nottiApps.BoredBets;
