@@ -39,6 +39,34 @@ import Foundation
        
         //should always be overridden
         func calculateOdds() -> String{
-                preconditionFailure()
+            preconditionFailure()
+        }
+        
+        //should be the same for every bet type
+        func attatchComment() -> Void{
+            
         }
       }
+
+      //the bet where something will or will not happen
+      class YesNoBet: Bet {
+        override func calculateOdds() -> String{
+            return " "
+        }
+      }
+      
+      //the bet where something must happen a certain number of times
+      class ExactNumericalBet: Bet {
+        override func calculateOdds() -> String{
+            return " "
+        }
+      }
+      
+      //the bet where something could happen a certain number of times but if you're close you still win
+      class RangedBet: Bet {
+        override func calculateOdds() -> String{
+            return " "
+        }
+      }
+      
+      
