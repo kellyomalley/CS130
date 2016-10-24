@@ -14,6 +14,7 @@
 		3AA2FC0184F23F6A2A9AC3E6 /* Pods_BoredBetsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23EB6C866FFFAFAF31BD121 /* Pods_BoredBetsTests.framework */; };
 		4A2FDFD21DBD9CC7004A8835 /* Bet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2FDFD11DBD9CC7004A8835 /* Bet.swift */; };
 		4A7B0CBE1DBD9F38008144C4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7B0CBD1DBD9F38008144C4 /* User.swift */; };
+		4A7B0CC21DBDA012008144C4 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7B0CC11DBDA012008144C4 /* Comment.swift */; };
 		4A839FF41DBD902C0078A616 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A839FF31DBD902C0078A616 /* AppDelegate.swift */; };
 		4A839FF61DBD902C0078A616 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A839FF51DBD902C0078A616 /* RootViewController.swift */; };
 		4A839FF81DBD902C0078A616 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A839FF71DBD902C0078A616 /* DataViewController.swift */; };
@@ -51,6 +52,7 @@
 		3EE1D4CA85B702B2ADBDD973 /* Pods-BoredBetsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoredBetsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BoredBetsUITests/Pods-BoredBetsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4A2FDFD11DBD9CC7004A8835 /* Bet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bet.swift; sourceTree = "<group>"; };
 		4A7B0CBD1DBD9F38008144C4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4A7B0CC11DBDA012008144C4 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		4A839FF01DBD902C0078A616 /* BoredBets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoredBets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A839FF31DBD902C0078A616 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A839FF51DBD902C0078A616 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				4A83A0001DBD902C0078A616 /* LaunchScreen.storyboard */,
 				4A83A0031DBD902C0078A616 /* Info.plist */,
 				22BEE46C1DBD90FD007B3982 /* GoogleService-Info.plist */,
+				4A7B0CC11DBDA012008144C4 /* Comment.swift */,
 			);
 			path = BoredBets;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				4A2FDFD21DBD9CC7004A8835 /* Bet.swift in Sources */,
 				4A839FF61DBD902C0078A616 /* RootViewController.swift in Sources */,
 				4A7B0CBE1DBD9F38008144C4 /* User.swift in Sources */,
+				4A7B0CC21DBDA012008144C4 /* Comment.swift in Sources */,
 				4A839FFA1DBD902C0078A616 /* ModelController.swift in Sources */,
 				4A839FF81DBD902C0078A616 /* DataViewController.swift in Sources */,
 				4A839FF41DBD902C0078A616 /* AppDelegate.swift in Sources */,
