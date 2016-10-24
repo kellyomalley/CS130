@@ -20,21 +20,18 @@ import Foundation
         var id: Int
         var title: String
         var description: String = ""
-        var type: String
 
         //no description
-        init(id: Int, title: String, type: String) {
+        init(id: Int, title: String) {
             self.id = id
             self.title = title
-            self.type = type
         }
         
         // description
-        init(id: Int, title: String, description: String, type:String) {
+        init(id: Int, title: String, description: String) {
             self.id = id
             self.title = title
             self.description = description
-            self.type = type
         }
        
         //should always be overridden
@@ -44,6 +41,11 @@ import Foundation
         
         //should be the same for every bet type
         func attatchComment() -> Void{
+            
+        }
+        
+        //make a list of wagers attatched to the bet
+        func attatchWager(wager: Wager) -> Void{
             
         }
       }
