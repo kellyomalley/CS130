@@ -2,8 +2,8 @@
 //  BoredBetsUITests.swift
 //  BoredBetsUITests
 //
-//  Created by Kelly O'Malley on 10/23/16.
-//  Copyright © 2016 Kelly O'Malley. All rights reserved.
+//  Created by Markus Notti on 10/23/16.
+//  Copyright © 2016 SauceKitchen. All rights reserved.
 //
 
 import XCTest

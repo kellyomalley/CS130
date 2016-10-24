@@ -2,8 +2,8 @@
 //  DataViewController.swift
 //  BoredBets
 //
-//  Created by Kelly O'Malley on 10/23/16.
-//  Copyright © 2016 Kelly O'Malley. All rights reserved.
+//  Created by Markus Notti on 10/23/16.
+//  Copyright © 2016 SauceKitchen. All rights reserved.
 //
 
 import UIKit
@@ -24,7 +24,7 @@ class DataViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.dataLabel!.text = dataObject
     }

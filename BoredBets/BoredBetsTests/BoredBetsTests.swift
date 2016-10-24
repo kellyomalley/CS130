@@ -2,8 +2,8 @@
 //  BoredBetsTests.swift
 //  BoredBetsTests
 //
-//  Created by Kelly O'Malley on 10/23/16.
-//  Copyright © 2016 Kelly O'Malley. All rights reserved.
+//  Created by Markus Notti on 10/23/16.
+//  Copyright © 2016 SauceKitchen. All rights reserved.
 //
 
 import XCTest
@@ -28,7 +28,7 @@ class BoredBetsTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
