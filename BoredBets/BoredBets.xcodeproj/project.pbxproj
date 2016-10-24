@@ -16,7 +16,6 @@
 		4A7B0CBE1DBD9F38008144C4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7B0CBD1DBD9F38008144C4 /* User.swift */; };
 		4A7B0CC21DBDA012008144C4 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7B0CC11DBDA012008144C4 /* Comment.swift */; };
 		4A7B0CC41DBDA1C7008144C4 /* Wager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7B0CC31DBDA1C7008144C4 /* Wager.swift */; };
-		4A7B0CC61DBDA3A2008144C4 /* Poop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7B0CC51DBDA3A2008144C4 /* Poop.swift */; };
 		4A839FF41DBD902C0078A616 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A839FF31DBD902C0078A616 /* AppDelegate.swift */; };
 		4A839FF61DBD902C0078A616 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A839FF51DBD902C0078A616 /* RootViewController.swift */; };
 		4A839FF81DBD902C0078A616 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A839FF71DBD902C0078A616 /* DataViewController.swift */; };
@@ -64,7 +63,6 @@
 		4A7B0CBD1DBD9F38008144C4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4A7B0CC11DBDA012008144C4 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		4A7B0CC31DBDA1C7008144C4 /* Wager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wager.swift; sourceTree = "<group>"; };
-		4A7B0CC51DBDA3A2008144C4 /* Poop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Poop.swift; sourceTree = "<group>"; };
 		4A839FF01DBD902C0078A616 /* BoredBets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoredBets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A839FF31DBD902C0078A616 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A839FF51DBD902C0078A616 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -203,7 +201,6 @@
 				4A7B0CC11DBDA012008144C4 /* Comment.swift */,
 				4A7B0CBD1DBD9F38008144C4 /* User.swift */,
 				4A7B0CC31DBDA1C7008144C4 /* Wager.swift */,
-				4A7B0CC51DBDA3A2008144C4 /* Poop.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -528,7 +525,6 @@
 				4AB0CB6F1DBDC5E6002EB0D2 /* CreateBetViewController.swift in Sources */,
 				4AB0CB711DBDC60D002EB0D2 /* ViewBetViewController.swift in Sources */,
 				4AB0CB751DBDC632002EB0D2 /* SignupViewController.swift in Sources */,
-				4A7B0CC61DBDA3A2008144C4 /* Poop.swift in Sources */,
 				4AB0CB791DBDC6B8002EB0D2 /* ViewBetHistoryViewController.swift in Sources */,
 				4AB0CB771DBDC682002EB0D2 /* ViewProfileViewController.swift in Sources */,
 				4A839FF81DBD902C0078A616 /* DataViewController.swift in Sources */,
