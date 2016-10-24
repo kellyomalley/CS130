@@ -20,6 +20,7 @@ import Foundation
         var id: Int
         var title: String
         var description: String = ""
+        var wagerArray: [Wager] = []
 
         //no description
         init(id: Int, title: String) {
@@ -45,7 +46,9 @@ import Foundation
         }
         
         //make a list of wagers attatched to the bet
-        func attatchWager(wager: Wager) -> Void{
+        func attatchWager(userId: Int, betAmount: Int, userBet: Int) -> Void{
+            let newWager = Wager(userId: userId, betAmount: betAmount, userBet: userBet)
+            wagerArray.append(newWager)
             
         }
       }
