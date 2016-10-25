@@ -9,3 +9,8 @@
 import Foundation
 
 
+class Bet{
+    init(){
+        
+    }
+}
