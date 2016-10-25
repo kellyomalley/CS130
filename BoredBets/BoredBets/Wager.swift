@@ -8,8 +8,29 @@
 
 import Foundation
 
-class Wager{
-    init(){
-        
+
+class Wager {
+    var userId: Int
+    var betAmount: Int
+    //for YesNo bet, should be of form 1 (Yes) or 0 (No)
+    var userBet: Int
+    
+    init(userId: Int, betAmount:Int, userBet:Int) {
+        self.userId = userId
+        self.betAmount = betAmount
+        self.userBet = userBet
     }
+    
+    func getUser() -> Int {
+        return userId
+    }
+    
+    func getBetAmount() -> Int {
+        return betAmount
+    }
+    
+    func getUserBet() -> Int {
+        return userBet
+    }
+    
 }
