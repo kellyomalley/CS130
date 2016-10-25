@@ -58,7 +58,6 @@ import Foundation
         func attachWager(userId: Int, betAmount: Int, userBet: Int) -> Void{
             let newWager = Wager(userId: userId, betAmount: betAmount, userBet: userBet)
             wagerArray.append(newWager)
-            
         }
       }
 
