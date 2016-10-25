@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class Wager {
     var userId: Int
     var betAmount: Int

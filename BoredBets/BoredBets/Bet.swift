@@ -17,6 +17,7 @@ import Foundation
       //Must give the user, amount to bet, and what the actual bet is
       //The Bet class keeps track of all the wagers. These are then used for finding odds
 
+
 // need to figure out how to refactor to make this fit a design pattern
       //bets can be contructed passing in a bet id, bet title, bet description, and bet type
       //description is optional
