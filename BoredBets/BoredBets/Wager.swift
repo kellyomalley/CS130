@@ -11,6 +11,7 @@ import Foundation
 class Wager {
     var userId: Int
     var betAmount: Int
+    //for YesNo bet, should be of form 1 (Yes) or 0 (No)
     var userBet: Int
     
     init(userId: Int, betAmount:Int, userBet:Int) {
