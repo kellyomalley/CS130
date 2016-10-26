@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
       
 //README: Here's a summary of how I'm implementing this: Bet is the superclass that the three bet types inherit from.
@@ -26,22 +27,40 @@ import Foundation
       //maybe template method?
       
       class Bet {
-        var id: Int
-        var title: String
+        let betsRef = FIRDatabase.database().reference().child("Bets")
+        let usersRef = FIRDatabase.database().reference().child("Users")
+        let idLen : Int = 16
+        var currentUserId : String?
+        
+        var id: Int?
+        var title: String?
         var description: String = ""
         var wagerArray: [Wager] = []
 
+        init(){
+            //for default init in createBet VC
+            self.currentUserId = UserDefaults.standard.object(forKey: "user_id") as? String
+        }
+        
         //no description
-        init(id: Int, title: String) {
-            self.id = id
+        init(title: String) {
             self.title = title
+            self.currentUserId = UserDefaults.standard.object(forKey: "user_id") as? String
         }
         
         // description
+        init(title: String, description: String) {
+            self.title = title
+            self.description = description
+            self.currentUserId = UserDefaults.standard.object(forKey: "user_id") as? String
+        }
+        
+        //with id (for when we pull from the database and want to store one particular bet as a bet object...
         init(id: Int, title: String, description: String) {
             self.id = id
             self.title = title
             self.description = description
+            self.currentUserId = UserDefaults.standard.object(forKey: "user_id") as? String
         }
        
         //should always be overridden
@@ -58,6 +77,37 @@ import Foundation
         func attachWager(userId: Int, betAmount: Int, userBet: Int) -> Void{
             let newWager = Wager(userId: userId, betAmount: betAmount, userBet: userBet)
             wagerArray.append(newWager)
+        }
+        
+        func saveNewBetToFB() -> Void {
+            let betId = self.generateBetId(len: idLen)
+            let betData : [String: String] = [
+                  "title" : self.title!,
+                  "mediator_id" : self.currentUserId!
+            ]
+            
+            let userBetData : [String : String] = [
+                "title" : self.title!
+            ]
+          
+          betsRef.child(betId).setValue(betData)
+          usersRef.child(self.currentUserId!).child("BetsMediating").child(betId).setValue(userBetData)
+        }
+        
+        func generateBetId(len : Int) -> String {
+            //TODO
+            //insert logic to check if such a string already exists...
+            let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+            
+            let randomString : NSMutableString = NSMutableString(capacity: len)
+            
+            for _ in 0...len{
+                let length = UInt32 (letters.length)
+                let rand = arc4random_uniform(length)
+                randomString.appendFormat("%C", letters.character(at: Int(rand)))
+            }
+            
+            return randomString as String
         }
       }
 

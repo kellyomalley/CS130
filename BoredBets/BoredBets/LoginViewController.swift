@@ -22,6 +22,13 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func storeCurrentUserId(user_id : String){
+        UserDefaults.standard.set(user_id, forKey: "user_id")
+        print("YOOOOOOOO")
+        print(user_id)
+        print("YOOOOOOOO")
+    }
 
     @IBAction func createAccountAction(_ sender: AnyObject)
     {
@@ -39,6 +46,7 @@ class LoginViewController: UIViewController {
             FIRAuth.auth()?.createUser(withEmail: self.emailOutlet.text!, password: self.passwordOutlet.text!) { (user, error) in
                 
                 if error == nil {
+                    self.storeCurrentUserId(user_id: (user?.uid)!)
                     self.performSegue(withIdentifier: "login", sender: nil)
                 }
                 else
@@ -70,6 +78,7 @@ class LoginViewController: UIViewController {
             FIRAuth.auth()?.signIn(withEmail: self.emailOutlet.text!, password: self.passwordOutlet.text!) { (user, error) in
                 
                 if error == nil {
+                    self.storeCurrentUserId(user_id: (user?.uid)!)
                     self.performSegue(withIdentifier: "login", sender: nil)
                 }
                 else

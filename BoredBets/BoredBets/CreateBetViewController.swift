@@ -9,11 +9,19 @@
 import UIKit
 
 class CreateBetViewController: UIViewController {
+    
+    let bet:Bet = Bet()
+    
+    @IBOutlet weak var betName: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,6 +30,10 @@ class CreateBetViewController: UIViewController {
     }
     
 
+    @IBAction func createBetDidTouch(_ sender: UIButton) {
+        self.bet.title = self.betName.text!
+        self.bet.saveNewBetToFB()
+    }
     /*
     // MARK: - Navigation
 
