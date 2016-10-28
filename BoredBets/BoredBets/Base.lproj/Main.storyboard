@@ -7,6 +7,42 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Active Bets-->
+        <scene sceneID="tLc-FQ-FkY">
+            <objects>
+                <viewController title="Active Bets" id="pui-ZW-stH" customClass="ActiveBetsViewController" customModule="BoredBets" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ycd-QC-7YE"/>
+                        <viewControllerLayoutGuide type="bottom" id="F5Y-JM-4Wg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZAb-aA-7HS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nMN-xU-IIu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3559" y="-1045"/>
+        </scene>
+        <!--Bets Mediating-->
+        <scene sceneID="Q8E-3z-ej6">
+            <objects>
+                <viewController title="Bets Mediating" id="Abc-K4-MZr" customClass="MediatingBetsViewController" customModule="BoredBets" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="J6f-ja-lRx"/>
+                        <viewControllerLayoutGuide type="bottom" id="8vb-f3-aW2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3Jt-Uc-5Qp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DPR-It-gLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4671" y="-1046"/>
+        </scene>
         <!--HomeMapView-->
         <scene sceneID="tOv-4y-xr9">
             <objects>
@@ -46,6 +82,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLq-gp-LoG">
+                                <frame key="frameInset" minX="16" minY="278" width="91" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Active Bets"/>
+                                <connections>
+                                    <segue destination="pui-ZW-stH" kind="show" id="2UE-Ki-3UR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zG-gk-myC">
+                                <frame key="frameInset" minX="16" minY="240" width="112" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Bets Mediating"/>
+                                <connections>
+                                    <segue destination="Abc-K4-MZr" kind="show" id="gdY-ka-2wg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -116,14 +168,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfi-JN-epQ">
-                                <frame key="frameInset" minX="121" minY="318" width="133" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="A bet from the past"/>
-                                <connections>
-                                    <segue destination="K4a-T5-MEV" kind="presentation" id="AUx-50-Oo9"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -503,6 +547,5 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="KgD-lN-Yhe"/>
-        <segue reference="vF1-Dp-VzA"/>
     </inferredMetricsTieBreakers>
 </document>
