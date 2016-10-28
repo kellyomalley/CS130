@@ -76,12 +76,9 @@ import Firebase
         func attachWager(userId: String, betAmount: Int, userBet: Int) -> Void{
             let newWager = Wager(userId: userId, betAmount: betAmount, userBet: userBet)
             wagerArray.append(newWager)
-<<<<<<< HEAD
-=======
             //now update the db with the new wager object
             self.saveNewWager(newWager: newWager)
             
->>>>>>> master
         }
         
         func saveNewWager(newWager: Wager){
