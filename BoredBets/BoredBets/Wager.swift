@@ -7,21 +7,27 @@
 //
 
 import Foundation
+import Firebase
 
 
 class Wager {
-    var userId: Int
+    var id: String
+    let wagersRef = FIRDatabase.database().reference().child("Wagers")
+    let idLen: Int = 16
+    var userId: String
     var betAmount: Int
     //for YesNo bet, should be of form 1 (Yes) or 0 (No)
     var userBet: Int
+
     
-    init(userId: Int, betAmount:Int, userBet:Int) {
+    init(userId: String, betAmount:Int, userBet:Int) {
+        self.id = BBUtilities.generateObjectId(len: self.idLen)
         self.userId = userId
         self.betAmount = betAmount
         self.userBet = userBet
     }
     
-    func getUser() -> Int {
+    func getUser() -> String {
         return userId
     }
     
