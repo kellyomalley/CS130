@@ -9,14 +9,14 @@
 import UIKit
 
 class ViewBetViewController: UIViewController {
-    var bet:Bet?
+    var bet:Bet!
 
     @IBOutlet weak var betTitleLabel: UILabel!
     @IBOutlet weak var potLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bet?.betsRef.child((bet?.id!)!).observe(.value, with: { snapshot in
+        bet.betsRef.child(bet.id).observe(.value, with: { snapshot in
             let title = snapshot.childSnapshot(forPath: "title").value as! String
             let pot = snapshot.childSnapshot(forPath: "pot").value as! String
             
@@ -25,8 +25,9 @@ class ViewBetViewController: UIViewController {
             self.potLabel.text = pot
             
             //updating bet member variables
-            self.bet?.title = title
+            self.bet.title = title
         })
+        
         self.betTitleLabel.text = self.bet?.title
     }
     

@@ -29,10 +29,10 @@ import Firebase
       class Bet {
         let betsRef = FIRDatabase.database().reference().child("Bets")
         let idLen : Int = 16
-        var currentUserId : String?
+        var currentUserId : String!
         
-        var id: String?
-        var title: String?
+        var id: String!
+        var title: String!
         var description: String = ""
         var wagerArray: [Wager] = []
 
@@ -84,7 +84,7 @@ import Firebase
         func saveNewWager(newWager: Wager){
             let wagerData: [String: String] = [
                 "user_id" : newWager.userId,
-                "bet_id" : self.id!,
+                "bet_id" : self.id,
                 "bet_amount" : String(newWager.betAmount),
                 "user_bet" : String(newWager.userBet)
             ]
@@ -98,7 +98,7 @@ import Firebase
             ]
             newWager.wagersRef.child(newWager.id).setValue(wagerData)
             User.usersRef().child(newWager.userId).child("Wagers").child(newWager.id).setValue(userWagerData)
-            self.betsRef.child(self.id!).child("Wagers").child(newWager.id).setValue(betWagerData)
+            self.betsRef.child(self.id).child("Wagers").child(newWager.id).setValue(betWagerData)
             
             
         }
@@ -108,8 +108,8 @@ import Firebase
             //set bet ID for bet object
             self.id = betId
             let betData : [String: String] = [
-                  "title" : self.title!,
-                  "mediator_id" : self.currentUserId!,
+                  "title" : self.title,
+                  "mediator_id" : self.currentUserId,
                   "pot" : "0"
             ]
             
@@ -117,9 +117,9 @@ import Firebase
                 "bet_id" : betId
             ]
           //save bet in bets object
-          betsRef.child(betId).setValue(betData)
+          self.betsRef.child(betId).setValue(betData)
             //save bet id in user object so user has reference to it
-          User.usersRef().child(self.currentUserId!).child("BetsMediating").child(betId).setValue(userBetData)
+          User.usersRef().child(self.currentUserId).child("BetsMediating").child(betId).setValue(userBetData)
             
         }
       }
