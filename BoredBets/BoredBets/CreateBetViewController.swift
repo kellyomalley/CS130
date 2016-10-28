@@ -44,5 +44,14 @@ class CreateBetViewController: UIViewController {
     }
     */
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "createBetToViewBet") {
+            let nav = segue.destination as! UINavigationController
+            let vbvc = nav.topViewController as! ViewBetViewController
+            vbvc.bet = self.bet
+            
+        }
+    }
+    
 
 }
