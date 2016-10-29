@@ -51,18 +51,26 @@ class MediatingBetsViewController: UIViewController, UITableViewDataSource, UITa
         let bet = self.mediatedBets[indexPath.row]
         cell.textLabel?.text = bet.title
         return cell
+    }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(self.mediatedBets[indexPath.row])
+        performSegue(withIdentifier: "mediatedBetsToBetView", sender: self)
     }
     
     //END TABLE VIEW STUFF
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "mediatedBetsToBetView"){
+            let nvc = segue.destination as! UINavigationController
+            let vbvc = nvc.topViewController as! ViewBetViewController
+            let index: Int! = self.betsTableView.indexPathForSelectedRow?.row
+            vbvc.bet = self.mediatedBets[index]
+        }
     }
-    */
+    
 
 }

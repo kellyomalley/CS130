@@ -70,6 +70,7 @@
                     </view>
                     <connections>
                         <outlet property="betsTableView" destination="Bcd-zA-HdV" id="FUm-z1-Irw"/>
+                        <segue destination="K4a-T5-MEV" kind="show" identifier="mediatedBetsToBetView" id="UbV-mk-q85"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DPR-It-gLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -580,5 +581,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="KgD-lN-Yhe"/>
+        <segue reference="vF1-Dp-VzA"/>
     </inferredMetricsTieBreakers>
 </document>
