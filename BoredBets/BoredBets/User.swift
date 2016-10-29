@@ -64,12 +64,18 @@ class User{
                 if(betIds.contains(child.key)){
                     let dict = child.value as? NSDictionary
                     var title: String = "Bet"
+                    var pot: Int = 0
                     for (k,v) in dict!{
                         if (k as? String == "title"){
                             title = v as! String
                         }
+                        else if (k as? String == "pot"){
+                            pot = Int(v as! String)!
+                        }
                     }
-                    bets.append(Bet(title: title, id: child.key))
+                    let tempBet = Bet(title: title, id: child.key)
+                    tempBet.pot = pot
+                    bets.append(tempBet)
                 }
             }
             print("betsFromIds")

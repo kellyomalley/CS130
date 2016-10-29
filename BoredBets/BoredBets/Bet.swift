@@ -33,6 +33,7 @@ import Firebase
         var id: String!
         var title: String!
         var description: String = ""
+        var pot: Int?
         var wagerArray: [Wager] = []
 
         init(){
