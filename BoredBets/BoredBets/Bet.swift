@@ -47,9 +47,9 @@ import Firebase
         }
         
         // description
-        init(title: String, description: String) {
+        init(title: String, id: String) {
             self.title = title
-            self.description = description
+            self.id = id
             self.currentUserId = User.currentUser()
         }
         

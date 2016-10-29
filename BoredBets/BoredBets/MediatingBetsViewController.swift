@@ -14,7 +14,14 @@ class MediatingBetsViewController: UIViewController {
         super.viewDidLoad()
         //TODO: for testing
         let user = User(id: User.currentUser())
-        user.activeMediatedBets()
+        user.activeMediatedBets{
+            bets in
+            print("view controller did load")
+            for bet in bets{
+                print(bet.title)
+                print(bet.id)
+            }
+        }
         //TODO: end testing
 
         // Do any additional setup after loading the view.
