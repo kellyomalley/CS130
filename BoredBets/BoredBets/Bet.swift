@@ -132,8 +132,11 @@ import Firebase
         override func calculateOdds() -> String{
             var numberOfYes: Int = 0
             var numberOfNo: Int = 0
+            var totalPool: Int = 0
             
             for wager in wagerArray {
+                totalPool += wager.getBetAmount()
+                
                 if wager.getUserBet() == 0 {
                     numberOfNo += 1
                 }
@@ -145,9 +148,10 @@ import Firebase
                 }
             }
             
-            //TODO: use numberOfNo and numberOfYes to actually calc the odds
-            
-            return " "
+            let getSimple = simplify(num: numberOfYes, denom: numberOfNo)
+            //return looks like Odds: 2:1, Pool: $1234
+            let resString = "Odds: \(getSimple.newNum) : \(getSimple.newDenom) , Pool: $\(totalPool)"
+            return resString
         }
       }
       
@@ -163,6 +167,21 @@ import Firebase
         override func calculateOdds() -> String{
             return " "
         }
+      }
+      
+      func simplify(num:Int, denom:Int) -> (newNum:Int, newDenom:Int) {
+        
+        var x: Int = num
+        var y: Int = denom
+        while (y != 0) {
+            let temp: Int = y
+            y = x % y
+            x = temp
+        }
+        let round = x
+        let newNum = num/round
+        let newDenom = denom/round
+        return(newNum, newDenom)
       }
       
       
