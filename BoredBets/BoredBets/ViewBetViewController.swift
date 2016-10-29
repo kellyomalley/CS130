@@ -16,7 +16,7 @@ class ViewBetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bet.betsRef.child(bet.id).observe(.value, with: { snapshot in
+        Bet.betsRef().child(bet.id).observe(.value, with: { snapshot in
             let title = snapshot.childSnapshot(forPath: "title").value as! String
             let pot = snapshot.childSnapshot(forPath: "pot").value as! String
             

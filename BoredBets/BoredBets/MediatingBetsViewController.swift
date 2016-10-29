@@ -12,6 +12,10 @@ class MediatingBetsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //TODO: for testing
+        let user = User(id: User.currentUser())
+        user.activeMediatedBets()
+        //TODO: end testing
 
         // Do any additional setup after loading the view.
     }

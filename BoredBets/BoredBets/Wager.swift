@@ -12,7 +12,6 @@ import Firebase
 
 class Wager {
     var id: String
-    let wagersRef = FIRDatabase.database().reference().child("Wagers")
     let idLen: Int = 16
     var userId: String
     var betAmount: Int
@@ -37,6 +36,10 @@ class Wager {
     
     func getUserBet() -> Int {
         return userBet
+    }
+    
+    class func wagersRef() -> FIRDatabaseReference{
+        return FIRDatabase.database().reference().child("Wagers")
     }
     
 }
