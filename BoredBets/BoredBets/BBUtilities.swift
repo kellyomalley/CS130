@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class BBUtilities{
     
@@ -27,4 +28,6 @@ class BBUtilities{
         
         return randomString as String
     }
+    
+    
 }

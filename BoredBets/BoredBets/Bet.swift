@@ -27,13 +27,13 @@ import Firebase
       //maybe template method?
       
       class Bet {
-        let betsRef = FIRDatabase.database().reference().child("Bets")
         let idLen : Int = 16
         var currentUserId : String!
         
         var id: String!
         var title: String!
         var description: String = ""
+        var pot: Int?
         var wagerArray: [Wager] = []
 
         init(){
@@ -48,9 +48,9 @@ import Firebase
         }
         
         // description
-        init(title: String, description: String) {
+        init(title: String, id: String) {
             self.title = title
-            self.description = description
+            self.id = id
             self.currentUserId = User.currentUser()
         }
         
@@ -96,9 +96,9 @@ import Firebase
             let betWagerData: [String: String] = [
                 "wager_id" : newWager.id
             ]
-            newWager.wagersRef.child(newWager.id).setValue(wagerData)
+            Wager.wagersRef().child(newWager.id).setValue(wagerData)
             User.usersRef().child(newWager.userId).child("Wagers").child(newWager.id).setValue(userWagerData)
-            self.betsRef.child(self.id).child("Wagers").child(newWager.id).setValue(betWagerData)
+            Bet.betsRef().child(self.id).child("Wagers").child(newWager.id).setValue(betWagerData)
             
             
         }
@@ -117,10 +117,14 @@ import Firebase
                 "bet_id" : betId
             ]
           //save bet in bets object
-          self.betsRef.child(betId).setValue(betData)
+          Bet.betsRef().child(betId).setValue(betData)
             //save bet id in user object so user has reference to it
           User.usersRef().child(self.currentUserId).child("BetsMediating").child(betId).setValue(userBetData)
             
+        }
+        
+        class func betsRef() -> FIRDatabaseReference{
+            return FIRDatabase.database().reference().child("Bets")
         }
       }
 

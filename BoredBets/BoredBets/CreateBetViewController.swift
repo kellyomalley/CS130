@@ -11,8 +11,7 @@ import UIKit
 class CreateBetViewController: UIViewController {
     
     let bet:Bet = Bet()
-    
-    @IBOutlet weak var betName: UITextField!
+    var betTitle: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +30,7 @@ class CreateBetViewController: UIViewController {
     
 
     @IBAction func createBetDidTouch(_ sender: UIButton) {
-        self.bet.title = self.betName.text!
+        self.bet.title = self.betTitle!
         self.bet.saveNewBetToFB()
     }
     /*
