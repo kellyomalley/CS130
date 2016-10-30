@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import CoreLocation
 
 class User{
     var id:String!
@@ -136,6 +137,65 @@ class User{
         })
     }
     
+    //FOR MAPS API
+    func betsWithinVicinity(latParm: Double, longParm: Double, radMiles: Double, completion: @escaping([Bet]) -> ()){
+        let betsRef = Bet.betsRef()
+        betsRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            // get bets with ids
+            var bets: [Bet] = []
+            for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
+                let dict = child.value as? NSDictionary
+                var title: String = "Bet"
+                var pot: Int = 0
+                var lat: Double = 0
+                var long: Double = 0
+                for (k,v) in dict!{
+                    if (k as? String == "title"){
+                        title = v as! String
+                    }
+                    else if (k as? String == "pot"){
+                        pot = v as! Int
+                    }
+                    else if (k as? String == "lat"){
+                        lat = v as! Double
+                    }
+                    else if (k as? String == "long"){
+                        long = v as! Double
+                    }
+                }
+                print("lat: \(lat), long: \(long)")
+                //check if the longitude and latitude are within the defined parms
+                if (self.withinVicinity(latParm: latParm, longParm: longParm, lat: lat, long: long, radMiles: radMiles)){
+                    let tempBet = Bet(title: title, id: child.key)
+                    tempBet.pot = pot
+                    tempBet.lat = lat
+                    tempBet.long = long
+                    bets.append(tempBet)
+                }
+            }
+            print("bets")
+            print(bets)
+            completion(bets)
+        })
+        
+    }
+    
+    func withinVicinity(latParm: Double, longParm: Double, lat: Double, long: Double, radMiles: Double) -> Bool {
+        
+        let coordinate1 = CLLocation(latitude: latParm, longitude: longParm)
+        let coordinate2 = CLLocation(latitude: lat, longitude: long)
+        
+        let dMeters = coordinate1.distance(from: coordinate2)
+        let rMeters = 1609 * radMiles
+        print("dMeters: \(dMeters), dmiles: \(dMeters/1609)")
+        if (dMeters > rMeters){
+            return false
+        }
+        else {
+            return true
+    
+        }
+    }
     
     
     //to make grabbing the current user universal
