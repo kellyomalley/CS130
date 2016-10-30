@@ -18,11 +18,11 @@ class ViewBetViewController: UIViewController {
         super.viewDidLoad()
         Bet.betsRef().child(bet.id).observe(.value, with: { snapshot in
             let title = snapshot.childSnapshot(forPath: "title").value as! String
-            let pot = snapshot.childSnapshot(forPath: "pot").value as! String
+            let pot = snapshot.childSnapshot(forPath: "pot").value as! Int
             
             //updating fields on view
             self.betTitleLabel.text = title
-            self.potLabel.text = pot
+            self.potLabel.text = String(pot)
             
             //updating bet member variables
             self.bet.title = title

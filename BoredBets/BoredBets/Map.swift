@@ -16,12 +16,14 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
     var lat = 34.068971
     var long = -118.444033
     var locationManager: CLLocationManager!
+    var showMarkers: Bool!
 
-    
-    init(mapView: GMSMapView!) {
+    init(mapView: GMSMapView!, showMarkers: Bool!) {
         super.init()
         
+        self.showMarkers = showMarkers
         self.mapView = mapView
+
         self.mapView.delegate = self;
         self.mapView.isMyLocationEnabled = true
         self.mapView.settings.myLocationButton = true
@@ -51,12 +53,19 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
         marker.map = mapView
     }
     
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        locationManager.stopUpdatingLocation()
+        print(error)
+    }
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0]
         long = userLocation.coordinate.longitude;
         lat = userLocation.coordinate.latitude;
         updateCamera(lat: lat, long: long)
-        addMarkers(lat: lat, long: long)
+        if (self.showMarkers == true) {
+            addMarkers(lat: lat, long: long)
+        }
         locationManager.stopUpdatingLocation()
     }
 }
