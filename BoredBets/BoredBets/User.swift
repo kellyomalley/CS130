@@ -231,26 +231,6 @@ class User{
         })
     }
     
-    //gets wagerIds for wagers that have been placed on a bet
-    func wagerIdsForBet(bet: Bet, completion: @escaping([String]) -> ()){
-        
-        let betsRef = Bet.betsRef()
-        betsRef.child(bet.id).child("Wagers").observeSingleEvent(of: .value, with: { (snapshot) in
-            var wagerIds: [String] = []
-            for wagerSnap in snapshot.children.allObjects as! [FIRDataSnapshot]{
-                let dict = wagerSnap.value as? NSDictionary
-                var wagerId: String = "wager_id"
-                for (k,v) in dict!{
-                    if (k as? String == "wager_id"){
-                        wagerId = v as! String
-                    }
-                }
-                wagerIds.append(wagerId)
-            }
-            completion(wagerIds)
-        })
-    }
-    
     
     //to make grabbing the current user universal
     class func currentUser() -> String {

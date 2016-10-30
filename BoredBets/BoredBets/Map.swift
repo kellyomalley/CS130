@@ -18,9 +18,9 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
     var locationManager: CLLocationManager!
     var showMarkers: Bool!
     
-    var betIconWagered = GMSMarker.markerImage(with: UIColor.green)
-    var betIconMediated = GMSMarker.markerImage(with: UIColor.purple)
-    var betIconNormal = GMSMarker.markerImage(with: UIColor.blue)
+    let betIconWagered = GMSMarker.markerImage(with: UIColor.green)
+    let betIconMediated = GMSMarker.markerImage(with: UIColor.purple)
+    let betIconNormal = GMSMarker.markerImage(with: UIColor.blue)
 
     init(mapView: GMSMapView!, showMarkers: Bool!) {
         super.init()

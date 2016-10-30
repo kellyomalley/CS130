@@ -81,15 +81,15 @@ import Firebase
             wagerArray.append(newWager)
             //now update the db with the new wager object
             self.saveNewWager(newWager: newWager)
-            
+            self.updatePot()
         }
         
         func saveNewWager(newWager: Wager){
-            let wagerData: [String: String] = [
+            let wagerData: [String: Any] = [
                 "user_id" : newWager.userId,
                 "bet_id" : self.id,
-                "bet_amount" : String(newWager.betAmount),
-                "user_bet" : String(newWager.userBet)
+                "bet_amount" : newWager.betAmount,
+                "user_bet" : newWager.userBet
             ]
             
             let userWagerData: [String: String] = [
@@ -105,6 +105,85 @@ import Firebase
             
             
         }
+        
+        func updatePot(){
+            self.wagerIds(completion: {
+                wagerIds in
+                print("WAGERIDS")
+                print(wagerIds)
+                self.wagersForWagerIds(wagerIds: wagerIds, wagers: [], completion: {
+                    wagers in
+                    var pot = 0
+                    for wager in wagers{
+                        pot += wager.betAmount
+                    }
+                    Bet.betsRef().child(self.id).child("pot").setValue(pot)
+                })
+            })
+        }
+        
+        func wagersForWagerIds(wagerIds: [String], wagers: [Wager], completion: @escaping([Wager]) -> ()){
+            let wagersRef = Wager.wagersRef()
+            if (wagers.count == wagerIds.count){
+                completion(wagers)
+            }
+            else{
+                let index = wagers.count
+                wagersRef.child(wagerIds[index]).observeSingleEvent(of: .value, with: { (snapshot) in
+                    let dict = snapshot.value as? NSDictionary
+                    print("DICT")
+                    print(dict)
+                    let wagerId: String = wagerIds[index]
+                    var userId: String?
+                    var betId: String?
+                    var betAmount: Int?
+                    var userBet: Int?
+                    for (k,v) in dict!{
+                        if (k as? String == "user_id"){
+                            userId = v as? String
+                        }
+                        else if (k as? String == "bet_amount"){
+                            betAmount = v as? Int
+                        }
+                        else if (k as? String == "user_bet"){
+                            userBet = v as? Int
+                        }
+                        else if (k as? String == "bet_id"){
+                            betId = v as? String
+                        }
+                    }
+                    let tempWager = Wager(id: wagerId, userId: userId!, betAmount: betAmount!, userBet: userBet!)
+                    tempWager.betId = betId
+                    var newWagers = wagers
+                    newWagers.append(tempWager)
+                    self.wagersForWagerIds(wagerIds: wagerIds, wagers: newWagers, completion: {
+                        wagers in
+                        completion(wagers)
+                    })
+                })
+            }
+
+        }
+        
+        //gets wagerIds for wagers that have been placed on a bet
+        func wagerIds(completion: @escaping([String]) -> ()){
+            let betsRef = Bet.betsRef()
+            betsRef.child(self.id).child("Wagers").observeSingleEvent(of: .value, with: { (snapshot) in
+                var wagerIds: [String] = []
+                for wagerSnap in snapshot.children.allObjects as! [FIRDataSnapshot]{
+                    let dict = wagerSnap.value as? NSDictionary
+                    var wagerId: String = "wager_id"
+                    for (k,v) in dict!{
+                        if (k as? String == "wager_id"){
+                            wagerId = v as! String
+                        }
+                    }
+                    wagerIds.append(wagerId)
+                }
+                completion(wagerIds)
+            })
+        }
+
         
         func saveNewBetToFB() -> Void {
             let betId = BBUtilities.generateObjectId(len: idLen)
