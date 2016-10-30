@@ -35,6 +35,8 @@ import Firebase
         var description: String = ""
         var pot: Int?
         var wagerArray: [Wager] = []
+        var lat: Double!
+        var long: Double!
 
         init(){
             //for default init in createBet VC
@@ -107,10 +109,12 @@ import Firebase
             let betId = BBUtilities.generateObjectId(len: idLen)
             //set bet ID for bet object
             self.id = betId
-            let betData : [String: String] = [
+            let betData : [String: Any] = [
                   "title" : self.title,
                   "mediator_id" : self.currentUserId,
-                  "pot" : "0"
+                  "lat": self.lat,
+                  "long": self.long,
+                  "pot" : 0
             ]
             
             let userBetData : [String : String] = [
