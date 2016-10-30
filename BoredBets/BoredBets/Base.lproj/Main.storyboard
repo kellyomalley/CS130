@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SEr-uc-c8U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1010" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SEr-uc-c8U">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -184,6 +184,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="ZU9-uS-avS" id="E9d-h6-fKc"/>
+                        <segue destination="K4a-T5-MEV" kind="show" identifier="mapToBetView" id="gYz-cT-Vei"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXs-Tx-WUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -408,7 +409,7 @@
                         <constraints>
                             <constraint firstItem="567-Ns-eif" firstAttribute="top" secondItem="TvZ-Po-E2p" secondAttribute="bottom" constant="49" id="DO0-eJ-yMn"/>
                             <constraint firstItem="TvZ-Po-E2p" firstAttribute="leading" secondItem="xbG-QJ-TPw" secondAttribute="leadingMargin" constant="4" id="E7f-Xc-Adz"/>
-                            <constraint firstItem="TvZ-Po-E2p" firstAttribute="top" secondItem="xbG-QJ-TPw" secondAttribute="top" symbolic="YES" id="W8X-GK-QQ7"/>
+                            <constraint firstItem="TvZ-Po-E2p" firstAttribute="top" secondItem="xbG-QJ-TPw" secondAttribute="top" constant="20" symbolic="YES" id="W8X-GK-QQ7"/>
                             <constraint firstItem="gyd-jt-F1M" firstAttribute="top" secondItem="567-Ns-eif" secondAttribute="bottom" constant="111" id="WDi-Nd-XAP"/>
                             <constraint firstItem="TvZ-Po-E2p" firstAttribute="centerX" secondItem="567-Ns-eif" secondAttribute="centerX" id="awV-XK-zk7"/>
                             <constraint firstItem="TvZ-Po-E2p" firstAttribute="centerX" secondItem="xbG-QJ-TPw" secondAttribute="centerX" id="e3D-NC-bfh"/>
@@ -580,7 +581,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mxx-6K-PYM" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zpi-fg-dnK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zpi-fg-dnK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -598,7 +599,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K4a-T5-MEV" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="stL-Xz-sES">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="stL-Xz-sES">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -616,7 +617,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uNR-iR-RTf" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rfj-9I-OLo">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rfj-9I-OLo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -634,7 +635,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SEr-uc-c8U" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ES1-cp-xRY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ES1-cp-xRY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -650,6 +651,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="KgD-lN-Yhe"/>
-        <segue reference="fxU-Kn-U0n"/>
+        <segue reference="gYz-cT-Vei"/>
     </inferredMetricsTieBreakers>
 </document>

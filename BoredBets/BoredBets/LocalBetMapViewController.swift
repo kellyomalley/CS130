@@ -9,9 +9,8 @@
 import UIKit
 import GoogleMaps
 
-class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate{
+class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate, MapDelegate{
 
-    
     @IBOutlet var mapView: GMSMapView!
     var locationManager: CLLocationManager!
     var camera: GMSCameraPosition!
@@ -20,9 +19,11 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     var long = -122.0312186
     var radius = 5.0
     var map: Map!
+    var selectedBet: Bet!
     
     override func viewDidLoad() {
         map = Map(mapView: mapView, showMarkers: true)
+        map.delegate = self
         // Create a GMSCameraPosition that tells the map to display the
         // coordinate -33.86,151.20 at zoom level 6.
         super.viewDidLoad()
@@ -61,6 +62,20 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
         })
     }
     
+    func showSelectedBet(bet: Bet){
+        self.selectedBet = bet
+        performSegue(withIdentifier: "mapToBetView", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "mapToBetView")
+        {
+            let nvc = segue.destination as! UINavigationController
+            let vbvc = nvc.topViewController as! ViewBetViewController
+            vbvc.bet = self.selectedBet
+        }
+    }
+
     /*
     // MARK: - Navigation
 
