@@ -16,9 +16,9 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     var locationManager: CLLocationManager!
     var camera: GMSCameraPosition!
     //lat and long should be changed with the map's location
-    var lat = 34.068971
-    var long = -118.444033
-    var radius = 500.00
+    var lat = 37.33233141
+    var long = -122.0312186
+    var radius = 5.0
     var map: Map!
     
     override func viewDidLoad() {
@@ -44,7 +44,19 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
         user.betsWithinVicinity(latParm: self.lat, longParm: self.long, radMiles: self.radius, completion: {
             bets in
             for bet in bets{
-                self.map.addMarkers(lat: bet.lat, long: bet.long, bet: bet)
+                user.userIdsForBetId(betId: bet.id, completion: {
+                    userIds in
+                    if (userIds.contains(user.id) && !bet.userIsMediator!){
+                        bet.userHasWagered = true
+                        self.map.addMarkers(lat: bet.lat, long: bet.long, bet: bet, markerImage: self.map.betIconWagered)
+                    }
+                    else if(bet.userIsMediator!){
+                        self.map.addMarkers(lat: bet.lat, long: bet.long, bet: bet, markerImage: self.map.betIconMediated)
+                    }
+                    else{
+                         self.map.addMarkers(lat: bet.lat, long: bet.long, bet: bet, markerImage: self.map.betIconNormal)
+                    }
+                })
             }
         })
     }
