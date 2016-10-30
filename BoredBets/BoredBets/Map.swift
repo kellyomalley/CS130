@@ -45,11 +45,12 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
         mapView.camera = camera
     }
     
-    func addMarkers(lat: Double, long: Double) {
+    func addMarkers(lat: Double, long: Double, bet: Bet) {
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: lat + 0.001, longitude: long + 0.004)
-        marker.title = "Sydney"
-        marker.snippet = "Australia"
+        marker.title = bet.title
+        let potString = String(bet.pot!)
+        marker.snippet = "Pot: \(potString)"
         marker.map = mapView
     }
     
@@ -63,9 +64,9 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
         long = userLocation.coordinate.longitude;
         lat = userLocation.coordinate.latitude;
         updateCamera(lat: lat, long: long)
-        if (self.showMarkers == true) {
-            addMarkers(lat: lat, long: long)
-        }
+        //if (self.showMarkers == true) {
+            //addMarkers(lat: lat, long: long)
+        //}
         locationManager.stopUpdatingLocation()
     }
 }

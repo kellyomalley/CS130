@@ -27,10 +27,11 @@ import Firebase
       //maybe template method?
       
       class Bet {
+        var id: String!
         let idLen : Int = 16
         var currentUserId : String!
-        
-        var id: String!
+        var mediatedByUser: Bool?
+        var wageredOnByUser: Bool?
         var title: String!
         var description: String = ""
         var pot: Int?
@@ -126,6 +127,7 @@ import Firebase
           User.usersRef().child(self.currentUserId).child("BetsMediating").child(betId).setValue(userBetData)
             
         }
+    
         
         class func betsRef() -> FIRDatabaseReference{
             return FIRDatabase.database().reference().child("Bets")
