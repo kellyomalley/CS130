@@ -55,7 +55,7 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
     
     func addMarkers(lat: Double, long: Double, bet: Bet, markerImage: UIImage) {
         let marker = BetMarker(bet: bet)
-        marker.position = CLLocationCoordinate2D(latitude: lat + 0.001, longitude: long + 0.004)
+        marker.position = CLLocationCoordinate2D(latitude: lat, longitude: long)
         marker.title = bet.title
         let potString = String(bet.pot!)
         marker.snippet = "Pot: \(potString)"
