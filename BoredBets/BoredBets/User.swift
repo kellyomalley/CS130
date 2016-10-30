@@ -56,8 +56,10 @@ class User{
             // Get user value
             var betIds: [String] = []
             let value = snapshot.value as? NSDictionary
-            for (k,_) in value! {
-                betIds.append(k as! String)
+            if (value != nil){
+                for (k,_) in value! {
+                    betIds.append(k as! String)
+                }
             }
             print("activeMediatedBetIds")
             print(betIds)
@@ -98,8 +100,10 @@ class User{
             // Get user value
             var wagerIds: [String] = []
             let value = snapshot.value as? NSDictionary
-            for (k,_) in value! {
-                wagerIds.append(k as! String)
+            if (value != nil){
+                for (k,_) in value! {
+                    wagerIds.append(k as! String)
+                }
             }
             print("activeWagerIds")
             print(wagerIds)
