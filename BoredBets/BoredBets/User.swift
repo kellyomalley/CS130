@@ -122,7 +122,7 @@ class User{
                             title = v as! String
                         }
                         else if (k as? String == "pot"){
-                            pot = Int(v as! String)!
+                            pot = v as! Int
                         }
                     }
                     let tempBet = Bet(title: title, id: child.key)
