@@ -149,6 +149,7 @@ class User{
                 var pot: Int = 0
                 var lat: Double = 0
                 var long: Double = 0
+                var userIsMediator: Bool = false
                 for (k,v) in dict!{
                     if (k as? String == "title"){
                         title = v as! String
@@ -162,6 +163,11 @@ class User{
                     else if (k as? String == "long"){
                         long = v as! Double
                     }
+                    else if (k as? String == "mediator_id"){
+                        if (v as! String == self.id){
+                            userIsMediator = true
+                        }
+                    }
                 }
                 print("lat: \(lat), long: \(long)")
                 //check if the longitude and latitude are within the defined parms
@@ -170,6 +176,7 @@ class User{
                     tempBet.pot = pot
                     tempBet.lat = lat
                     tempBet.long = long
+                    tempBet.userIsMediator = userIsMediator
                     bets.append(tempBet)
                 }
             }
@@ -184,7 +191,8 @@ class User{
         
         let coordinate1 = CLLocation(latitude: latParm, longitude: longParm)
         let coordinate2 = CLLocation(latitude: lat, longitude: long)
-        
+        print ("1: \(coordinate1)")
+        print ("2: \(coordinate2)")
         let dMeters = coordinate1.distance(from: coordinate2)
         let rMeters = 1609 * radMiles
         print("dMeters: \(dMeters), dmiles: \(dMeters/1609)")
@@ -195,6 +203,52 @@ class User{
             return true
     
         }
+    }
+    
+    //gets userIds for users that have placed wagers on a bet
+    func userIdsForBetId(betId: String, completion: @escaping([String]) -> ()){
+        let wagersRef = Wager.wagersRef()
+        wagersRef.observeSingleEvent(of: .value, with: {(snapshot) in
+            var userIds: [String] = []
+            for wagerSnap in snapshot.children.allObjects as! [FIRDataSnapshot]{
+                let dict = wagerSnap.value as? NSDictionary
+                var userId = "user_id"
+                var betIdMatch: Bool = false
+                for (k,v) in dict!{
+                    if (k as? String == "user_id"){
+                        userId = v as! String
+                    }
+                    else if (k as? String == "bet_id" && v as? String == betId){
+                        betIdMatch = true
+                    }
+                }
+                if (betIdMatch){
+                    userIds.append(userId)
+                }
+                
+            }
+            completion(userIds)
+        })
+    }
+    
+    //gets wagerIds for wagers that have been placed on a bet
+    func wagerIdsForBet(bet: Bet, completion: @escaping([String]) -> ()){
+        
+        let betsRef = Bet.betsRef()
+        betsRef.child(bet.id).child("Wagers").observeSingleEvent(of: .value, with: { (snapshot) in
+            var wagerIds: [String] = []
+            for wagerSnap in snapshot.children.allObjects as! [FIRDataSnapshot]{
+                let dict = wagerSnap.value as? NSDictionary
+                var wagerId: String = "wager_id"
+                for (k,v) in dict!{
+                    if (k as? String == "wager_id"){
+                        wagerId = v as! String
+                    }
+                }
+                wagerIds.append(wagerId)
+            }
+            completion(wagerIds)
+        })
     }
     
     

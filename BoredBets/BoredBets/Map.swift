@@ -17,6 +17,10 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
     var long = -118.444033
     var locationManager: CLLocationManager!
     var showMarkers: Bool!
+    
+    var betIconWagered = GMSMarker.markerImage(with: UIColor.green)
+    var betIconMediated = GMSMarker.markerImage(with: UIColor.purple)
+    var betIconNormal = GMSMarker.markerImage(with: UIColor.blue)
 
     init(mapView: GMSMapView!, showMarkers: Bool!) {
         super.init()
@@ -45,13 +49,14 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
         mapView.camera = camera
     }
     
-    func addMarkers(lat: Double, long: Double, bet: Bet) {
+    func addMarkers(lat: Double, long: Double, bet: Bet, markerImage: UIImage) {
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: lat + 0.001, longitude: long + 0.004)
         marker.title = bet.title
         let potString = String(bet.pot!)
         marker.snippet = "Pot: \(potString)"
-        marker.map = mapView
+        marker.icon = markerImage
+        marker.map = self.mapView
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
