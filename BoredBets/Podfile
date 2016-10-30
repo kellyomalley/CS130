@@ -8,6 +8,8 @@ target 'BoredBets' do
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
   pod 'Firebase/Database'
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
 
   target 'BoredBetsTests' do
     inherit! :search_paths

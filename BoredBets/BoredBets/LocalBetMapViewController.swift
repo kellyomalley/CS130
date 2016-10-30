@@ -7,10 +7,23 @@
 //
 
 import UIKit
+import GoogleMaps
 
-class LocalBetMapViewController: UIViewController {
+class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate{
 
+    
+    @IBOutlet var mapView: GMSMapView!
+    var locationManager: CLLocationManager!
+    var camera: GMSCameraPosition!
+    var lat = 34.068971
+    var long = -118.444033
+    var map: Map!
+    
     override func viewDidLoad() {
+        
+        map = Map(mapView: mapView)
+        // Create a GMSCameraPosition that tells the map to display the
+        // coordinate -33.86,151.20 at zoom level 6.
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -21,7 +34,6 @@ class LocalBetMapViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
