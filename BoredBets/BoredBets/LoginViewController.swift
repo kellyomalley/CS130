@@ -15,7 +15,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordOutlet: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,9 +24,6 @@ class LoginViewController: UIViewController {
     
     func storeCurrentUserId(user_id : String){
         UserDefaults.standard.set(user_id, forKey: "user_id")
-        print("YOOOOOOOO")
-        print(user_id)
-        print("YOOOOOOOO")
     }
 
     @IBAction func createAccountAction(_ sender: AnyObject)

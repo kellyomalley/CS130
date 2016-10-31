@@ -9,6 +9,9 @@
 import Foundation
 import GoogleMaps
 
+protocol MapDelegate {
+    func showSelectedBet(bet: Bet)
+}
 
 class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
     var mapView: GMSMapView!
@@ -17,10 +20,11 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
     var long = -118.444033
     var locationManager: CLLocationManager!
     var showMarkers: Bool!
+    var delegate: MapDelegate?
     
-    var betIconWagered = GMSMarker.markerImage(with: UIColor.green)
-    var betIconMediated = GMSMarker.markerImage(with: UIColor.purple)
-    var betIconNormal = GMSMarker.markerImage(with: UIColor.blue)
+    let betIconWagered = GMSMarker.markerImage(with: UIColor.green)
+    let betIconMediated = GMSMarker.markerImage(with: UIColor.purple)
+    let betIconNormal = GMSMarker.markerImage(with: UIColor.blue)
 
     init(mapView: GMSMapView!, showMarkers: Bool!) {
         super.init()
@@ -50,8 +54,8 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
     }
     
     func addMarkers(lat: Double, long: Double, bet: Bet, markerImage: UIImage) {
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: lat + 0.001, longitude: long + 0.004)
+        let marker = BetMarker(bet: bet)
+        marker.position = CLLocationCoordinate2D(latitude: lat, longitude: long)
         marker.title = bet.title
         let potString = String(bet.pot!)
         marker.snippet = "Pot: \(potString)"
@@ -59,6 +63,24 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
         marker.map = self.mapView
     }
     
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: BetMarker) -> UIView? {
+        let infoWindow = Bundle.main.loadNibNamed("InfoWindow", owner: self, options: nil)?.first! as! BetInfoWindow
+        infoWindow.isUserInteractionEnabled = false
+        infoWindow.title.text = marker.bet.title
+        infoWindow.title.textAlignment = .center
+        infoWindow.pot.text = String(marker.bet.pot!)
+        infoWindow.pot.textAlignment = .center
+        infoWindow.map = self
+        infoWindow.clipsToBounds = true
+        return infoWindow
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOfMarker marker: BetMarker) -> UIView? {
+        self.delegate!.showSelectedBet(bet: marker.bet)
+        return UIView()
+    }
+
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         locationManager.stopUpdatingLocation()
         print(error)

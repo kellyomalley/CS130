@@ -8,12 +8,12 @@
 
 import UIKit
 
-class SetBetDetailsViewController: UIViewController {
+class SetBetDetailsViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var titleTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.titleTextField.delegate = self;
         // Do any additional setup after loading the view.
     }
 
@@ -33,6 +33,11 @@ class SetBetDetailsViewController: UIViewController {
             vc.betTitle = self.titleTextField.text
         }
     }
- 
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return false to ignore.
+    {
+        self.view.endEditing(true)
+        return false
+    }
 
 }
