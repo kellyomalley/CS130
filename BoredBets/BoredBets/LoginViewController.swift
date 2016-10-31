@@ -8,13 +8,15 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, GIDSignInUIDelegate {
 
     @IBOutlet weak var emailOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        GIDSignIn.sharedInstance().uiDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,17 +27,21 @@ class LoginViewController: UIViewController {
     func storeCurrentUserId(user_id : String){
         UserDefaults.standard.set(user_id, forKey: "user_id")
     }
+    
+    func showMessagePrompt(_ message: String, title: String = "Oops!"){
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
 
     @IBAction func createAccountAction(_ sender: AnyObject)
     {
         if self.emailOutlet.text == "" || self.passwordOutlet.text == ""
         {
-            let alertController = UIAlertController(title: "Oops!", message: "Please enter an email and password.", preferredStyle: .alert)
-            
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            
-            self.present(alertController, animated: true, completion: nil)
+            self.showMessagePrompt("Please enter an email and password.")
         }
         else
         {
@@ -47,12 +53,7 @@ class LoginViewController: UIViewController {
                 }
                 else
                 {
-                    let alertController = UIAlertController(title: "Oops!", message: error?.localizedDescription, preferredStyle: .alert)
-                    
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alertController.addAction(defaultAction)
-                    
-                    self.present(alertController, animated: true, completion: nil)
+                    self.showMessagePrompt(error!.localizedDescription)
                 }
             }
         }
@@ -62,12 +63,7 @@ class LoginViewController: UIViewController {
     {
         if self.emailOutlet.text == "" || self.passwordOutlet.text == ""
         {
-            let alertController = UIAlertController(title: "Oops!", message: "Please enter an email and password.", preferredStyle: .alert)
-            
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            
-            self.present(alertController, animated: true, completion: nil)
+            self.showMessagePrompt("Please enter an email and password.")
         }
         else
         {
@@ -79,12 +75,7 @@ class LoginViewController: UIViewController {
                 }
                 else
                 {
-                    let alertController = UIAlertController(title: "Oops!", message: error?.localizedDescription, preferredStyle: .alert)
-                    
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alertController.addAction(defaultAction)
-                    
-                    self.present(alertController, animated: true, completion: nil)
+                    self.showMessagePrompt(error!.localizedDescription)
                 }
             }
         }
