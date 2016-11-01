@@ -215,6 +215,16 @@ import Firebase
 
       //the bet where something will or will not happen
       class YesNoBet: Bet {
+        
+        /**
+       Calculate bet odds for a YesNo bet, overrides main bet function.
+         
+         Example usage: 
+        
+              mybet.calcuateOdds()
+        
+         - Returns: A string of the form "Odds: 2:1, Pool: $1234"
+       */
         override func calculateOdds() -> String{
             var numberOfYes: Int = 0
             var numberOfNo: Int = 0
