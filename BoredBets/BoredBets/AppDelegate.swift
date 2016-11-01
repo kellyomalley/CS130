@@ -50,7 +50,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                                                           accessToken: (authentication?.accessToken)!)
         
         FIRAuth.auth()?.signIn(with: credential) { (user, error) in
-            print("User signed into Firebase")
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            let rootViewController = self.window!.rootViewController as! UINavigationController
+            rootViewController.visibleViewController?.performSegue(withIdentifier: "login", sender: nil)
         }
     }
     
