@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SEr-uc-c8U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SEr-uc-c8U">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -52,12 +52,12 @@
                     </view>
                     <connections>
                         <outlet property="activeBetsTableView" destination="4cE-4r-kDp" id="PIp-Op-3Eh"/>
-                        <segue destination="K4a-T5-MEV" kind="show" identifier="activeBetsToBetView" id="fxU-Kn-U0n"/>
+                        <segue destination="2YN-Db-3jX" kind="show" identifier="activeBetsToBetView" id="z7Y-T8-0xH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nMN-xU-IIu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3557.5999999999999" y="-1045.7271364317842"/>
+            <point key="canvasLocation" x="4438" y="525"/>
         </scene>
         <!--Bets Mediating-->
         <scene sceneID="Q8E-3z-ej6">
@@ -104,12 +104,68 @@
                     </view>
                     <connections>
                         <outlet property="betsTableView" destination="Bcd-zA-HdV" id="FUm-z1-Irw"/>
-                        <segue destination="K4a-T5-MEV" kind="show" identifier="mediatedBetsToBetView" id="UbV-mk-q85"/>
+                        <segue destination="Rpa-az-Zcy" kind="show" identifier="mediatedBetsToMediatorView" id="68x-Yp-DGJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DPR-It-gLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4669.6000000000004" y="-1046.6266866566718"/>
+            <point key="canvasLocation" x="4439" y="-929"/>
+        </scene>
+        <!--Mediator View Controller-->
+        <scene sceneID="Kh7-h5-6gF">
+            <objects>
+                <viewController id="Rpa-az-Zcy" customClass="MediatorViewController" customModule="BoredBets" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pDX-o7-fRD"/>
+                        <viewControllerLayoutGuide type="bottom" id="ki9-R2-lWi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZQm-Ty-7ik">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhH-BG-UaA">
+                                <state key="normal" title="Edit Bet"/>
+                                <connections>
+                                    <segue destination="EMM-h9-4Pp" kind="show" id="UeW-wv-MB3"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kaq-oT-Ifu">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ml8-aB-rgv">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Bet Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMZ-Fr-B6X">
+                                <frame key="frameInset" minX="16" minY="101" width="343" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jhH-BG-UaA" firstAttribute="centerX" secondItem="ZQm-Ty-7ik" secondAttribute="centerX" id="8JM-MS-f3G"/>
+                            <constraint firstItem="JMZ-Fr-B6X" firstAttribute="top" secondItem="pDX-o7-fRD" secondAttribute="bottom" constant="60" id="GYV-vO-Eya"/>
+                            <constraint firstItem="jhH-BG-UaA" firstAttribute="centerX" secondItem="ml8-aB-rgv" secondAttribute="centerX" id="M8m-60-diH"/>
+                            <constraint firstItem="ml8-aB-rgv" firstAttribute="centerX" secondItem="Kaq-oT-Ifu" secondAttribute="centerX" id="OtS-i2-uhx"/>
+                            <constraint firstItem="JMZ-Fr-B6X" firstAttribute="centerX" secondItem="ZQm-Ty-7ik" secondAttribute="centerX" id="cf2-6D-yZW"/>
+                            <constraint firstItem="jhH-BG-UaA" firstAttribute="centerY" secondItem="ZQm-Ty-7ik" secondAttribute="centerY" id="hO3-WM-kFk"/>
+                            <constraint firstItem="Kaq-oT-Ifu" firstAttribute="top" secondItem="ml8-aB-rgv" secondAttribute="bottom" constant="23" id="rde-aD-04U"/>
+                            <constraint firstItem="ki9-R2-lWi" firstAttribute="top" secondItem="Kaq-oT-Ifu" secondAttribute="bottom" constant="138" id="sm3-ZJ-CR7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="betTitleLabel" destination="JMZ-Fr-B6X" id="isZ-rp-jCd"/>
+                        <outlet property="potLabel" destination="Kaq-oT-Ifu" id="zqS-Lb-fio"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MDq-74-lb0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6089" y="-706"/>
         </scene>
         <!--HomeMapView-->
         <scene sceneID="tOv-4y-xr9">
@@ -129,7 +185,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="26B-M0-0Zf">
                                 <state key="normal" title="Profile"/>
                                 <connections>
-                                    <segue destination="uNR-iR-RTf" kind="presentation" id="Xa3-JH-4Rw"/>
+                                    <segue destination="esa-xT-N0z" kind="show" id="XeD-QV-eSu"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This will be a slide out menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzt-OG-gha">
@@ -184,7 +240,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="ZU9-uS-avS" id="E9d-h6-fKc"/>
-                        <segue destination="K4a-T5-MEV" kind="show" identifier="mapToBetView" id="gYz-cT-Vei"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXs-Tx-WUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -225,7 +280,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NfL-ZJ-QhG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2620" y="1283"/>
+            <point key="canvasLocation" x="3558" y="525"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Pjf-h5-jKp">
@@ -252,7 +307,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HgX-t3-vBu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3574" y="1282"/>
+            <point key="canvasLocation" x="3558" y="1298"/>
         </scene>
         <!--Login-->
         <scene sceneID="snT-py-3hH">
@@ -387,7 +442,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hb0-dh-hiu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4479" y="-241"/>
+            <point key="canvasLocation" x="4438" y="-243"/>
         </scene>
         <!--Create Bet-->
         <scene sceneID="pjL-We-5Re">
@@ -405,7 +460,7 @@
                                 <state key="normal" title="Confirm Creation"/>
                                 <connections>
                                     <action selector="createBetDidTouch:" destination="BvF-2s-w6O" eventType="touchUpInside" id="SUm-CJ-yQn"/>
-                                    <segue destination="K4a-T5-MEV" kind="presentation" identifier="createBetToViewBet" id="vF1-Dp-VzA"/>
+                                    <segue destination="Rpa-az-Zcy" kind="presentation" id="6hF-22-mr5"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TvZ-Po-E2p" customClass="GMSMapView">
@@ -428,7 +483,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BYU-IB-pGx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5357.6000000000004" y="-233.43328335832086"/>
+            <point key="canvasLocation" x="5278" y="-243"/>
         </scene>
         <!--Edit Bet-->
         <scene sceneID="Xnl-dc-bPN">
@@ -457,7 +512,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8xT-CW-PgJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Ufo-cn-nEO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6452" y="-243.32833583208398"/>
+            <point key="canvasLocation" x="6916" y="-707"/>
         </scene>
         <!--View Bet View Controller-->
         <scene sceneID="mel-RV-nuA">
@@ -471,67 +526,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bet Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7i-vj-gdr">
-                                <frame key="frameInset" minY="114" width="375" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bet Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7i-vj-gdr">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="UIz-jr-4Yf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDe-OA-bSx">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="m31-5s-j1p"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTG-RA-nst">
-                                <frame key="frameInset" minX="33" minY="66" width="41" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Home"/>
-                                <connections>
-                                    <segue destination="Mxx-6K-PYM" kind="presentation" id="KgD-lN-Yhe"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZW2-al-Orz">
-                                <frame key="frameInset" minX="61" minY="333" width="86" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0O-TI-JOt">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZW2-al-Orz">
                                 <state key="normal" title="Make Wager"/>
                                 <connections>
                                     <segue destination="rUQ-O1-kBY" kind="show" identifier="viewBetToMakeWager" id="Jhn-mV-Vd9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLp-6x-ikZ">
-                                <frame key="frameInset" minX="234" minY="333" width="53" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Edit bet"/>
-                                <connections>
-                                    <segue destination="EMM-h9-4Pp" kind="show" id="BFV-Ly-Jtu"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="if mediator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSZ-mf-PSz">
-                                <frame key="frameInset" minX="219" minY="283" width="82" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="if player" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REO-AE-bDc">
-                                <frame key="frameInset" minX="74" minY="283" width="61" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="POT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDe-OA-bSx">
-                                <frame key="frameInset" minX="162" minY="484" width="50" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0O-TI-JOt">
-                                <frame key="frameInset" minY="513" width="375" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sLg-CL-8xX" firstAttribute="top" secondItem="E0O-TI-JOt" secondAttribute="bottom" constant="133" id="CoT-lc-HR4"/>
+                            <constraint firstItem="e7i-vj-gdr" firstAttribute="trailing" secondItem="E0O-TI-JOt" secondAttribute="trailing" id="FFT-yq-xx7"/>
+                            <constraint firstItem="hDe-OA-bSx" firstAttribute="top" secondItem="ZW2-al-Orz" secondAttribute="bottom" constant="42" id="FYC-gy-ZNY"/>
+                            <constraint firstAttribute="trailing" secondItem="e7i-vj-gdr" secondAttribute="trailing" id="Jbf-rS-dC0"/>
+                            <constraint firstItem="hDe-OA-bSx" firstAttribute="centerX" secondItem="E0O-TI-JOt" secondAttribute="centerX" id="Zqf-Bq-vqV"/>
+                            <constraint firstItem="e7i-vj-gdr" firstAttribute="top" secondItem="PAU-mB-NAL" secondAttribute="bottom" constant="50" id="d9l-KY-qWY"/>
+                            <constraint firstItem="e7i-vj-gdr" firstAttribute="leading" secondItem="1kk-Ig-cJ2" secondAttribute="leading" id="jRJ-zB-xzo"/>
+                            <constraint firstItem="E0O-TI-JOt" firstAttribute="top" secondItem="hDe-OA-bSx" secondAttribute="bottom" constant="8" symbolic="YES" id="nRZ-md-kmg"/>
+                            <constraint firstItem="ZW2-al-Orz" firstAttribute="centerX" secondItem="hDe-OA-bSx" secondAttribute="centerX" id="nZ9-KI-UOE"/>
+                            <constraint firstItem="e7i-vj-gdr" firstAttribute="leading" secondItem="E0O-TI-JOt" secondAttribute="leading" id="u9A-ia-hjq"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="549-Rz-PeM"/>
                     <connections>
@@ -541,7 +576,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rAr-ye-G9E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5512.8000000000002" y="524.8875562218891"/>
+            <point key="canvasLocation" x="5279" y="525"/>
         </scene>
         <!--Make Wager-->
         <scene sceneID="Dgt-G1-PxB">
@@ -589,12 +624,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AHR-w9-eGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="w5P-N0-BJ9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6332" y="524.8875562218891"/>
+            <point key="canvasLocation" x="6089" y="525"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NV3-EZ-2U3">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5vk-yv-GRH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mxx-6K-PYM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zpi-fg-dnK">
@@ -606,44 +640,9 @@
                         <segue destination="Krk-rh-40z" kind="relationship" relationship="rootViewController" id="Wv2-58-FnB"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5vk-yv-GRH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2556" y="-243.32833583208398"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="S8j-9k-UnC">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K4a-T5-MEV" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="stL-Xz-sES">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="2YN-Db-3jX" kind="relationship" relationship="rootViewController" id="b5t-rm-XJP"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Hm8-k1-buF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4671.1999999999998" y="524.8875562218891"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="kio-iL-a6P">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uNR-iR-RTf" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rfj-9I-OLo">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="esa-xT-N0z" kind="relationship" relationship="rootViewController" id="Ddk-fi-6xv"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tES-Ho-rEr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2620" y="524.8875562218891"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ys0-SU-FWf">
@@ -665,7 +664,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gYz-cT-Vei"/>
-        <segue reference="Ngd-Bg-eNG"/>
+        <segue reference="6hF-22-mr5"/>
     </inferredMetricsTieBreakers>
 </document>

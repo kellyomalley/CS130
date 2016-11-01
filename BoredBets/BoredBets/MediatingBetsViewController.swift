@@ -55,7 +55,7 @@ class MediatingBetsViewController: UIViewController, UITableViewDataSource, UITa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(self.mediatedBets[indexPath.row])
-        performSegue(withIdentifier: "mediatedBetsToBetView", sender: self)
+        performSegue(withIdentifier: "mediatedBetsToMediatorView", sender: self)
     }
     
     //END TABLE VIEW STUFF
@@ -64,11 +64,10 @@ class MediatingBetsViewController: UIViewController, UITableViewDataSource, UITa
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "mediatedBetsToBetView"){
-            let nvc = segue.destination as! UINavigationController
-            let vbvc = nvc.topViewController as! ViewBetViewController
+        if (segue.identifier == "mediatedBetsToMediatorView"){
+            let mvc = segue.destination as! MediatorViewController
             let index: Int! = self.betsTableView.indexPathForSelectedRow?.row
-            vbvc.bet = self.mediatedBets[index]
+            mvc.bet = self.mediatedBets[index]
         }
     }
     
