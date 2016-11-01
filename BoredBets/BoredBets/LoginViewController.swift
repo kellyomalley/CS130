@@ -27,21 +27,12 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     func storeCurrentUserId(user_id : String){
         UserDefaults.standard.set(user_id, forKey: "user_id")
     }
-    
-    func showMessagePrompt(_ message: String, title: String = "Oops!"){
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(defaultAction)
-        
-        self.present(alertController, animated: true, completion: nil)
-    }
 
     @IBAction func createAccountAction(_ sender: AnyObject)
     {
         if self.emailOutlet.text == "" || self.passwordOutlet.text == ""
         {
-            self.showMessagePrompt("Please enter an email and password.")
+            BBUtilities.showMessagePrompt("Please enter an email and password.", controller: self)
         }
         else
         {
@@ -53,8 +44,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 }
                 else
                 {
-                    self.showMessagePrompt(error!.localizedDescription)
+                    BBUtilities.showMessagePrompt(error!.localizedDescription, controller: self)
                 }
+                
+                User.usersRef().child(User.currentUser()).child("Coins").setValue(100)
             }
         }
     }
@@ -63,7 +56,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     {
         if self.emailOutlet.text == "" || self.passwordOutlet.text == ""
         {
-            self.showMessagePrompt("Please enter an email and password.")
+            BBUtilities.showMessagePrompt("Please enter an email and password.", controller: self)
         }
         else
         {
@@ -75,7 +68,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 }
                 else
                 {
-                    self.showMessagePrompt(error!.localizedDescription)
+                    BBUtilities.showMessagePrompt(error!.localizedDescription, controller: self)
                 }
             }
         }

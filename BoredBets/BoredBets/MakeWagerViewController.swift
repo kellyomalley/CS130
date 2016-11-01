@@ -10,13 +10,19 @@ import UIKit
 
 class MakeWagerViewController: UIViewController {
 
+    @IBOutlet weak var coinsLeftMessage: UILabel!
     @IBOutlet weak var amountTextField: UITextField!
     var bet:Bet?
+    var coinsLeft: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        User.usersRef().child(User.currentUser()).observe(.value, with: { snapshot in
+            self.coinsLeft = snapshot.childSnapshot(forPath: "Coins").value as! Int
+            
+            self.coinsLeftMessage.text = "You Have " + String(self.coinsLeft) + " coins left"
+            self.coinsLeftMessage.textAlignment = .center
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,7 +35,15 @@ class MakeWagerViewController: UIViewController {
         //retrieve current user:
         let user_id = User.currentUser()
         //make new wager object and attach it to bet
-        self.bet?.attachWager(userId: user_id, betAmount: Int(self.amountTextField.text!)!, userBet: 1)
+        let betAmount = Int(self.amountTextField.text!)
+        if (betAmount! > self.coinsLeft!) {
+            BBUtilities.showMessagePrompt("You cannot place a wage with more coins that you have!", controller: self)
+        }
+        else {
+            let newCoinAmount = self.coinsLeft! - betAmount!
+            User.usersRef().child(User.currentUser()).child("Coins").setValue(newCoinAmount)
+            self.bet?.attachWager(userId: user_id, betAmount: betAmount!, userBet: 1)
+        }
     }
     /*
     // MARK: - Navigation
