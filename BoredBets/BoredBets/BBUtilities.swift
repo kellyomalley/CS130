@@ -29,5 +29,13 @@ class BBUtilities{
         return randomString as String
     }
     
+    class func showMessagePrompt(_ message: String, title: String = "Oops!", controller: UIViewController){
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+
+        controller.present(alertController, animated: true, completion: nil)
+    }
     
 }
