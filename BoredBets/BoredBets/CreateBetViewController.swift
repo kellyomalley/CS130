@@ -38,22 +38,11 @@ class CreateBetViewController: UIViewController {
         self.bet.long = self.map.long
         self.bet.saveNewBetToFB()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "createBetToViewBet") {
-            let nav = segue.destination as! UINavigationController
-            let vbvc = nav.topViewController as! ViewBetViewController
-            vbvc.bet = self.bet
-            
+        if (segue.identifier == "createBetToMediateBet") {
+            let mvc = segue.destination as! MediatorViewController
+            mvc.bet = self.bet
         }
     }
     
