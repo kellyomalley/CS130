@@ -11,7 +11,6 @@ import Firebase
 
 class BBUtilities{
     
-    
     class func generateObjectId(len : Int) -> String {
         //TODO
         //insert logic to check if such a string already exists...

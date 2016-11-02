@@ -15,8 +15,7 @@ class Wager {
     let idLen: Int = 16
     var userId: String
     var betAmount: Int
-    //for YesNo bet, should be of form 1 (Yes) or 0 (No)
-    var userBet: Int
+    var userBet: Int        //for YesNo bet, should be of form 1 (Yes) or 0 (No)
     var betId: String?
 
     

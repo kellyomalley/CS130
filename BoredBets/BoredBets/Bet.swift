@@ -80,11 +80,11 @@ import Firebase
             let newWager = Wager(userId: userId, betAmount: betAmount, userBet: userBet)
             wagerArray.append(newWager)
             //now update the db with the new wager object
-            self.saveNewWager(newWager: newWager)
+            self.saveNewWager(newWager)
             self.updatePot()
         }
         
-        func saveNewWager(newWager: Wager){
+        func saveNewWager(_ newWager: Wager){
             let wagerData: [String: Any] = [
                 "user_id" : newWager.userId,
                 "bet_id" : self.id,
@@ -102,8 +102,6 @@ import Firebase
             Wager.wagersRef().child(newWager.id).setValue(wagerData)
             User.usersRef().child(newWager.userId).child("Wagers").child(newWager.id).setValue(userWagerData)
             Bet.betsRef().child(self.id).child("Wagers").child(newWager.id).setValue(betWagerData)
-            
-            
         }
         
         func updatePot(){
