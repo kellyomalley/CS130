@@ -37,14 +37,11 @@ class CreateBetViewController: UIViewController {
         self.bet.lat = self.map.lat
         self.bet.long = self.map.long
         self.bet.saveNewBetToFB()
+        
+        let baseViewController = self.navigationController?.viewControllers[0]
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "MediatorView") as! MediatorViewController
+        controller.bet = self.bet
+        self.navigationController?.setViewControllers([baseViewController!, controller], animated: true)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "createBetToMediateBet") {
-            let mvc = segue.destination as! MediatorViewController
-            mvc.bet = self.bet
-        }
-    }
-    
-
 }
