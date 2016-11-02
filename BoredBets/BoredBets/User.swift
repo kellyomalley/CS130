@@ -142,6 +142,8 @@ class User{
     }
     
     //FOR MAPS API
+    //returns list of bets within the radius provided (with regards to the user's location)
+    //also attaches appropriate relationship to the user for color coordination of pins
     func betsWithinVicinity(latParm: Double, longParm: Double, radMiles: Double, completion: @escaping([Bet]) -> ()){
         let betsRef = Bet.betsRef()
         betsRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -191,6 +193,8 @@ class User{
         
     }
     
+    //returns true if the two coordinates given are within the miles radius parm
+    //false otherwise
     func withinVicinity(latParm: Double, longParm: Double, lat: Double, long: Double, radMiles: Double) -> Bool {
         
         let coordinate1 = CLLocation(latitude: latParm, longitude: longParm)
@@ -240,6 +244,7 @@ class User{
     class func currentUser() -> String {
         return (UserDefaults.standard.object(forKey: "user_id") as? String)!
     }
+    //returns the location of where the users are stored in the DB
     class func usersRef() -> FIRDatabaseReference {
         return FIRDatabase.database().reference().child("Users")
     }
