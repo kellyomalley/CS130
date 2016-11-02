@@ -71,8 +71,36 @@ import Firebase
         }
         
         //should be the same for every bet type
-        func attachComment() -> Void{
-            
+        func attachComment(_ commentText : String) -> Void{
+            let comment = Comment(userId: User.currentUser(), betId: self.id, commentText: commentText)
+            comment.saveComment()
+        }
+        
+        //should be the same for every bet type
+        func getComments(_ completion: @escaping ([(String, String)]) -> ()){
+            Bet.betsRef().child(self.id).child("Comments").observeSingleEvent(of: .value, with: { (snapshot) in
+                var comments: [(String, String)] = []
+                for commentSnap in snapshot.children.allObjects as! [FIRDataSnapshot]{
+                    let dict = commentSnap.value as? NSDictionary
+                    var commentUser = ""
+                    var commentText = ""
+                    for (k,v) in dict!{
+                        if (k as? String == "user_id"){
+                            commentUser = v as! String
+                        }
+                        if (k as? String == "comment_text"){
+                            commentText = v as! String
+                        }
+                    }
+                    comments.append((commentUser, commentText))
+                }
+                completion(comments)
+            })
+        }
+        
+        //should be the same for every bet type
+        func getCommentsCount() -> Int{
+            return 0
         }
         
         //make wager and attach to the bet

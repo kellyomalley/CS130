@@ -8,11 +8,14 @@
 
 import UIKit
 
-class ViewBetViewController: UIViewController {
+class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var bet:Bet!
+    var comments: [(String, String)] = []
 
     @IBOutlet weak var betTitleLabel: UILabel!
     @IBOutlet weak var potLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var commentField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +30,51 @@ class ViewBetViewController: UIViewController {
             //updating bet member variables
             self.bet.title = title
         })
-        
+        self.reloadTable()
         self.betTitleLabel.text = self.bet?.title
     }
     
+    @IBAction func submitComment(_ sender: AnyObject) {
+        
+        guard let text = commentField.text , !text.isEmpty else {
+            print("Empty text field")
+            return
+        }
+        print("Adding comment")
+        self.bet.attachComment(commentField.text!)
+        self.reloadTable()
+        commentField.text = ""
+    }
+    
+    //TABLE VIEW STUFF
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return comments.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath)
+        cell.textLabel?.text = comments[indexPath.row].0
+        print("setting user name to \(comments[indexPath.row].0)")
+        cell.detailTextLabel?.text = comments[indexPath.row].1
+        return cell
+    }
+    
+    func reloadTable()
+    {
+        self.bet.getComments(){(comments: [(String, String)]) in
+            self.comments = comments
+            print("Found \(comments.count) comments. First one: \(comments[0].1)")
+            DispatchQueue.main.async{
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    //END TABLE VIEW STUFF
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

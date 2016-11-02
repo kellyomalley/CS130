@@ -64,8 +64,7 @@ class ActiveBetsViewController: UIViewController, UITableViewDelegate, UITableVi
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let nvc = segue.destination as! UINavigationController
-        let vbvc = nvc.topViewController as! ViewBetViewController
+        let vbvc = segue.destination as! ViewBetViewController
         let indexSelected = self.activeBetsTableView.indexPathForSelectedRow?.row
         vbvc.bet = self.activeBets[indexSelected!]
     }

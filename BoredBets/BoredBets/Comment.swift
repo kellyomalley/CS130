@@ -11,11 +11,11 @@ import Firebase
 
 class Comment{
     
-    var id: String
+    let id: String
     let idLen: Int = 16
-    var userId: String
+    let userId: String
+    let betId: String
     var commentText: String
-    var betId: String?
     
     
     init(userId: String, betId: String, commentText:String) {
@@ -38,6 +38,15 @@ class Comment{
     
     func getCommentText() -> String {
         return commentText
+    }
+    
+    func saveComment(){
+        let commentData: [String: Any] = [
+            "id" : self.id,
+            "user_id" : self.userId,
+            "comment_text" : self.commentText
+        ]
+        Bet.betsRef().child(self.betId).child("Comments").child(self.id).setValue(commentData)
     }
     
     class func commentRef() -> FIRDatabaseReference{
