@@ -84,6 +84,7 @@ import Firebase
             self.updatePot()
         }
         
+        //saves a new wager object to the DB given that object and an associated bet object
         func saveNewWager(_ newWager: Wager){
             let wagerData: [String: Any] = [
                 "user_id" : newWager.userId,
@@ -104,6 +105,7 @@ import Firebase
             Bet.betsRef().child(self.id).child("Wagers").child(newWager.id).setValue(betWagerData)
         }
         
+        //function updates the pot in the bet object by tallying up all associated wagers
         func updatePot(){
             self.wagerIds(completion: {
                 wagerIds in
@@ -120,6 +122,7 @@ import Firebase
             })
         }
         
+        //function returns all wagers given a list of wager ids
         func wagersForWagerIds(wagerIds: [String], wagers: [Wager], completion: @escaping([Wager]) -> ()){
             let wagersRef = Wager.wagersRef()
             if (wagers.count == wagerIds.count){
@@ -182,7 +185,7 @@ import Firebase
             })
         }
 
-        
+        //saves the bet object to the DB
         func saveNewBetToFB() -> Void {
             let betId = BBUtilities.generateObjectId(len: idLen)
             //set bet ID for bet object
@@ -205,7 +208,7 @@ import Firebase
             
         }
     
-        
+        //returns the reference path to the where the bets are stored in the DB
         class func betsRef() -> FIRDatabaseReference{
             return FIRDatabase.database().reference().child("Bets")
         }
