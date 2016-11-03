@@ -96,7 +96,6 @@ class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewD
     {
         self.bet.getComments(){(comments: [(String, String)]) in
             self.comments = comments
-            print("Found \(comments.count) comments. First one: \(comments[0].1)")
             DispatchQueue.main.async{
                 self.tableView.reloadData()
             }
