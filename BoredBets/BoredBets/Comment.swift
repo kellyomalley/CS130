@@ -14,36 +14,37 @@ class Comment{
     let id: String
     let idLen: Int = 16
     let userId: String
-    var username: String
     let betId: String
     var commentText: String
     var timestamp: Double
     
-    
+    //Constructor w/o a set id (creates a timestamp upon creation)
     init(userId: String, betId: String, commentText:String) {
         self.id = BBUtilities.generateObjectId(len: self.idLen)
         self.userId = userId
         self.commentText = commentText
         self.betId = betId
         self.timestamp = NSDate().timeIntervalSinceReferenceDate
-        self.username = ""
-        User.getUsernameById(userId, completion: { (name) in
-            self.username = name
-        })
     }
     
+    //Constructor w/ a set id (creates a timestamp upon creation)
     init(id: String, userId: String, betId: String, commentText:String) {
         self.id = id
         self.userId = userId
         self.commentText = commentText
         self.betId = betId
         self.timestamp = NSDate().timeIntervalSinceReferenceDate
-        self.username = ""
-        User.getUsernameById(userId, completion: { (name) in
-            self.username = name
-        })
     }
     
+    /**
+     Save a comment to the database and calls completion upon completion
+     
+     Example usage:
+     
+        comment.saveComment(funcToCallUponCompletion)
+     
+        - Parameter completion: the function to call when saving is finished
+     */
     func saveComment(_ completion: @escaping () -> ()){
         User.getUsernameById(userId, completion: { (name) in
             let commentData: [String: Any] = [

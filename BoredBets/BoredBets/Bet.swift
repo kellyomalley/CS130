@@ -77,6 +77,15 @@ import Firebase
         }
         
         //should be the same for every bet type
+        /**
+            Asynchronously gets the comments for this bet.
+         
+            Example usage:
+         
+                bet.getComments(funcToCallUponCompletion)
+        
+            - Parameter completion: the function to call when retrieval is finished. This is passed a tuple of usernames and their corresponding comments
+         */
         func getComments(_ completion: @escaping ([(String, String)]) -> ()){
             Bet.betsRef().child(self.id).child("Comments").observeSingleEvent(of: .value, with: { (snapshot) in
                 var comments: [(String, String)] = []
