@@ -34,34 +34,11 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.prepareMap()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func prepareMap(){
-        let user = User(id: User.currentUser())
-        user.betsWithinVicinity(latParm: self.lat, longParm: self.long, radMiles: self.radius, completion: {
-            bets in
-            for bet in bets{
-                user.userIdsForBetId(betId: bet.id, completion: {
-                    userIds in
-                    if (userIds.contains(user.id) && !bet.userIsMediator!){
-                        bet.userHasWagered = true
-                        self.map.addMarkers(lat: bet.lat, long: bet.long, bet: bet, markerImage: self.map.betIconWagered)
-                    }
-                    else if(bet.userIsMediator!){
-                        self.map.addMarkers(lat: bet.lat, long: bet.long, bet: bet, markerImage: self.map.betIconMediated)
-                    }
-                    else{
-                         self.map.addMarkers(lat: bet.lat, long: bet.long, bet: bet, markerImage: self.map.betIconNormal)
-                    }
-                })
-            }
-        })
     }
     
     func showSelectedBet(bet: Bet){
@@ -72,9 +49,8 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "mapToBetView")
         {
-            let nvc = segue.destination as! UINavigationController
-            let vbvc = nvc.topViewController as! ViewBetViewController
-            vbvc.bet = self.selectedBet
+            let vc = segue.destination as! ViewBetViewController
+            vc.bet = self.selectedBet
         }
     }
 

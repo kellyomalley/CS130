@@ -18,6 +18,7 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
     var camera: GMSCameraPosition!
     var lat = 34.068971
     var long = -118.444033
+    var radius = 5.0
     var locationManager: CLLocationManager!
     var showMarkers: Bool!
     var delegate: MapDelegate?
@@ -63,6 +64,28 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
         marker.map = self.mapView
     }
     
+    func prepareMap(){
+        let user = User(id: User.currentUser())
+        user.betsWithinVicinity(latParm: self.lat, longParm: self.long, radMiles: self.radius, completion: {
+            bets in
+            for bet in bets{
+                user.userIdsForBetId(betId: bet.id, completion: {
+                    userIds in
+                    if (userIds.contains(user.id) && !bet.userIsMediator!){
+                        bet.userHasWagered = true
+                        self.addMarkers(lat: bet.lat, long: bet.long, bet: bet, markerImage: self.betIconWagered)
+                    }
+                    else if(bet.userIsMediator!){
+                        self.addMarkers(lat: bet.lat, long: bet.long, bet: bet, markerImage: self.betIconMediated)
+                    }
+                    else{
+                        self.addMarkers(lat: bet.lat, long: bet.long, bet: bet, markerImage: self.betIconNormal)
+                    }
+                })
+            }
+        })
+    }
+    
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: BetMarker) -> UIView? {
         let infoWindow = Bundle.main.loadNibNamed("InfoWindow", owner: self, options: nil)?.first! as! BetInfoWindow
         infoWindow.isUserInteractionEnabled = false
@@ -91,9 +114,9 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
         long = userLocation.coordinate.longitude;
         lat = userLocation.coordinate.latitude;
         updateCamera(lat: lat, long: long)
-        //if (self.showMarkers == true) {
-            //addMarkers(lat: lat, long: long)
-        //}
+        if (self.showMarkers == true){
+            prepareMap()
+        }
         locationManager.stopUpdatingLocation()
     }
 }
