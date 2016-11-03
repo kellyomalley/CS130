@@ -12,11 +12,16 @@ import CoreLocation
 
 class User{
     var id:String!
+    var username:String!
     
     init(id: String){
         self.id = id
     }
     
+    func setUserName(name : String){
+        self.username = name
+        User.usersRef().child(self.id).setValue(["username": name])
+    }
     
     //User related bet object retrieval... be careful with using cause they're bad ass asynchronous calls
     func activeBets(completion: @escaping ([Bet]) -> ()) {

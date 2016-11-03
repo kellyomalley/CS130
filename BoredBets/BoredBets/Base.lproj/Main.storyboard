@@ -109,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DPR-It-gLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4439" y="-929"/>
+            <point key="canvasLocation" x="4438" y="-1008"/>
         </scene>
         <!--Mediator View Controller-->
         <scene sceneID="Kh7-h5-6gF">
@@ -310,6 +310,64 @@
             </objects>
             <point key="canvasLocation" x="3558" y="1298"/>
         </scene>
+        <!--Create Profile View Controller-->
+        <scene sceneID="yPl-qw-Wlo">
+            <objects>
+                <viewController id="iuK-y3-35H" customClass="CreateProfileViewController" customModule="BoredBets" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="77B-uB-IbM"/>
+                        <viewControllerLayoutGuide type="bottom" id="z5t-2h-25s"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8Pb-l6-EOb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U6n-hM-QXD">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="7vv-z3-UmM"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bK2-Q4-eQO">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="A7a-8e-J2Z"/>
+                                </constraints>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="doneEditingButton:" destination="iuK-y3-35H" eventType="touchUpInside" id="a3K-TZ-9vg"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wO7-jK-SXI">
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="z5t-2h-25s" firstAttribute="top" secondItem="bK2-Q4-eQO" secondAttribute="bottom" constant="400" id="3WJ-EB-wbp"/>
+                            <constraint firstItem="wO7-jK-SXI" firstAttribute="leading" secondItem="U6n-hM-QXD" secondAttribute="leading" id="Gjl-GI-nYA"/>
+                            <constraint firstItem="bK2-Q4-eQO" firstAttribute="top" secondItem="U6n-hM-QXD" secondAttribute="bottom" constant="8" symbolic="YES" id="JBB-4e-Yta"/>
+                            <constraint firstItem="wO7-jK-SXI" firstAttribute="top" secondItem="77B-uB-IbM" secondAttribute="bottom" constant="124" id="JhF-x3-JIG"/>
+                            <constraint firstItem="U6n-hM-QXD" firstAttribute="trailing" secondItem="bK2-Q4-eQO" secondAttribute="trailing" id="NFs-v3-GRm"/>
+                            <constraint firstItem="U6n-hM-QXD" firstAttribute="leading" secondItem="bK2-Q4-eQO" secondAttribute="leading" id="O1a-Cv-3E1"/>
+                            <constraint firstItem="wO7-jK-SXI" firstAttribute="leading" secondItem="8Pb-l6-EOb" secondAttribute="leadingMargin" id="U6l-G5-QKQ"/>
+                            <constraint firstItem="wO7-jK-SXI" firstAttribute="trailing" secondItem="8Pb-l6-EOb" secondAttribute="trailingMargin" id="Xo8-VA-nES"/>
+                            <constraint firstItem="wO7-jK-SXI" firstAttribute="trailing" secondItem="U6n-hM-QXD" secondAttribute="trailing" id="YWR-fT-Quw"/>
+                            <constraint firstItem="U6n-hM-QXD" firstAttribute="top" secondItem="wO7-jK-SXI" secondAttribute="bottom" constant="20" id="qHb-p6-z0q"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="usernameField" destination="U6n-hM-QXD" id="mVV-LL-ztL"/>
+                        <segue destination="Mxx-6K-PYM" kind="presentation" identifier="enterAppSegue" id="AiR-Ur-wEh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FFd-Jk-iP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2556" y="-1008.8455772113944"/>
+        </scene>
         <!--Login-->
         <scene sceneID="snT-py-3hH">
             <objects>
@@ -401,11 +459,12 @@
                         <outlet property="emailOutlet" destination="CFF-Uc-LL6" id="O9x-JU-6kv"/>
                         <outlet property="passwordOutlet" destination="Wmx-Jk-eMq" id="S6s-Nu-Yts"/>
                         <segue destination="Mxx-6K-PYM" kind="presentation" identifier="login" id="Ngd-Bg-eNG"/>
+                        <segue destination="iuK-y3-35H" kind="presentation" identifier="createProfileSegue" id="gOR-wx-YnU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GmD-Rr-ZGN" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1508" y="-243.32833583208398"/>
+            <point key="canvasLocation" x="1551" y="-243"/>
         </scene>
         <!--Create Bet - Set Details-->
         <scene sceneID="HTK-QE-wSx">
@@ -685,7 +744,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mxx-6K-PYM" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zpi-fg-dnK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zpi-fg-dnK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -718,7 +777,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="AiR-Ur-wEh"/>
         <segue reference="BJU-xv-EFM"/>
-        <segue reference="YCw-U3-gL3"/>
+        <segue reference="68x-Yp-DGJ"/>
     </inferredMetricsTieBreakers>
 </document>

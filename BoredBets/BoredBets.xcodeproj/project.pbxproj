@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		16B54A80B7B47B636EBCCDDE /* Pods_BoredBets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E78CCF20A5766BA0841F330F /* Pods_BoredBets.framework */; };
 		228089DA1DC0598C00AF3E9A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228089D91DC0598C00AF3E9A /* LoginViewController.swift */; };
+		22BBBD1A1DCABDC70004D270 /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BBBD191DCABDC70004D270 /* CreateProfileViewController.swift */; };
 		22BEE46D1DBD90FD007B3982 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22BEE46C1DBD90FD007B3982 /* GoogleService-Info.plist */; };
 		22BEE46E1DBD90FD007B3982 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22BEE46C1DBD90FD007B3982 /* GoogleService-Info.plist */; };
 		22BEE46F1DBD90FD007B3982 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22BEE46C1DBD90FD007B3982 /* GoogleService-Info.plist */; };
@@ -65,6 +66,7 @@
 /* Begin PBXFileReference section */
 		0575511BDFC8A31F6E5A41B8 /* Pods-BoredBets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoredBets.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoredBets/Pods-BoredBets.debug.xcconfig"; sourceTree = "<group>"; };
 		228089D91DC0598C00AF3E9A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		22BBBD191DCABDC70004D270 /* CreateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		22BEE46C1DBD90FD007B3982 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22CE1D271DC7F66800DFCD11 /* BoredBets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BoredBets.entitlements; sourceTree = "<group>"; };
 		22CE1D281DC9558100DFCD11 /* MediatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediatorViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			children = (
 				4AFFFF411DC3DB9000B0438A /* ActiveBetsViewController.swift */,
 				4AB0CB6E1DBDC5E6002EB0D2 /* CreateBetViewController.swift */,
+				22BBBD191DCABDC70004D270 /* CreateProfileViewController.swift */,
 				4A839FF71DBD902C0078A616 /* DataViewController.swift */,
 				4AB0CB7A1DBDC6E5002EB0D2 /* EditBetViewController.swift */,
 				4AB0CB7C1DBDC6FE002EB0D2 /* LocalBetMapViewController.swift */,
@@ -553,6 +556,7 @@
 				4AFFFF441DC3DBA200B0438A /* MediatingBetsViewController.swift in Sources */,
 				9B1CE0141DC5B24A004A1A1A /* BetInfoWindow.swift in Sources */,
 				4A2FDFD21DBD9CC7004A8835 /* Bet.swift in Sources */,
+				22BBBD1A1DCABDC70004D270 /* CreateProfileViewController.swift in Sources */,
 				22CE1D291DC9558100DFCD11 /* MediatorViewController.swift in Sources */,
 				4AB0CB7D1DBDC6FE002EB0D2 /* LocalBetMapViewController.swift in Sources */,
 				4AFFFF421DC3DB9000B0438A /* ActiveBetsViewController.swift in Sources */,
