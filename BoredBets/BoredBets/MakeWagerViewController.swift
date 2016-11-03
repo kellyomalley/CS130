@@ -18,8 +18,12 @@ class MakeWagerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         User.usersRef().child(User.currentUser()).observe(.value, with: { snapshot in
-            self.coinsLeft = snapshot.childSnapshot(forPath: "Coins").value as! Int
-            
+            if let coin = snapshot.childSnapshot(forPath: "Coins").value as? Int {
+                self.coinsLeft = coin
+            }
+            else {
+                self.coinsLeft = 0
+            }
             self.coinsLeftMessage.text = "You Have " + String(self.coinsLeft) + " coins left"
             self.coinsLeftMessage.textAlignment = .center
         })
