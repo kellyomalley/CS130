@@ -237,8 +237,7 @@ class User{
             }
             completion(userIds)
         })
-    }
-    
+    }    
     
     //to make grabbing the current user universal
     class func currentUser() -> String {

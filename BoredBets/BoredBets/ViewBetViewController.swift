@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     var bet:Bet!
     var comments: [(String, String)] = []
 
@@ -16,6 +16,7 @@ class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var potLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commentField: UITextField!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,29 @@ class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewD
         })
         self.reloadTable()
         self.betTitleLabel.text = self.bet?.title
+        
+        self.commentField.delegate = self;
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
     }
     
     @IBAction func submitComment(_ sender: AnyObject) {
@@ -43,7 +67,12 @@ class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("Adding comment")
         self.bet.attachComment(commentField.text!)
         self.reloadTable()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
         commentField.text = ""
+        return false
     }
     
     //TABLE VIEW STUFF

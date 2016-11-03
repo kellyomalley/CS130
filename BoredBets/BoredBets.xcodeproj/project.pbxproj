@@ -336,7 +336,6 @@
 				TargetAttributes = {
 					4A839FEF1DBD902B0078A616 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = D8NDVXK8ER;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -727,7 +726,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BoredBets/BoredBets.entitlements;
-				DEVELOPMENT_TEAM = D8NDVXK8ER;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = BoredBets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nottiApps.BoredBets;
@@ -745,7 +744,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BoredBets/BoredBets.entitlements;
-				DEVELOPMENT_TEAM = D8NDVXK8ER;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = BoredBets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nottiApps.BoredBets;

@@ -16,6 +16,7 @@ class Comment{
     let userId: String
     let betId: String
     var commentText: String
+    var timestamp: Double
     
     
     init(userId: String, betId: String, commentText:String) {
@@ -23,6 +24,7 @@ class Comment{
         self.userId = userId
         self.commentText = commentText
         self.betId = betId
+        self.timestamp = NSDate().timeIntervalSinceReferenceDate
     }
     
     init(id: String, userId: String, betId: String, commentText:String) {
@@ -30,6 +32,7 @@ class Comment{
         self.userId = userId
         self.commentText = commentText
         self.betId = betId
+        self.timestamp = NSDate().timeIntervalSinceReferenceDate
     }
     
     func getUser() -> String {
