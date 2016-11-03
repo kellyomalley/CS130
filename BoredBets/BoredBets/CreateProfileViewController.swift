@@ -18,6 +18,15 @@ class CreateProfileViewController: UIViewController {
     }
     
     @IBAction func doneEditingButton(_ sender: AnyObject) {
+        if self.usernameField.text == ""
+        {
+            BBUtilities.showMessagePrompt("Please enter a Username", controller: self)
+        }
+        else
+        {
+            User.usersRef().child(User.currentUser()).child("username").setValue(self.usernameField.text)
+            self.performSegue(withIdentifier: "enterAppSegue", sender: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -40,7 +40,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 
                 if error == nil {
                     self.storeCurrentUserId(user_id: (user?.uid)!)
-                    self.performSegue(withIdentifier: "login", sender: nil)
+                    self.performSegue(withIdentifier: "createProfileSegue", sender: nil)
                 }
                 else
                 {
@@ -64,7 +64,18 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 
                 if error == nil {
                     self.storeCurrentUserId(user_id: (user?.uid)!)
-                    self.performSegue(withIdentifier: "login", sender: nil)
+
+                    User.usersRef().child((user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+                        if snapshot.hasChild("username"){
+                            self.performSegue(withIdentifier: "login", sender: nil)
+                        }
+                        else{
+                            self.performSegue(withIdentifier: "createProfileSegue", sender: nil)
+                        }
+
+                    }) { (error) in
+                        print(error.localizedDescription)
+                    }
                 }
                 else
                 {

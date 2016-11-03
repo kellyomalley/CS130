@@ -55,8 +55,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 return
             }
             
-            let rootViewController = self.window!.rootViewController as! UINavigationController
-            rootViewController.visibleViewController?.performSegue(withIdentifier: "login", sender: nil)
+            UserDefaults.standard.set((user?.uid)!, forKey: "user_id")
+            
+            User.usersRef().child((user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+                if snapshot.hasChild("username"){
+                    let rootViewController = self.window!.rootViewController as! UINavigationController
+                    rootViewController.visibleViewController?.performSegue(withIdentifier: "login", sender: nil)
+                }
+                else{
+                    let rootViewController = self.window!.rootViewController as! UINavigationController
+                    rootViewController.visibleViewController?.performSegue(withIdentifier: "createProfileSegue", sender: nil)
+                }
+                
+            }) { (error) in
+                print(error.localizedDescription)
+            }
         }
     }
     
