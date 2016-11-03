@@ -252,4 +252,16 @@ class User{
     class func usersRef() -> FIRDatabaseReference {
         return FIRDatabase.database().reference().child("Users")
     }
+    
+    class func getUsernameById(_ userId : String, completion: @escaping (String) -> ()) {
+        User.usersRef().child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.hasChild("username"){
+                let string = snapshot.childSnapshot(forPath: "username").value as! String
+                completion(string)
+            }
+            else{
+                completion("")
+            }
+        })
+    }
 }

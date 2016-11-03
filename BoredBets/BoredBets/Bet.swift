@@ -71,9 +71,9 @@ import Firebase
         }
         
         //should be the same for every bet type
-        func attachComment(_ commentText : String) -> Void{
+        func attachComment(_ commentText : String, completion: @escaping () -> ()){
             let comment = Comment(userId: User.currentUser(), betId: self.id, commentText: commentText)
-            comment.saveComment()
+            comment.saveComment(completion)
         }
         
         //should be the same for every bet type
@@ -85,7 +85,7 @@ import Firebase
                     var commentUser = ""
                     var commentText = ""
                     for (k,v) in dict!{
-                        if (k as? String == "user_id"){
+                        if (k as? String == "username"){
                             commentUser = v as! String
                         }
                         if (k as? String == "comment_text"){

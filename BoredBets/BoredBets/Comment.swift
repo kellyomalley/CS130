@@ -14,6 +14,7 @@ class Comment{
     let id: String
     let idLen: Int = 16
     let userId: String
+    var username: String
     let betId: String
     var commentText: String
     var timestamp: Double
@@ -25,6 +26,10 @@ class Comment{
         self.commentText = commentText
         self.betId = betId
         self.timestamp = NSDate().timeIntervalSinceReferenceDate
+        self.username = ""
+        User.getUsernameById(userId, completion: { (name) in
+            self.username = name
+        })
     }
     
     init(id: String, userId: String, betId: String, commentText:String) {
@@ -33,27 +38,27 @@ class Comment{
         self.commentText = commentText
         self.betId = betId
         self.timestamp = NSDate().timeIntervalSinceReferenceDate
+        self.username = ""
+        User.getUsernameById(userId, completion: { (name) in
+            self.username = name
+        })
     }
     
-    func getUser() -> String {
-        return userId
-    }
-    
-    func getCommentText() -> String {
-        return commentText
-    }
-    
-    func saveComment(){
-        let commentData: [String: Any] = [
-            "id" : self.id,
-            "user_id" : self.userId,
-            "comment_text" : self.commentText
-        ]
-        Bet.betsRef().child(self.betId).child("Comments").child(self.id).setValue(commentData)
+    func saveComment(_ completion: @escaping () -> ()){
+        User.getUsernameById(userId, completion: { (name) in
+            let commentData: [String: Any] = [
+                "id" : self.id,
+                "user_id" : self.userId,
+                "comment_text" : self.commentText,
+                "username" : name,
+                "timestamp" : self.timestamp
+            ]
+            Bet.betsRef().child(self.betId).child("Comments").child(self.id).setValue(commentData)
+            completion()
+        })
     }
     
     class func commentRef() -> FIRDatabaseReference{
         return FIRDatabase.database().reference().child("Comments")
     }
-    
 }

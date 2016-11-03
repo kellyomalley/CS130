@@ -58,19 +58,9 @@ class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    @IBAction func submitComment(_ sender: AnyObject) {
-        
-        guard let text = commentField.text , !text.isEmpty else {
-            print("Empty text field")
-            return
-        }
-        print("Adding comment")
-        self.bet.attachComment(commentField.text!)
-        self.reloadTable()
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
+        self.bet.attachComment(commentField.text!) {self.reloadTable()}
         commentField.text = ""
         return false
     }
@@ -87,7 +77,6 @@ class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath)
         cell.textLabel?.text = comments[indexPath.row].0
-        print("setting user name to \(comments[indexPath.row].0)")
         cell.detailTextLabel?.text = comments[indexPath.row].1
         return cell
     }
