@@ -42,6 +42,26 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
         self.containerView.addSubview(toggleViewButton)
+        // Create a GMSCameraPosition that tells the map to display the
+        // coordinate -33.86,151.20 at zoom level 6.
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        navigationController?.navigationBar.isTranslucent = false
+//        var nc: UINavigationController = navigationController
+        setupMenuBar()
+    }
+    
+    let menuBar: MenuBar = {
+        let mb = MenuBar()
+        return mb
+    }()
+    
+    fileprivate func setupMenuBar() {
+        menuBar.setView(view: navigationController!)
+        view.addSubview(menuBar)
+        view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
+        view.addConstraintsWithFormat(format: "V:|[v0(50)]", views: menuBar)
     }
     
     override func viewDidAppear(_ animated: Bool) {

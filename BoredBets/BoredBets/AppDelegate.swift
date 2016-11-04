@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        UINavigationBar.appearance().barTintColor = UIColor.red
+        
+        
         FIRApp.configure()
         
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
@@ -28,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GMSServices.provideAPIKey("AIzaSyANWMeqlz41cyR6ju-BGDKfDOL0bjNb7zY")
         GMSPlacesClient.provideAPIKey("AIzaSyANWMeqlz41cyR6ju-BGDKfDOL0bjNb7zY")
         // Override point for customization after application launch.
+    
         return true
     }
     
