@@ -9,17 +9,18 @@
 import UIKit
 import GoogleMaps
 
-class CreateBetViewController: UIViewController {
+class CreateBetViewController: UIViewController, MapDelegate {
     
     @IBOutlet var mapView: GMSMapView!
     var bet: Bet!
     var betTitle: String?
     var betType: String!
-    var map :Map!
+    var map :CreateBetMap!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        map = Map(mapView: mapView, showMarkers: false)
+        map = CreateBetMap(mapView: mapView, showMarkers: false)
+        map.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -37,8 +38,8 @@ class CreateBetViewController: UIViewController {
         let betFactory = BetFactory.sharedFactory
         self.bet = betFactory.makeBet(type: self.betType)
         self.bet.title = self.betTitle!
-        self.bet.lat = self.map.lat
-        self.bet.long = self.map.long
+        self.bet.lat = self.map.marker.position.latitude
+        self.bet.long = self.map.marker.position.longitude
         self.bet.saveNewBetToFB()
         
         let baseViewController = self.navigationController?.viewControllers[0]
@@ -47,4 +48,22 @@ class CreateBetViewController: UIViewController {
         controller.bet = self.bet
         self.navigationController?.setViewControllers([baseViewController!, controller], animated: true)
     }
+    
+    func createBetAtLocation() {
+        self.bet.title = self.betTitle!
+        self.bet.lat = self.map.marker.position.latitude
+        self.bet.long = self.map.marker.position.longitude
+        self.bet.saveNewBetToFB()
+        
+        let baseViewController = self.navigationController?.viewControllers[0]
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "MediatorView") as! MediatorViewController
+        controller.bet = self.bet
+        self.navigationController?.setViewControllers([baseViewController!, controller], animated: true)
+    }
+    
+    func showSelectedBet(bet: Bet) {
+        return
+    }
+    
 }
