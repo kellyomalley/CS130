@@ -46,6 +46,8 @@
 		9B0A5BCD1DC5BD8800D12446 /* BetMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A5BCC1DC5BD8800D12446 /* BetMarker.swift */; };
 		9B1CE0121DC5B196004A1A1A /* InfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B1CE0111DC5B196004A1A1A /* InfoWindow.xib */; };
 		9B1CE0141DC5B24A004A1A1A /* BetInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CE0131DC5B24A004A1A1A /* BetInfoWindow.swift */; };
+		9B5906C01DCFC88C00877220 /* CreateBetMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5906BF1DCFC88C00877220 /* CreateBetMap.swift */; };
+		9B5906C21DCFC8AD00877220 /* SetLocationInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B5906C11DCFC8AD00877220 /* SetLocationInfoWindow.xib */; };
 		9B9939801DC56BA1003B0E17 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B99397F1DC56BA1003B0E17 /* Map.swift */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +117,8 @@
 		9B0A5BCC1DC5BD8800D12446 /* BetMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetMarker.swift; sourceTree = "<group>"; };
 		9B1CE0111DC5B196004A1A1A /* InfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoWindow.xib; sourceTree = "<group>"; };
 		9B1CE0131DC5B24A004A1A1A /* BetInfoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetInfoWindow.swift; sourceTree = "<group>"; };
+		9B5906BF1DCFC88C00877220 /* CreateBetMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateBetMap.swift; sourceTree = "<group>"; };
+		9B5906C11DCFC8AD00877220 /* SetLocationInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetLocationInfoWindow.xib; sourceTree = "<group>"; };
 		9B99397F1DC56BA1003B0E17 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		9E8C6FB1082242944FA4CB22 /* Pods-BoredBetsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoredBetsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoredBetsUITests/Pods-BoredBetsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C23EB6C866FFFAFAF31BD121 /* Pods_BoredBetsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BoredBetsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -244,6 +248,8 @@
 				9B1CE0131DC5B24A004A1A1A /* BetInfoWindow.swift */,
 				9B0A5BCC1DC5BD8800D12446 /* BetMarker.swift */,
 				4A6812051DCE9DB2000441AC /* BetFactory.swift */,
+				9B5906BF1DCFC88C00877220 /* CreateBetMap.swift */,
+				9B5906C11DCFC8AD00877220 /* SetLocationInfoWindow.xib */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -396,6 +402,7 @@
 				4A83A0021DBD902C0078A616 /* LaunchScreen.storyboard in Resources */,
 				9B1CE0121DC5B196004A1A1A /* InfoWindow.xib in Resources */,
 				22BEE46D1DBD90FD007B3982 /* GoogleService-Info.plist in Resources */,
+				9B5906C21DCFC8AD00877220 /* SetLocationInfoWindow.xib in Resources */,
 				4A839FFF1DBD902C0078A616 /* Assets.xcassets in Resources */,
 				4A839FFD1DBD902C0078A616 /* Main.storyboard in Resources */,
 			);
@@ -570,6 +577,7 @@
 				4A9B8D2D1DCFB808007F326A /* SettleBetViewController.swift in Sources */,
 				4AB0CB7D1DBDC6FE002EB0D2 /* LocalBetMapViewController.swift in Sources */,
 				4AFFFF421DC3DB9000B0438A /* ActiveBetsViewController.swift in Sources */,
+				9B5906C01DCFC88C00877220 /* CreateBetMap.swift in Sources */,
 				4A839FF61DBD902C0078A616 /* RootViewController.swift in Sources */,
 				4A7B0CBE1DBD9F38008144C4 /* User.swift in Sources */,
 				4AB0CB731DBDC61F002EB0D2 /* MakeWagerViewController.swift in Sources */,

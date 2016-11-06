@@ -9,16 +9,17 @@
 import UIKit
 import GoogleMaps
 
-class CreateBetViewController: UIViewController {
+class CreateBetViewController: UIViewController, MapDelegate {
     
     @IBOutlet var mapView: GMSMapView!
     var bet: Bet!
-    var map :Map!
-
+    var map :CreateBetMap!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.topItem!.title = "Back"
-        map = Map(mapView: mapView, showMarkers: false)
+        map = CreateBetMap(mapView: mapView, showMarkers: false)
+        map.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -33,8 +34,8 @@ class CreateBetViewController: UIViewController {
     
 
     @IBAction func createBetDidTouch(_ sender: UIButton) {
-        self.bet.lat = self.map.lat
-        self.bet.long = self.map.long
+        self.bet.lat = self.map.marker.position.latitude
+        self.bet.long = self.map.marker.position.longitude
         self.bet.saveNewBetToFB()
         
         let baseViewController = self.navigationController?.viewControllers[0]
@@ -43,4 +44,21 @@ class CreateBetViewController: UIViewController {
         controller.bet = self.bet
         self.navigationController?.setViewControllers([baseViewController!, controller], animated: true)
     }
+    
+    func createBetAtLocation() {
+        self.bet.lat = self.map.marker.position.latitude
+        self.bet.long = self.map.marker.position.longitude
+        self.bet.saveNewBetToFB()
+        
+        let baseViewController = self.navigationController?.viewControllers[0]
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "MediatorView") as! MediatorViewController
+        controller.bet = self.bet
+        self.navigationController?.setViewControllers([baseViewController!, controller], animated: true)
+    }
+    
+    func showSelectedBet(bet: Bet) {
+        return
+    }
+    
 }

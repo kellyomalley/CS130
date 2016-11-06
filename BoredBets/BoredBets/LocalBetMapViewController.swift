@@ -34,7 +34,7 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        map.locationManager.startUpdatingLocation()
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,6 +45,10 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     func showSelectedBet(bet: Bet){
         self.selectedBet = bet
         performSegue(withIdentifier: "mapToBetView", sender: self)
+    }
+    
+    func createBetAtLocation() {
+        return
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

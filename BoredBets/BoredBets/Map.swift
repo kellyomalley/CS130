@@ -11,6 +11,7 @@ import GoogleMaps
 
 protocol MapDelegate {
     func showSelectedBet(bet: Bet)
+    func createBetAtLocation()
 }
 
 class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
@@ -52,6 +53,11 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
     func updateCamera(lat: Double, long: Double) {
         camera = GMSCameraPosition.camera(withLatitude: lat, longitude: long, zoom: 15.0)
         mapView.camera = camera
+    }
+    
+    func updateCameraAnimation(coord: CLLocationCoordinate2D) {
+        let cameraUpdate = GMSCameraUpdate.setTarget(coord)
+        mapView.animate(with: cameraUpdate)
     }
     
     func addMarkers(lat: Double, long: Double, bet: Bet, markerImage: UIImage) {
@@ -114,10 +120,7 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
         long = userLocation.coordinate.longitude;
         lat = userLocation.coordinate.latitude;
         updateCamera(lat: lat, long: long)
-        if (self.showMarkers == true){
-            prepareMap()
-            print("Called update")
-        }
+        prepareMap()
         locationManager.stopUpdatingLocation()
     }
 }
