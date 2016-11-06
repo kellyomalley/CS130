@@ -18,6 +18,7 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIPick
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController!.navigationBar.topItem!.title = "Cancel"
         self.titleTextField.delegate = self;
         self.betTypes = BetFactory.supportedBetTypes()
         self.selectedBetType = self.betTypes[0]
@@ -56,10 +57,11 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIPick
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "setLocation"){
-            let vc = segue.destination as! CreateBetViewController
-            vc.betTitle = self.titleTextField.text
-            vc.betType = self.selectedBetType
+        if (segue.identifier == "restrictWagers"){
+            let vc = segue.destination as! RestrictWagerOptionsViewController
+            let bet = BetFactory.sharedFactory.makeBet(type: self.selectedBetType)
+            bet?.title = self.titleTextField.text
+            vc.bet = bet
         }
     }
     

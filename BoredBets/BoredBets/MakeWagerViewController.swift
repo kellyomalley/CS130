@@ -24,7 +24,7 @@ class MakeWagerViewController: UIViewController {
             else {
                 self.coinsLeft = 0
             }
-            self.coinsLeftMessage.text = "You Have " + String(self.coinsLeft) + " coins left"
+            self.coinsLeftMessage.text = "You Have " + String(self.coinsLeft) + " coins"
             self.coinsLeftMessage.textAlignment = .center
         })
     }

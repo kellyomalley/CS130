@@ -39,6 +39,9 @@ import Firebase
         var lat: Double!
         var long: Double!
         var type: String?
+        
+        var outcome1: String?
+        var outcome2: String?
 
         init(){
             //for default init in createBet VC
@@ -228,6 +231,9 @@ import Firebase
                   "title" : self.title,
                   "mediator_id" : self.currentUserId,
                   "type" : self.type,
+                  //consider changing to outcome array (to do this, would have to nest in another json object)
+                  "outcome1": self.outcome1,
+                  "outcome2": self.outcome2,
                   "lat": self.lat,
                   "long": self.long,
                   "pot" : 0

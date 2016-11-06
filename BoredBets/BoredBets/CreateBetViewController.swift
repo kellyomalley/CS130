@@ -13,12 +13,11 @@ class CreateBetViewController: UIViewController {
     
     @IBOutlet var mapView: GMSMapView!
     var bet: Bet!
-    var betTitle: String?
-    var betType: String!
     var map :Map!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController!.navigationBar.topItem!.title = "Back"
         map = Map(mapView: mapView, showMarkers: false)
         // Do any additional setup after loading the view.
     }
@@ -34,9 +33,6 @@ class CreateBetViewController: UIViewController {
     
 
     @IBAction func createBetDidTouch(_ sender: UIButton) {
-        let betFactory = BetFactory.sharedFactory
-        self.bet = betFactory.makeBet(type: self.betType)
-        self.bet.title = self.betTitle!
         self.bet.lat = self.map.lat
         self.bet.long = self.map.long
         self.bet.saveNewBetToFB()

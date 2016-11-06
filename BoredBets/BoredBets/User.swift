@@ -122,6 +122,8 @@ class User{
                     var title: String = "Bet"
                     var pot: Int = 0
                     var type: String = ""
+                    var outcome1: String = ""
+                    var outcome2: String = ""
                     for (k,v) in dict!{
                         switch k as! String{
                             case "title":
@@ -130,6 +132,10 @@ class User{
                                 pot = v as! Int
                             case "type":
                                 type = v as! String
+                            case "outcome1":
+                                outcome1 = v as! String
+                            case "outcome2":
+                                outcome2 = v as! String
                             default:
                                 print("Some other key")
                         }
@@ -140,6 +146,8 @@ class User{
                         tempBet.title = title
                         tempBet.id = child.key
                         tempBet.pot = pot
+                        tempBet.outcome1 = outcome1
+                        tempBet.outcome2 = outcome2
                         bets.append(tempBet)
                     }
                 }
@@ -164,6 +172,8 @@ class User{
                 var long: Double = 0
                 var userIsMediator: Bool = false
                 var type: String = ""
+                var outcome1: String = ""
+                var outcome2: String = ""
                 for (k,v) in dict!{
                     switch k as! String{
                         case "title":
@@ -180,6 +190,10 @@ class User{
                             }
                         case "type":
                             type = v as! String
+                        case "outcome1":
+                            outcome1 = v as! String
+                        case "outcome2":
+                            outcome2 = v as! String
                         default:
                             print("Some other key")
                     }
@@ -195,6 +209,8 @@ class User{
                         tempBet.lat = lat
                         tempBet.long = long
                         tempBet.userIsMediator = userIsMediator
+                        tempBet.outcome1 = outcome1
+                        tempBet.outcome2 = outcome2
                         bets.append(tempBet)
                     }
                 }
