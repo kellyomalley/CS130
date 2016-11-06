@@ -42,8 +42,6 @@ class User{
         //get all ids of bets the user is mediating
         self.activeMediatedBetIds{
             betIds in
-            print("activeMediatedBets")
-            print(betIds)
             self.betsFromIds(betIds: betIds, completion: {
                 bets in
                 completion(bets)
@@ -66,8 +64,6 @@ class User{
                     betIds.append(k as! String)
                 }
             }
-            print("activeMediatedBetIds")
-            print(betIds)
             completion(betIds)
         })
     }
@@ -110,8 +106,6 @@ class User{
                     wagerIds.append(k as! String)
                 }
             }
-            print("activeWagerIds")
-            print(wagerIds)
             completion(wagerIds)
         })
     }
@@ -127,21 +121,29 @@ class User{
                     let dict = child.value as? NSDictionary
                     var title: String = "Bet"
                     var pot: Int = 0
+                    var type: String = ""
                     for (k,v) in dict!{
-                        if (k as? String == "title"){
-                            title = v as! String
-                        }
-                        else if (k as? String == "pot"){
-                            pot = v as! Int
+                        switch k as! String{
+                            case "title":
+                                title = v as! String
+                            case "pot":
+                                pot = v as! Int
+                            case "type":
+                                type = v as! String
+                            default:
+                                print("Some other key")
                         }
                     }
-                    let tempBet = Bet(title: title, id: child.key)
-                    tempBet.pot = pot
-                    bets.append(tempBet)
+                    let betFactory = BetFactory.sharedFactory
+                    let tempBet: Bet! = betFactory.makeBet(type: type)
+                    if (tempBet != nil){
+                        tempBet.title = title
+                        tempBet.id = child.key
+                        tempBet.pot = pot
+                        bets.append(tempBet)
+                    }
                 }
             }
-            print("betsFromIds")
-            print(bets)
             completion(bets)
         })
     }
@@ -161,38 +163,42 @@ class User{
                 var lat: Double = 0
                 var long: Double = 0
                 var userIsMediator: Bool = false
+                var type: String = ""
                 for (k,v) in dict!{
-                    if (k as? String == "title"){
-                        title = v as! String
-                    }
-                    else if (k as? String == "pot"){
-                        pot = v as! Int
-                    }
-                    else if (k as? String == "lat"){
-                        lat = v as! Double
-                    }
-                    else if (k as? String == "long"){
-                        long = v as! Double
-                    }
-                    else if (k as? String == "mediator_id"){
-                        if (v as! String == self.id){
-                            userIsMediator = true
-                        }
+                    switch k as! String{
+                        case "title":
+                            title = v as! String
+                        case "pot":
+                            pot = v as! Int
+                        case "lat":
+                            lat = v as! Double
+                        case "long":
+                            long = v as! Double
+                        case "mediator_id":
+                            if (v as! String == self.id){
+                                userIsMediator = true
+                            }
+                        case "type":
+                            type = v as! String
+                        default:
+                            print("Some other key")
                     }
                 }
-                print("lat: \(lat), long: \(long)")
                 //check if the longitude and latitude are within the defined parms
                 if (self.withinVicinity(latParm: latParm, longParm: longParm, lat: lat, long: long, radMiles: radMiles)){
-                    let tempBet = Bet(title: title, id: child.key)
-                    tempBet.pot = pot
-                    tempBet.lat = lat
-                    tempBet.long = long
-                    tempBet.userIsMediator = userIsMediator
-                    bets.append(tempBet)
+                    let betFactory = BetFactory.sharedFactory
+                    let tempBet: Bet! = betFactory.makeBet(type: type)
+                    if (tempBet != nil){
+                        tempBet.id = child.key
+                        tempBet.title = title
+                        tempBet.pot = pot
+                        tempBet.lat = lat
+                        tempBet.long = long
+                        tempBet.userIsMediator = userIsMediator
+                        bets.append(tempBet)
+                    }
                 }
             }
-            print("bets")
-            print(bets)
             completion(bets)
         })
         
@@ -204,11 +210,8 @@ class User{
         
         let coordinate1 = CLLocation(latitude: latParm, longitude: longParm)
         let coordinate2 = CLLocation(latitude: lat, longitude: long)
-        print ("1: \(coordinate1)")
-        print ("2: \(coordinate2)")
         let dMeters = coordinate1.distance(from: coordinate2)
         let rMeters = 1609 * radMiles
-        print("dMeters: \(dMeters), dmiles: \(dMeters/1609)")
         if (dMeters > rMeters){
             return false
         }

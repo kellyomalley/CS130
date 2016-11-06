@@ -38,6 +38,7 @@ import Firebase
         var wagerArray: [Wager] = []
         var lat: Double!
         var long: Double!
+        var type: String?
 
         init(){
             //for default init in createBet VC
@@ -146,8 +147,6 @@ import Firebase
         func updatePot(){
             self.wagerIds(completion: {
                 wagerIds in
-                print("WAGERIDS")
-                print(wagerIds)
                 self.wagersForWagerIds(wagerIds: wagerIds, wagers: [], completion: {
                     wagers in
                     var pot = 0
@@ -169,8 +168,6 @@ import Firebase
                 let index = wagers.count
                 wagersRef.child(wagerIds[index]).observeSingleEvent(of: .value, with: { (snapshot) in
                     let dict = snapshot.value as? NSDictionary
-                    print("DICT")
-                    print(dict)
                     let wagerId: String = wagerIds[index]
                     var userId: String?
                     var betId: String?
@@ -230,6 +227,7 @@ import Firebase
             let betData : [String: Any] = [
                   "title" : self.title,
                   "mediator_id" : self.currentUserId,
+                  "type" : self.type,
                   "lat": self.lat,
                   "long": self.long,
                   "pot" : 0
@@ -253,7 +251,10 @@ import Firebase
 
       //the bet where something will or will not happen
       class YesNoBet: Bet {
-        
+        override init(){
+            super.init()
+            self.type = "YesNoBet"
+        }
         /**
        Calculate bet odds for a YesNo bet, overrides main bet function.
          
@@ -291,6 +292,12 @@ import Firebase
       
       //the bet where something must happen a certain number of times
       class ExactNumericalBet: Bet {
+        //override init to set type
+        override init(){
+            super.init()
+            self.type = "ExactNumericalBet"
+        }
+        
         override func calculateOdds() -> String{
             return " "
         }
@@ -298,6 +305,13 @@ import Firebase
       
       //the bet where something could happen a certain number of times but if you're close you still win
       class RangedBet: Bet {
+        
+        //override init to set type
+        override init(){
+            super.init()
+            self.type = "RangedBet"
+        }
+
         override func calculateOdds() -> String{
             return " "
         }

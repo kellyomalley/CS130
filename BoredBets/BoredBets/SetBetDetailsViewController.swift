@@ -8,12 +8,22 @@
 
 import UIKit
 
-class SetBetDetailsViewController: UIViewController, UITextFieldDelegate {
+class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var betTypePicker: UIPickerView!
+    var betTypePickerData: [String] = [String]()
+    var betTypes: [String] = [String]()
+    var selectedBetType: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.titleTextField.delegate = self;
+        self.betTypes = BetFactory.supportedBetTypes()
+        self.selectedBetType = self.betTypes[0]
+        for type in self.betTypes{
+            self.betTypePickerData.append(BetFactory.betTypeUserDisplay(type: type)!)
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -22,6 +32,24 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    //PICKER FUNCTIONS
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // The number of rows of data
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.betTypePickerData.count
+    }
+    
+    // The data to return for the row and component (column) that's being passed in
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.betTypePickerData[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.selectedBetType = self.betTypes[row]
+    }
 
     
     // MARK: - Navigation
@@ -31,6 +59,7 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate {
         if (segue.identifier == "setLocation"){
             let vc = segue.destination as! CreateBetViewController
             vc.betTitle = self.titleTextField.text
+            vc.betType = self.selectedBetType
         }
     }
     

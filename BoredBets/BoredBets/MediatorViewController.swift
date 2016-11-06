@@ -14,6 +14,7 @@ class MediatorViewController: UIViewController {
     @IBOutlet weak var betTitleLabel: UILabel!
     
     @IBOutlet weak var potLabel: UILabel!
+    @IBOutlet weak var betTypeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class MediatorViewController: UIViewController {
             //updating bet member variables
             self.bet.title = title
         })
-        
+        self.betTypeLabel.text = self.bet?.type
         self.betTitleLabel.text = self.bet?.title
     }
 

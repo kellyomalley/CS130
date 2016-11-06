@@ -116,6 +116,7 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
         updateCamera(lat: lat, long: long)
         if (self.showMarkers == true){
             prepareMap()
+            print("Called update")
         }
         locationManager.stopUpdatingLocation()
     }

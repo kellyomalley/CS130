@@ -12,8 +12,9 @@ import GoogleMaps
 class CreateBetViewController: UIViewController {
     
     @IBOutlet var mapView: GMSMapView!
-    let bet:Bet = Bet()
+    var bet: Bet!
     var betTitle: String?
+    var betType: String!
     var map :Map!
 
     override func viewDidLoad() {
@@ -33,6 +34,8 @@ class CreateBetViewController: UIViewController {
     
 
     @IBAction func createBetDidTouch(_ sender: UIButton) {
+        let betFactory = BetFactory.sharedFactory
+        self.bet = betFactory.makeBet(type: self.betType)
         self.bet.title = self.betTitle!
         self.bet.lat = self.map.lat
         self.bet.long = self.map.long

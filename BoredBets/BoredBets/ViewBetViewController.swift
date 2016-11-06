@@ -12,6 +12,7 @@ class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewD
     var bet:Bet!
     var comments: [(String, String)] = []
 
+    @IBOutlet weak var betTypeLabel: UILabel!
     @IBOutlet weak var betTitleLabel: UILabel!
     @IBOutlet weak var potLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -33,6 +34,7 @@ class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewD
         })
         self.reloadTable()
         self.betTitleLabel.text = self.bet?.title
+        self.betTypeLabel.text = self.bet?.type
         
         self.commentField.delegate = self;
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)

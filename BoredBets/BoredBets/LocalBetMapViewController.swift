@@ -34,6 +34,7 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
     }
 
     override func didReceiveMemoryWarning() {
