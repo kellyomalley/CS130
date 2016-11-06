@@ -120,14 +120,7 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
         long = userLocation.coordinate.longitude;
         lat = userLocation.coordinate.latitude;
         updateCamera(lat: lat, long: long)
-<<<<<<< HEAD
-        if (self.showMarkers == true){
-            prepareMap()
-            print("Called update")
-        }
-=======
         prepareMap()
->>>>>>> e3fb5e3... Added functionality to tap on map to select new location for bet, also update map when created new bet
         locationManager.stopUpdatingLocation()
     }
 }
