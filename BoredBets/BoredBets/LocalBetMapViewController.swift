@@ -11,8 +11,10 @@ import GoogleMaps
 
 class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate, MapDelegate, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet var containerView: UIView!
     @IBOutlet var mapView: GMSMapView!
     @IBOutlet var listView: UITableView!
+    @IBOutlet var toggleViewButton: UIButton!
     
     
     var locationManager: CLLocationManager!
@@ -39,6 +41,8 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
+
+        self.containerView.addSubview(toggleViewButton)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -75,14 +79,17 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
             self.mapView.isHidden = true
             self.listView.isHidden = false
             self.listView.reloadData()
+            //UIView.transition(from: self.mapView, to: self.listView, duration: 0.5, options: .transitionFlipFromLeft, completion: nil)
         }
         else {
+            //UIView.transition(from: self.listView, to: self.mapView, duration: 0.5, options: .transitionFlipFromLeft, completion: nil)
             self.mapView.isHidden = false
             self.listView.isHidden = true
         }
         showMap = !showMap
-        
     }
+
+    
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.bets.count // your number of cell here
