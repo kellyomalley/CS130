@@ -293,13 +293,13 @@ import Firebase
             if numberOfNo == 0 {
                 resString = "Odds: \(numberOfYes) : 0, Pool: $\(totalPool)"
             }
-            if numberOfYes == 0 {
+            else if numberOfYes == 0 {
                 resString = "Odds: 0 : \(numberOfNo), Pool: $\(totalPool)"
             }
             else {
                 let getSimple = simplify(num: numberOfYes, denom: numberOfNo)
                 //return looks like Odds: 2:1, Pool: $1234
-                resString = "Odds: \(getSimple.newNum) : \(getSimple.newDenom) , Pool: $\(totalPool)"
+                resString = "Odds: \(getSimple.newNum) : \(getSimple.newDenom), Pool: $\(totalPool)"
             }
             return resString
         }

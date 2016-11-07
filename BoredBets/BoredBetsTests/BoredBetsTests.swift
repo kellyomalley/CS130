@@ -23,16 +23,18 @@ class BoredBetsTests: XCTestCase {
     }
     
     func testWagerInFirebase() {
-        let myTestBet = YesNoBet(title: "Testing the bet class!")
+        let betFactory = BetFactory.sharedFactory
+        let tempBet: Bet! = betFactory.makeBet(type: "YesNoBet")
+        tempBet.id = "tempID"
         let sampleUserId = "123456"
         //user bets $1000 on yes
-        myTestBet.attachWager(userId: sampleUserId, betAmount: 1000, userBet: 1)
+        tempBet.attachWager(userId: sampleUserId, betAmount: 1000, userBet: 1)
         var id: String = ""
         //Now pull all the wagers from Firebase
         //There should only be one, made by sampleUserId
-        myTestBet.wagerIds(completion: {
+        tempBet.wagerIds(completion: {
             wagerIds in
-            myTestBet.wagersForWagerIds(wagerIds: wagerIds, wagers: [], completion: {
+            tempBet.wagersForWagerIds(wagerIds: wagerIds, wagers: [], completion: {
                 wagers in
                 for wager in wagers{
                     id = wager.getUser()
@@ -44,15 +46,47 @@ class BoredBetsTests: XCTestCase {
         XCTAssert(id == sampleUserId)
     }
     
-    func testOddsCalculation() {
-        let myTestBet = YesNoBet(title: "Testing the bet class!")
+    func testOddsCalculationDivideByZero() {
+        let betFactory = BetFactory.sharedFactory
+        let tempBet: Bet! = betFactory.makeBet(type: "YesNoBet")
+        tempBet.id = "tempID"
         //purposely made everyone bet yes so a simple division tries to divide by zero
-        myTestBet.attachWager(userId: "15234", betAmount: 2000, userBet: 1)
-        myTestBet.attachWager(userId: "65453", betAmount: 1000, userBet: 1)
-        let expectedResult = "Odds: 1:0, Pool: $3000"
-        let odds = myTestBet.calculateOdds()
+        tempBet.attachWager(userId: "15234", betAmount: 2000, userBet: 1)
+        tempBet.attachWager(userId: "65453", betAmount: 1000, userBet: 1)
+        let expectedResult = "Odds: 2 : 0, Pool: $3000"
+        let odds = tempBet.calculateOdds()
         
         XCTAssert(expectedResult == odds)
     }
+    
+    func testOddsCalculationZeroOnTop() {
+        let betFactory = BetFactory.sharedFactory
+        let tempBet: Bet! = betFactory.makeBet(type: "YesNoBet")
+        tempBet.id = "tempID"
+        //purposely made everyone bet yes so a simple division tries to divide by zero
+        tempBet.attachWager(userId: "15234", betAmount: 2000, userBet: 0)
+        tempBet.attachWager(userId: "65453", betAmount: 1000, userBet: 0)
+        let expectedResult = "Odds: 0 : 2, Pool: $3000"
+        let odds = tempBet.calculateOdds()
+        
+        XCTAssert(expectedResult == odds)
+    }
+    
+    func testOddsCalculationSimplify() {
+        let betFactory = BetFactory.sharedFactory
+        let tempBet: Bet! = betFactory.makeBet(type: "YesNoBet")
+        tempBet.id = "tempID"
+        //purposely made everyone bet yes so a simple division tries to divide by zero
+        tempBet.attachWager(userId: "15234", betAmount: 2000, userBet: 0)
+        tempBet.attachWager(userId: "65453", betAmount: 1000, userBet: 0)
+        tempBet.attachWager(userId: "15234", betAmount: 2000, userBet: 1)
+        tempBet.attachWager(userId: "65453", betAmount: 1000, userBet: 1)
+        let expectedResult = "Odds: 1 : 1, Pool: $6000"
+        let odds = tempBet.calculateOdds()
+        
+        XCTAssert(expectedResult == odds)
+    }
+
+
     
 }
