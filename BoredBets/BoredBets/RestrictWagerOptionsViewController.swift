@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RestrictWagerOptionsViewController: UIViewController {
+class RestrictWagerOptionsViewController: UIViewController, UITextFieldDelegate {
 
     var bet: Bet!
     
@@ -23,6 +23,11 @@ class RestrictWagerOptionsViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController!.navigationBar.topItem!.title = "Back"
         self.showRelevantViews()
+        
+        self.outcome1TextField.delegate = self
+        self.outcome2TextField.delegate = self
+        self.minOutcomeTextField.delegate = self
+        self.maxOutcomeTextField.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -69,5 +74,9 @@ class RestrictWagerOptionsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
  
-
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return false to ignore.
+    {
+        self.view.endEditing(true)
+        return false
+    }
 }

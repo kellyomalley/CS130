@@ -38,10 +38,10 @@ import Firebase
         var wagerArray: [Wager] = []
         var lat: Double!
         var long: Double!
-        var type: String?
+        var type: String!
         
-        var outcome1: String?
-        var outcome2: String?
+        var outcome1: String! = ""
+        var outcome2: String! = ""
 
         init(){
             //for default init in createBet VC
