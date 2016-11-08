@@ -29,7 +29,7 @@ class BetFactory{
     
     //returns a list of the supported bet types
     class func supportedBetTypes() -> [String]{
-        return ["YesNoBet", "RangedBet", "ExactNumericalBet"]
+        return ["YesNoBet", /*"RangedBet",*/ "ExactNumericalBet"]
     }
     
     //input a bet type (from one of the supported bet types), and get back the user display for that type

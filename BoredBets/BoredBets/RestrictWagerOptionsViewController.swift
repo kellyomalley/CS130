@@ -42,6 +42,57 @@ class RestrictWagerOptionsViewController: UIViewController, UITextFieldDelegate 
             
         }
     }
+    
+    func anyMissingFields() -> Bool{
+        switch self.bet.type!{
+        case "YesNoBet":
+            if(self.outcome1TextField.text == "" || self.outcome2TextField.text == ""){
+                return true
+            }
+        case "ExactNumericalBet":
+            if (self.minOutcomeTextField.text == "" || self.maxOutcomeTextField.text == ""){
+                return true
+            }
+        default:
+            print("ERROR: Bet type passed in is not valid")
+            
+        }
+        return false
+    }
+    
+    //if any invalid input, returns a string indicating the type of discretion
+    //if valid, returns "valid"
+    func inputCheck() -> String{
+        switch self.bet.type!{
+        case "YesNoBet":
+            return "valid"
+        case "ExactNumericalBet":
+            let minNum = Int(self.minOutcomeTextField.text!)
+            let maxNum = Int(self.maxOutcomeTextField.text!)
+            if (minNum == nil || maxNum == nil){
+                return "Min and max values must contain valid integers"
+            }
+            else if (minNum! >= maxNum!){
+                return "Min outcome field must be less than max outcome field"
+            }
+        default:
+            print("ERROR: Bet type passed in is not valid")
+            return "Invalid bet type"
+        }
+        return "valid"
+    }
+    
+    @IBAction func setLocationDidTouch(_ sender: Any) {
+        if (anyMissingFields()){
+            BBUtilities.showMessagePrompt("You're missing a required field.", controller: self)
+        }
+        else if(inputCheck() != "valid"){
+            BBUtilities.showMessagePrompt(inputCheck(), controller: self)
+        }
+        else{
+            performSegue(withIdentifier: "setLocation", sender: self)
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

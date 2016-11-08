@@ -129,7 +129,7 @@ import Firebase
                     var coins = snapshot.value as! Int
                     coins += newWinnings[userId]!
                     User.usersRef().child(userId).child("coins").setValue(coins)
-                    print("Gave \(coins) coins to user \(userId)")
+                    print("Gave \(newWinnings[userId]!) coins to user \(userId)")
                     newWinnings.removeValue(forKey: newWinnings.keys[newWinnings.startIndex])
                     self.distributeWinnings(winnings: newWinnings, completion: {
                         completion()
@@ -407,6 +407,27 @@ import Firebase
         
         override func calculateOdds() -> String{
             return " "
+        }
+        
+        override func determineWinners(wagers: [Wager]) -> [Wager] {
+            let minOutcome = Int(self.outcome1)!
+            let maxOutcome = Int(self.outcome2)!
+            let finalOutcome = Int(self.finalOutcome!)!
+            var winners: [Wager] = []
+            var minDifference = maxOutcome - minOutcome
+            for wager in wagers{
+                let diff = abs(Int(wager.userBet)! - finalOutcome)
+                if (diff < minDifference){
+                    minDifference = diff
+                }
+            }
+            for wager in wagers{
+                let diff = abs(Int(wager.userBet)! - finalOutcome)
+                if (diff == minDifference){
+                    winners.append(wager)
+                }
+            }
+            return winners
         }
       }
       

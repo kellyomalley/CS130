@@ -8,10 +8,10 @@
 
 import UIKit
 
-class SettleBetViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class SettleBetViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     var bet: Bet!
     var outcomes: [String]!
-    var finalBetOutcome: String?
+    var finalBetOutcome: String = ""
     var pickerActive: Bool = false
     
     @IBOutlet weak var outcomeTextField: UITextField!
@@ -44,20 +44,51 @@ class SettleBetViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     @IBAction func didUpdateOutcomeField(_ sender: Any) {
-        finalBetOutcome = outcomeTextField.text
+        finalBetOutcome = outcomeTextField.text!
     }
     @IBAction func concludeBetDidTouch(_ sender: Any) {
         //actually settle the bet
-        self.bet.finalOutcome = self.finalBetOutcome
-        self.bet.settleBet()
-        
-        //determine where to navigate to
-        guard let controllers = navigationController?.viewControllers else { return }
-        let count = controllers.count
-        if count > 2 {
-            if let mvc = controllers[count - 2] as? MediatorViewController {
-                navigationController?.popToViewController(mvc, animated: true)
+        if (checkInput() != "valid"){
+            BBUtilities.showMessagePrompt(checkInput(), controller: self)
+        }
+        else{
+            self.bet.finalOutcome = self.finalBetOutcome
+            self.bet.settleBet()
+            
+            //determine where to navigate to
+            guard let controllers = navigationController?.viewControllers else { return }
+            let count = controllers.count
+            if count > 2 {
+                if let mvc = controllers[count - 2] as? MediatorViewController {
+                    navigationController?.popToViewController(mvc, animated: true)
+                }
             }
+        }
+    }
+    
+    func checkInput() -> String{
+        switch self.bet.type{
+        case "YesNoBet":
+            return "valid"
+        case "ExactNumericalBet":
+            if (self.finalBetOutcome == ""){
+                return "Must enter a final bet outcome"
+            }
+            let betOutcomeNum = Int(self.finalBetOutcome)
+            let minOutcome = Int(self.bet.outcome1)!
+            let maxOutcome = Int(self.bet.outcome2)!
+            if(betOutcomeNum == nil){
+                return "Must enter a valid integer"
+            }
+            else if(betOutcomeNum! < minOutcome || betOutcomeNum! > maxOutcome){
+                return "Final outcome must fall within bet range: \(minOutcome) to \(maxOutcome)"
+            }
+            else{
+                return "valid"
+            }
+        default:
+            print("ERROR, NOT YET IMPLEMENTED BET TYPE")
+            return "Invalid bet type"
         }
     }
     //PICKER FUNCTIONS
@@ -84,6 +115,11 @@ class SettleBetViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         finalBetOutcome = outcomes[row]
     }
     
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
+    }
 
     /*
     // MARK: - Navigation

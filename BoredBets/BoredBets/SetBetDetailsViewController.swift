@@ -53,6 +53,14 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIPick
     }
 
     
+    @IBAction func continueDidTouch(_ sender: Any) {
+        if(self.titleTextField.text == ""){
+            BBUtilities.showMessagePrompt("Please enter a title for your bet!", controller: self)
+        }
+        else{
+            self.performSegue(withIdentifier: "restrictWagers", sender: self)
+        }
+    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

@@ -647,7 +647,7 @@
                                 <rect key="frame" x="157" y="478" width="62" height="30"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
-                                    <segue destination="yl2-J7-FQj" kind="show" identifier="restrictWagers" id="Utf-se-9pe"/>
+                                    <action selector="continueDidTouch:" destination="dnP-z0-q1Q" eventType="touchUpInside" id="B0C-NY-3a8"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Bet Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mVU-ly-eQL">
@@ -683,6 +683,7 @@
                     <connections>
                         <outlet property="betTypePicker" destination="KB8-36-npV" id="8Lo-aN-GHs"/>
                         <outlet property="titleTextField" destination="mVU-ly-eQL" id="ZEV-o3-cLh"/>
+                        <segue destination="yl2-J7-FQj" kind="show" identifier="restrictWagers" id="XeM-wh-vhG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hb0-dh-hiu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -705,7 +706,7 @@
                                 <rect key="frame" x="144.5" y="515" width="86" height="30"/>
                                 <state key="normal" title="Set Location"/>
                                 <connections>
-                                    <segue destination="BvF-2s-w6O" kind="show" identifier="setLocation" id="ir8-z6-Zip"/>
+                                    <action selector="setLocationDidTouch:" destination="yl2-J7-FQj" eventType="touchUpInside" id="u7e-oa-kJq"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iji-s3-SdL">
@@ -772,6 +773,7 @@
                         <outlet property="outcome1TextField" destination="HYW-By-OlX" id="cfa-KJ-MN4"/>
                         <outlet property="outcome2TextField" destination="LcP-YJ-qbF" id="vYm-ua-JjS"/>
                         <outlet property="yesNoBet" destination="aCg-xl-jee" id="ghq-Gp-bzB"/>
+                        <segue destination="BvF-2s-w6O" kind="show" identifier="setLocation" id="bsD-OP-5GO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZsZ-qL-hsn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -989,6 +991,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HUT-Hy-54c">
+                                <rect key="frame" x="136" y="467" width="104" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Confirm Wager"/>
+                                <connections>
+                                    <action selector="makeWagerDidTouch:" destination="rUQ-O1-kBY" eventType="touchUpInside" id="QfB-9h-fDe"/>
+                                    <segue destination="w5P-N0-BJ9" kind="unwind" unwindAction="saveWagerViewControllerWithSegue:" id="MhP-gI-gUH"/>
+                                </connections>
+                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sFc-LV-hvv">
                                 <rect key="frame" x="140" y="129" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1021,21 +1032,20 @@
                                     <action selector="userBetFieldEditingDidEnd:" destination="rUQ-O1-kBY" eventType="editingDidEnd" id="z0k-fT-S13"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HUT-Hy-54c">
-                                <rect key="frame" x="136" y="467" width="104" height="30"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Range for this bet is: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGv-Xn-nif">
+                                <rect key="frame" x="16" y="244" width="343" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Confirm Wager"/>
-                                <connections>
-                                    <action selector="makeWagerDidTouch:" destination="rUQ-O1-kBY" eventType="touchUpInside" id="QfB-9h-fDe"/>
-                                    <segue destination="w5P-N0-BJ9" kind="unwind" unwindAction="saveWagerViewControllerWithSegue:" id="MhP-gI-gUH"/>
-                                </connections>
-                            </button>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="amountTextField" destination="sFc-LV-hvv" id="z4E-Ye-MSn"/>
                         <outlet property="coinsLeftMessage" destination="tuE-sq-TP3" id="D4Q-bD-kpM"/>
+                        <outlet property="rangeLabel" destination="aGv-Xn-nif" id="2tW-jJ-TpC"/>
                         <outlet property="userBetPickerView" destination="4j2-b2-YBZ" id="KDJ-vW-VkZ"/>
                         <outlet property="userBetTextField" destination="4eQ-8G-L2x" id="gsr-OF-Lpc"/>
                     </connections>

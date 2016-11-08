@@ -16,6 +16,8 @@ class MakeWagerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     @IBOutlet weak var userBetTextField: UITextField!
     
+    @IBOutlet weak var rangeLabel: UILabel!
+    
     var bet:Bet!
     var coinsLeft: Int!
     var outcomes: [String] = []
@@ -57,6 +59,8 @@ class MakeWagerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                 self.userBet = self.outcomes[0]
             case "ExactNumericalBet":
                 self.userBetTextField.isHidden = false
+                self.rangeLabel.isHidden = false
+                self.rangeLabel.text = "Range for this bet is \(self.bet.outcome1!) to \(self.bet.outcome2!)"
             default:
                 print("BET TYPE NOT SUPPORTED IN MAKE WAGER CONTROLLER")
         }
@@ -77,8 +81,11 @@ class MakeWagerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         let user_id = User.currentUser()
         //make new wager object and attach it to bet
         let betAmount = Int(self.amountTextField.text!)
-        if (betAmount! > self.coinsLeft!) {
-            BBUtilities.showMessagePrompt("You cannot place a wage with more coins that you have!", controller: self)
+        if(checkInput() != "valid"){
+            BBUtilities.showMessagePrompt(checkInput(), controller: self)
+        }
+        else if (betAmount! > self.coinsLeft!) {
+            BBUtilities.showMessagePrompt("You don't have enough coins!", controller: self)
         }
         else {
             let newCoinAmount = self.coinsLeft! - betAmount!
@@ -86,6 +93,41 @@ class MakeWagerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             self.bet.attachWager(userId: user_id, betAmount: betAmount!, userBet: self.userBet)
         }
         
+    }
+    
+    func checkInput() -> String{
+        if (self.amountTextField.text == ""){
+            return "Must enter a valid amount to bet"
+        }
+        else if (Int(self.amountTextField.text!) == nil){
+            return "Must enter a valid integer amount to bet"
+        }
+        else{
+            switch self.bet.type!{
+            case "YesNoBet":
+                return "valid"
+            case "ExactNumericalBet":
+                let minGuess = Int(self.bet.outcome1)!
+                let maxGuess = Int(self.bet.outcome2)!
+                if (self.userBetTextField.text == ""){
+                    return "You must put a value in the predicted outcome field"
+                }
+                
+                let userGuess = Int(self.userBetTextField.text!)
+                if (userGuess == nil){
+                    return "Your guess must be a valid integer!"
+                }
+                else if(userGuess! < minGuess || userGuess! > maxGuess){
+                    return "Your guess must be within the range specified for this bet"
+                }
+                else{
+                    return "valid"
+                }
+            default:
+                print("BET TYPE NOT SUPPORTED IN MAKE WAGER CONTROLLER")
+            }
+        }
+        return "valid"
     }
     
     //PICKER FUNCTIONS
