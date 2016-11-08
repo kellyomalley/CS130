@@ -64,7 +64,7 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
         let marker = BetMarker(bet: bet)
         marker.position = CLLocationCoordinate2D(latitude: lat, longitude: long)
         marker.title = bet.title
-        let potString = String(bet.pot!)
+        let potString = String(bet.pot)
         marker.snippet = "Pot: \(potString)"
         marker.icon = markerImage
         marker.map = self.mapView
@@ -97,7 +97,7 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
         infoWindow.isUserInteractionEnabled = false
         infoWindow.title.text = marker.bet.title
         infoWindow.title.textAlignment = .center
-        infoWindow.pot.text = String(marker.bet.pot!)
+        infoWindow.pot.text = String(marker.bet.pot)
         infoWindow.pot.textAlignment = .center
         infoWindow.map = self
         infoWindow.clipsToBounds = true

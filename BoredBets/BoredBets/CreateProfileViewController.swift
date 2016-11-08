@@ -25,6 +25,9 @@ class CreateProfileViewController: UIViewController {
         else
         {
             User.usersRef().child(User.currentUser()).child("username").setValue(self.usernameField.text)
+            
+            //Give User initial $$$
+            User.usersRef().child(User.currentUser()).child("coins").setValue(100)
             self.performSegue(withIdentifier: "enterAppSegue", sender: nil)
         }
     }

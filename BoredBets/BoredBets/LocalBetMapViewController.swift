@@ -39,6 +39,9 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
+        
+        //checks if user doesn't have coin attribute... gives 100 if no coin
+        //else if 0, gives user 25 more coins
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -91,7 +94,7 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:BetListCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BetListCell
         cell.title?.text = self.bets[indexPath.row].title
-        let potText = "Pot: " + String(self.bets[indexPath.row].pot!)
+        let potText = "Pot: " + String(self.bets[indexPath.row].pot)
         cell.pot?.text = potText
         return cell
     }

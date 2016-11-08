@@ -13,7 +13,7 @@ class CreateBetViewController: UIViewController, MapDelegate {
     
     @IBOutlet var mapView: GMSMapView!
     var bet: Bet!
-    var map :CreateBetMap!
+    var map: CreateBetMap!
     
     override func viewDidLoad() {
         super.viewDidLoad()

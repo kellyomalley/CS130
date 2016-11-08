@@ -18,7 +18,7 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIPick
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController!.navigationBar.topItem!.title = "Cancel"
+        //self.navigationController!.navigationBar.topItem!.title = "Cancel"
         self.titleTextField.delegate = self;
         self.betTypes = BetFactory.supportedBetTypes()
         self.selectedBetType = self.betTypes[0]

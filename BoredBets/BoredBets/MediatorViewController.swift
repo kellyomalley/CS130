@@ -39,14 +39,17 @@ class MediatorViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
+        if (segue.identifier == "toSettleBet"){
+            let vc = segue.destination as! SettleBetViewController
+            vc.bet = self.bet
+        }
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }

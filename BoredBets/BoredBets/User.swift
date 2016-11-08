@@ -261,7 +261,21 @@ class User{
             }
             completion(userIds)
         })
-    }    
+    }
+    
+    //returns user's coin count
+    //if no coin attribute on user, returns -1
+    func userCoinCount(completion: @escaping (Int) -> ()){
+        User.usersRef().child(self.id).child("coins").observe(.value, with: { snapshot in
+            if let coin = snapshot.childSnapshot(forPath: "coins").value as? Int {
+                completion(coin)
+            }
+            else {
+                completion(-1)
+            }
+
+        })
+    }
     
     //to make grabbing the current user universal
     class func currentUser() -> String {

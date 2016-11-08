@@ -46,8 +46,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 {
                     BBUtilities.showMessagePrompt(error!.localizedDescription, controller: self)
                 }
-                
-                User.usersRef().child(User.currentUser()).child("Coins").setValue(100)
             }
         }
     }

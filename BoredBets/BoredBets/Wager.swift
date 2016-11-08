@@ -15,18 +15,18 @@ class Wager {
     let idLen: Int = 16
     var userId: String
     var betAmount: Int
-    var userBet: Int        //for YesNo bet, should be of form 1 (Yes) or 0 (No)
+    var userBet: String        //for YesNo bet, should be of form 1 (Yes) or 0 (No)
     var betId: String?
 
     
-    init(userId: String, betAmount:Int, userBet:Int) {
+    init(userId: String, betAmount:Int, userBet:String) {
         self.id = BBUtilities.generateObjectId(len: self.idLen)
         self.userId = userId
         self.betAmount = betAmount
         self.userBet = userBet
     }
     
-    init(id: String, userId: String, betAmount:Int, userBet:Int) {
+    init(id: String, userId: String, betAmount:Int, userBet:String) {
         self.id = id
         self.userId = userId
         self.betAmount = betAmount
@@ -41,7 +41,7 @@ class Wager {
         return betAmount
     }
     
-    func getUserBet() -> Int {
+    func getUserBet() -> String {
         return userBet
     }
     

@@ -34,7 +34,7 @@ import Firebase
         var userHasWagered: Bool?
         var title: String!
         var description: String = ""
-        var pot: Int?
+        var pot: Int = 0
         var wagerArray: [Wager] = []
         var lat: Double!
         var long: Double!
@@ -42,6 +42,7 @@ import Firebase
         
         var outcome1: String! = ""
         var outcome2: String! = ""
+        var finalOutcome: String?
 
         init(){
             //for default init in createBet VC
@@ -72,6 +73,77 @@ import Firebase
         //should always be overridden
         func calculateOdds() -> String{
             preconditionFailure()
+        }
+        
+        //returns a list of winning wagers
+        func determineWinners(wagers: [Wager]) -> [Wager]{
+            preconditionFailure("determineWinners() should be overridden by subclasses")
+        }
+        
+        //given a list of wagers, returns a dictionary with the users to be paid out corresponding to the amount which they should be paid
+        func assignWinnings(winners: [Wager]) -> [String:Int]{
+            print("ENTERED ASSIGN WINNINGS")
+            print("Pot: \(self.pot)")
+            var mediatorCut = Int(Double(self.pot)*0.1)
+            let potAfterMediatorCut = self.pot - mediatorCut
+            var potRemaining = potAfterMediatorCut
+            var winnersContribution = 0
+            for winner in winners {
+                winnersContribution += winner.betAmount
+            }
+            print("Winners Contribution: \(winnersContribution)")
+            var winnings: Dictionary = [String:Int]()
+            for winner in winners{
+                print("winner: \(winner)")
+                let tempWinnings = Int((Double(winner.betAmount)/Double(winnersContribution)) * Double(potAfterMediatorCut))
+                if (winnings[winner.userId] != nil){
+                    winnings[winner.userId]! += tempWinnings
+                }
+                else{
+                    winnings[winner.userId] = tempWinnings
+
+                }
+                potRemaining -= tempWinnings
+            }
+            //if any left with rounding, give to mediator
+            if (potRemaining > 0){
+                mediatorCut += potRemaining
+                potRemaining = 0
+            }
+            winnings[User.currentUser()] = mediatorCut
+            print("IN ASSIGN WINNINGS")
+            print("winnings: \(winnings)")
+            print("pot: \(self.pot)")
+            print("EXITING ASSIGN WINNINGS")
+            return winnings
+        }
+        
+        //given a dictionary of (userIds, earnings), payout those users the amounts specified
+        func distributeWinnings(winnings: [String:Int], completion: @escaping() -> ()){
+            print("ENTERING distributeWinnings")
+            print("Winnings: \(winnings)")
+            if (winnings.count > 0){
+                var newWinnings = winnings
+                let userId = winnings.keys[winnings.startIndex]
+                User.usersRef().child(userId).child("coins").observeSingleEvent(of: .value, with: { (snapshot) in
+                    var coins = snapshot.value as! Int
+                    coins += newWinnings[userId]!
+                    User.usersRef().child(userId).child("coins").setValue(coins)
+                    print("Gave \(coins) coins to user \(userId)")
+                    newWinnings.removeValue(forKey: newWinnings.keys[newWinnings.startIndex])
+                    self.distributeWinnings(winnings: newWinnings, completion: {
+                        completion()
+                    })
+                })
+            }
+            else{
+                completion()
+            }
+        }
+        
+        //updates the DB to indicate that the bet has concluded and assigns it a final outcome
+        func concludeBet(){
+            //implement here TODO
         }
         
         //should be the same for every bet type
@@ -117,7 +189,7 @@ import Firebase
         }
         
         //make wager and attach to the bet
-        func attachWager(userId: String, betAmount: Int, userBet: Int) -> Void{
+        func attachWager(userId: String, betAmount: Int, userBet: String) -> Void{
             let newWager = Wager(userId: userId, betAmount: betAmount, userBet: userBet)
             wagerArray.append(newWager)
             //now update the db with the new wager object
@@ -161,6 +233,22 @@ import Firebase
             })
         }
         
+        func closeBetting(){
+            //TODO - updates the bet so no users can bet
+        }
+        
+        func settleBet(){
+            self.wagerIds(completion: { wagerIds in
+                self.wagersForWagerIds(wagerIds: wagerIds, wagers: [], completion: { wagers in
+                    let winners = self.determineWinners(wagers: wagers)
+                    let winnings = self.assignWinnings(winners: winners)
+                    self.distributeWinnings(winnings: winnings, completion: {
+                        self.concludeBet()
+                    })
+                })
+            })
+        }
+        
         //function returns all wagers given a list of wager ids
         func wagersForWagerIds(wagerIds: [String], wagers: [Wager], completion: @escaping([Wager]) -> ()){
             let wagersRef = Wager.wagersRef()
@@ -175,7 +263,7 @@ import Firebase
                     var userId: String?
                     var betId: String?
                     var betAmount: Int?
-                    var userBet: Int?
+                    var userBet: String?
                     for (k,v) in dict!{
                         if (k as? String == "user_id"){
                             userId = v as? String
@@ -184,7 +272,7 @@ import Firebase
                             betAmount = v as? Int
                         }
                         else if (k as? String == "user_bet"){
-                            userBet = v as? Int
+                            userBet = v as? String
                         }
                         else if (k as? String == "bet_id"){
                             betId = v as? String
@@ -261,6 +349,19 @@ import Firebase
             super.init()
             self.type = "YesNoBet"
         }
+        override func determineWinners(wagers: [Wager]) -> [Wager] {
+            print("ENTERED Determine winners")
+            var winners: [Wager] = []
+            for wager in wagers{
+                print("Wager: \(wager.userBet), Final Outcome: \(self.finalOutcome)")
+                if (wager.userBet == self.finalOutcome){
+                    winners.append(wager)
+                }
+            }
+            print("RETURNING WINNERS: \(winners)")
+            print("Exiting determine winners")
+            return winners
+        }
         /**
        Calculate bet odds for a YesNo bet, overrides main bet function.
          
@@ -278,10 +379,10 @@ import Firebase
             for wager in wagerArray {
                 totalPool += wager.getBetAmount()
                 
-                if wager.getUserBet() == 0 {
+                if wager.getUserBet() == self.outcome1 {
                     numberOfNo += 1
                 }
-                else if wager.getUserBet() == 1 {
+                else if wager.getUserBet() == self.outcome2 {
                     numberOfYes += 1
                 }
                 else {
