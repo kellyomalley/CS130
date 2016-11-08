@@ -390,9 +390,18 @@ import Firebase
                 }
             }
             
-            let getSimple = simplify(num: numberOfYes, denom: numberOfNo)
-            //return looks like Odds: 2:1, Pool: $1234
-            let resString = "Odds: \(getSimple.newNum) : \(getSimple.newDenom) , Pool: $\(totalPool)"
+            var resString = ""
+            if numberOfNo == 0 {
+                resString = "Odds: \(numberOfYes) : 0, Pool: $\(totalPool)"
+            }
+            else if numberOfYes == 0 {
+                resString = "Odds: 0 : \(numberOfNo), Pool: $\(totalPool)"
+            }
+            else {
+                let getSimple = simplify(num: numberOfYes, denom: numberOfNo)
+                //return looks like Odds: 2:1, Pool: $1234
+                resString = "Odds: \(getSimple.newNum) : \(getSimple.newDenom), Pool: $\(totalPool)"
+            }
             return resString
         }
       }
@@ -405,8 +414,37 @@ import Firebase
             self.type = "ExactNumericalBet"
         }
         
+        /**
+         Calculate bet odds for a ExactNumerical bet, overrides main bet function.
+         
+            Example usage:
+         
+                mybet.calcuateOdds()
+         
+         - Returns: A string of the form "Number of wagers for each outcome: 2: 0; 3: 1; 4: 3; Pool: $1234"
+         */
         override func calculateOdds() -> String{
-            return " "
+            var totalPool: Int = 0
+            let max = Int(self.outcome2)!
+            let min = Int(self.outcome1)!
+            
+            var allWagers: [Int:Int] = [:]
+            
+            for index in min...max {
+                allWagers[index] = 0
+            }
+            
+            for wager in wagerArray {
+                totalPool += wager.getBetAmount()
+                //TODO: getting error on this line
+                //allWagers[wager.getUserBet()] = allWagers[wager.getUserBet()]! + 1
+            }
+            var resString = "Number of wagers for each outcome: "
+            for (key, value) in allWagers {
+                resString += "\(key): \(value); "
+            }
+            resString += "Pool: \(totalPool)"
+            return resString
         }
         
         override func determineWinners(wagers: [Wager]) -> [Wager] {
