@@ -78,12 +78,12 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
             self.mapView.isHidden = true
             self.listView.isHidden = false
             self.listView.reloadData()
-            //UIView.transition(from: self.mapView, to: self.listView, duration: 0.5, options: .transitionFlipFromLeft, completion: nil)
+            self.toggleViewButton.setTitle("Map View", for: .normal)
         }
         else {
-            //UIView.transition(from: self.listView, to: self.mapView, duration: 0.5, options: .transitionFlipFromLeft, completion: nil)
             self.mapView.isHidden = false
             self.listView.isHidden = true
+            self.toggleViewButton.setTitle("List View", for: .normal)
         }
         showMap = !showMap
     }
@@ -96,9 +96,18 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:BetListCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BetListCell
-        cell.title?.text = self.bets[indexPath.row].title
-        let potText = "Pot: " + String(self.bets[indexPath.row].pot)
+        let bet = self.bets[indexPath.row]
+        let potText = "Pot: " + String(bet.pot)
+        let userLocation = CLLocation(latitude: lat, longitude: long)
+        let betLocation = CLLocation(latitude: bet.lat, longitude: bet.long)
+        let distance = userLocation.distance(from: betLocation) / 1609
+        let distanceText = String(format: "%.2f", distance) + " miles away"
+
+        cell.title?.text = bet.title
+        cell.title?.font = cell.title?.font.withSize(20)
         cell.pot?.text = potText
+        cell.distance?.text = distanceText
+        cell.distance?.textAlignment = .right
         return cell
     }
     
