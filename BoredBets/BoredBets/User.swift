@@ -120,10 +120,11 @@ class User{
                 if(betIds.contains(child.key)){
                     let dict = child.value as? NSDictionary
                     var title: String = "Bet"
-                    var pot: Int = 0
-                    var type: String = ""
-                    var outcome1: String = ""
-                    var outcome2: String = ""
+                    var pot = 0
+                    var type = ""
+                    var outcome1 = ""
+                    var outcome2 = ""
+                    var userIsMediator = false
                     for (k,v) in dict!{
                         switch k as! String{
                             case "title":
@@ -136,6 +137,10 @@ class User{
                                 outcome1 = v as! String
                             case "outcome2":
                                 outcome2 = v as! String
+                            case "mediator_id":
+                                if (v as! String == self.id){
+                                    userIsMediator = true
+                                }
                             default:
                                 print("Some other key")
                         }
@@ -148,6 +153,7 @@ class User{
                         tempBet.pot = pot
                         tempBet.outcome1 = outcome1
                         tempBet.outcome2 = outcome2
+                        tempBet.userIsMediator = userIsMediator
                         bets.append(tempBet)
                     }
                 }
