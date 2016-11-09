@@ -143,8 +143,29 @@ import Firebase
         }
         
         //updates the DB to indicate that the bet has concluded and assigns it a final outcome
-        func concludeBet(){
+        //updates the wager objects to show a final return on their bet:
+            //losers get 0 as payout
+            //winners get their winnings
+        func concludeBet(losers: [Wager], winners: [Wager], winnings: [String:Int]){
+            //update losers' wagers to give them a payout of 0
+            for loser in losers{
+                updateWagerPaidOut(wager: loser, payout: 0)
+            }
+            
+            //update winners' wagers to give them correct payout...
+            for winner in winners{
+                if let payout = winnings[winner.userId]{
+                    updateWagerPaidOut(wager: winner, payout: payout)
+                }
+            }
+            
+            //update the bet object to mark as settled
             Bet.betsRef().child(self.id).child("settled").setValue(FIRServerValue.timestamp())
+        }
+        
+        //updates a wager with 'payout' attribute
+        func updateWagerPaidOut(wager: Wager, payout: Int){
+            Wager.wagersRef().child(wager.id).child("payout").setValue(payout)
         }
         
         //should be the same for every bet type
@@ -242,12 +263,36 @@ import Firebase
             self.wagerIds(completion: { wagerIds in
                 self.wagersForWagerIds(wagerIds: wagerIds, wagers: [], completion: { wagers in
                     let winners = self.determineWinners(wagers: wagers)
+                    let losers = self.removeWagers(wagers: winners, from: wagers)
                     let winnings = self.assignWinnings(winners: winners)
                     self.distributeWinnings(winnings: winnings, completion: {
-                        self.concludeBet()
+                        self.concludeBet(losers: losers, winners: winners, winnings: winnings)
                     })
                 })
             })
+        }
+        
+        //removes wagers in list 1 from list 2
+        //returns the resulting wager list
+        func removeWagers(wagers: [Wager], from: [Wager]) -> [Wager]{
+            var newWagers = from
+            for wager in wagers{
+                newWagers = removeWager(forId: wager.id, from: newWagers)
+            }
+            return newWagers
+        }
+        
+        //removes a wager from a given wager list for a certain wager id
+        //returns the wager list without the removed wager
+        func removeWager(forId: String, from: [Wager]) -> [Wager]{
+            var newWagers = from
+            for (i, wager) in newWagers.enumerated(){
+                if (wager.id == forId){
+                    newWagers.remove(at: i)
+                    return newWagers
+                }
+            }
+            return newWagers
         }
         
         //function returns all wagers given a list of wager ids
