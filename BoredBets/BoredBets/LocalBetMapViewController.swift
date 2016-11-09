@@ -58,7 +58,12 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     
     func showSelectedBet(bet: Bet){
         self.selectedBet = bet
-        performSegue(withIdentifier: "mapToBetView", sender: self)
+        if (bet.userIsMediator == true) {
+            performSegue(withIdentifier: "mapToEditBet", sender: self)
+        }
+        else {
+            performSegue(withIdentifier: "mapToBetView", sender: self)
+        }
     }
     
     func createBetAtLocation() {
@@ -69,6 +74,10 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
         if (segue.identifier == "mapToBetView")
         {
             let vc = segue.destination as! ViewBetViewController
+            vc.bet = self.selectedBet
+        }
+        else if (segue.identifier == "mapToEditBet") {
+            let vc = segue.destination as! MediatorViewController
             vc.bet = self.selectedBet
         }
     }

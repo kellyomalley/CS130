@@ -402,6 +402,7 @@
                         <outlet property="mapView" destination="ZU9-uS-avS" id="E9d-h6-fKc"/>
                         <outlet property="toggleViewButton" destination="9Lg-V5-S1J" id="3no-t3-f3B"/>
                         <segue destination="2YN-Db-3jX" kind="show" identifier="mapToBetView" id="BJU-xv-EFM"/>
+                        <segue destination="Rpa-az-Zcy" kind="show" identifier="mapToEditBet" id="sPV-OC-Pj8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXs-Tx-WUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1071,8 +1072,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="YCw-U3-gL3"/>
         <segue reference="Ngd-Bg-eNG"/>
         <segue reference="BJU-xv-EFM"/>
+        <segue reference="sPV-OC-Pj8"/>
     </inferredMetricsTieBreakers>
 </document>
