@@ -161,6 +161,8 @@ import Firebase
             
             //update the bet object to mark as settled
             Bet.betsRef().child(self.id).child("settled").setValue(FIRServerValue.timestamp())
+            //update the bet object to include the payout to the mediator
+            Bet.betsRef().child(self.id).child("payout").setValue(winnings[self.currentUserId])
         }
         
         //updates a wager with 'payout' attribute
