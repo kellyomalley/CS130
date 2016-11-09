@@ -140,6 +140,7 @@ class User{
                     var outcome2 = ""
                     var userIsMediator = false
                     var state = BetState.Active
+                    var payout = 0
                     for (k,v) in dict!{
                         switch k as! String{
                             case "title":
@@ -158,6 +159,8 @@ class User{
                                 }
                             case "settled":
                                 state = BetState.Settled
+                            case "payout":
+                                payout = v as! Int
                             default:
                                 print("Some other key")
                         }
@@ -172,6 +175,7 @@ class User{
                         tempBet.outcome2 = outcome2
                         tempBet.userIsMediator = userIsMediator
                         tempBet.state = state
+                        tempBet.payout = payout
                         bets.append(tempBet)
                     }
                 }
