@@ -9,6 +9,12 @@
 import Foundation
 import Firebase
 
+//global enums here:
+//consider putting this enum in Bet model, but it works here!
+enum BetState{
+    case Active, Closed, Settled
+}
+
 class BBUtilities{
     
     //generates random string that can be used to represent any object ID
@@ -27,6 +33,10 @@ class BBUtilities{
         }
         
         return randomString as String
+    }
+    
+    class func translateFirebaseTimestamp(timeSince: TimeInterval) -> NSDate{ // Read the value at the
+        return NSDate(timeIntervalSince1970: timeSince/1000)
     }
     
     class func showMessagePrompt(_ message: String, title: String = "Oops!", controller: UIViewController){

@@ -69,6 +69,7 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIPick
             let vc = segue.destination as! RestrictWagerOptionsViewController
             let bet = BetFactory.sharedFactory.makeBet(type: self.selectedBetType)
             bet?.title = self.titleTextField.text
+            bet?.state = BetState.Active
             vc.bet = bet
         }
     }

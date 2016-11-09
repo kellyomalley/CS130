@@ -242,20 +242,20 @@
 		4AB0CB801DBDC7CD002EB0D2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4A2FDFD11DBD9CC7004A8835 /* Bet.swift */,
-				4A7B0CC11DBDA012008144C4 /* Comment.swift */,
-				4A7B0CBD1DBD9F38008144C4 /* User.swift */,
-				4A7B0CC31DBDA1C7008144C4 /* Wager.swift */,
 				4AF9242C1DC320A1009E1CD9 /* BBUtilities.swift */,
-				9B99397F1DC56BA1003B0E17 /* Map.swift */,
-				9B1CE0111DC5B196004A1A1A /* InfoWindow.xib */,
-				9B1CE0131DC5B24A004A1A1A /* BetInfoWindow.swift */,
-				9B0A5BCC1DC5BD8800D12446 /* BetMarker.swift */,
+				4A2FDFD11DBD9CC7004A8835 /* Bet.swift */,
 				4A6812051DCE9DB2000441AC /* BetFactory.swift */,
-				9B5906BF1DCFC88C00877220 /* CreateBetMap.swift */,
-				9B5906C11DCFC8AD00877220 /* SetLocationInfoWindow.xib */,
+				9B1CE0131DC5B24A004A1A1A /* BetInfoWindow.swift */,
+				9B1CE0111DC5B196004A1A1A /* InfoWindow.xib */,
 				9B5906C31DCFDDD700877220 /* BetList.swift */,
 				9B5906C51DCFFF5F00877220 /* BetListCell.swift */,
+				9B0A5BCC1DC5BD8800D12446 /* BetMarker.swift */,
+				4A7B0CC11DBDA012008144C4 /* Comment.swift */,
+				9B5906BF1DCFC88C00877220 /* CreateBetMap.swift */,
+				9B99397F1DC56BA1003B0E17 /* Map.swift */,
+				4A7B0CBD1DBD9F38008144C4 /* User.swift */,
+				4A7B0CC31DBDA1C7008144C4 /* Wager.swift */,
+				9B5906C11DCFC8AD00877220 /* SetLocationInfoWindow.xib */,
 			);
 			name = Model;
 			sourceTree = "<group>";

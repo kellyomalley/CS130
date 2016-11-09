@@ -125,6 +125,7 @@ class User{
                     var outcome1 = ""
                     var outcome2 = ""
                     var userIsMediator = false
+                    var state = BetState.Active
                     for (k,v) in dict!{
                         switch k as! String{
                             case "title":
@@ -141,6 +142,8 @@ class User{
                                 if (v as! String == self.id){
                                     userIsMediator = true
                                 }
+                            case "settled":
+                                state = BetState.Settled
                             default:
                                 print("Some other key")
                         }
@@ -154,6 +157,7 @@ class User{
                         tempBet.outcome1 = outcome1
                         tempBet.outcome2 = outcome2
                         tempBet.userIsMediator = userIsMediator
+                        tempBet.state = state
                         bets.append(tempBet)
                     }
                 }
@@ -165,6 +169,7 @@ class User{
     //FOR MAPS API
     //returns list of bets within the radius provided (with regards to the user's location)
     //also attaches appropriate relationship to the user for color coordination of pins
+    //only returns *******ACTIVEBETS*********
     func betsWithinVicinity(latParm: Double, longParm: Double, radMiles: Double, completion: @escaping([Bet]) -> ()){
         let betsRef = Bet.betsRef()
         betsRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -180,6 +185,7 @@ class User{
                 var type: String = ""
                 var outcome1: String = ""
                 var outcome2: String = ""
+                var state: BetState = BetState.Active
                 for (k,v) in dict!{
                     switch k as! String{
                         case "title":
@@ -200,12 +206,14 @@ class User{
                             outcome1 = v as! String
                         case "outcome2":
                             outcome2 = v as! String
+                        case "settled":
+                            state = BetState.Settled
                         default:
                             print("Some other key")
                     }
                 }
                 //check if the longitude and latitude are within the defined parms
-                if (self.withinVicinity(latParm: latParm, longParm: longParm, lat: lat, long: long, radMiles: radMiles)){
+                if (self.withinVicinity(latParm: latParm, longParm: longParm, lat: lat, long: long, radMiles: radMiles) && state == BetState.Active){
                     let betFactory = BetFactory.sharedFactory
                     let tempBet: Bet! = betFactory.makeBet(type: type)
                     if (tempBet != nil){

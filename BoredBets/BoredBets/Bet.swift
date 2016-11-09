@@ -43,6 +43,7 @@ import Firebase
         var outcome1: String! = ""
         var outcome2: String! = ""
         var finalOutcome: String?
+        var state: BetState = BetState.Active
 
         init(){
             //for default init in createBet VC
@@ -143,7 +144,7 @@ import Firebase
         
         //updates the DB to indicate that the bet has concluded and assigns it a final outcome
         func concludeBet(){
-            //implement here TODO
+            Bet.betsRef().child(self.id).child("settled").setValue(FIRServerValue.timestamp())
         }
         
         //should be the same for every bet type
