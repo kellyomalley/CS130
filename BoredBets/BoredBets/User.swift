@@ -44,6 +44,7 @@ class User{
     }
     
     //grab bets for user for which the user is mediating, asynchronous function call
+    //only grabs bets that are *****NOT SETTLED YET****
     func activeMediatedBets (completion: @escaping ( [Bet]) -> ()){
         //returns a list of bets that the user is mediating
         //get all ids of bets the user is mediating
@@ -51,7 +52,13 @@ class User{
             betIds in
             self.betsFromIds(betIds: betIds, completion: {
                 bets in
-                completion(bets)
+                var activeBets: [Bet] = []
+                for bet in bets{
+                    if bet.state != BetState.Settled{
+                        activeBets.append(bet)
+                    }
+                }
+                completion(activeBets)
             })
             
         }
