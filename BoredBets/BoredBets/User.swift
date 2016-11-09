@@ -24,13 +24,20 @@ class User{
     }
     
     //User related bet object retrieval... be careful with using cause they're bad ass asynchronous calls
+    //returns bets that a user has bet on that are in an active or closed state
     func activeBets(completion: @escaping ([Bet]) -> ()) {
         //returns a list of bets that the user has wagered money on
         self.activeWagerBetIds{
             betIds in
             self.betsFromIds(betIds: betIds, completion: {
                 bets in
-                completion(bets)
+                var activeBets: [Bet] = []
+                for bet in bets{
+                    if bet.state != BetState.Settled{
+                        activeBets.append(bet)
+                    }
+                }
+                completion(activeBets)
             })
         }
   
@@ -228,6 +235,10 @@ class User{
                         bets.append(tempBet)
                     }
                 }
+            }
+            print("Bets included in vicinity:")
+            for bet in bets{
+                print(bet.title)
             }
             completion(bets)
         })
