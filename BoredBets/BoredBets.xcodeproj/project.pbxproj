@@ -32,6 +32,7 @@
 		4A93E1B51DC5764A00305C7D /* SetBetDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A93E1B41DC5764A00305C7D /* SetBetDetailsViewController.swift */; };
 		4A9B8D2D1DCFB808007F326A /* SettleBetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9B8D2C1DCFB808007F326A /* SettleBetViewController.swift */; };
 		4A9B8D2F1DCFBB26007F326A /* RestrictWagerOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9B8D2E1DCFBB26007F326A /* RestrictWagerOptionsViewController.swift */; };
+		4A9B8D311DD3EEE2007F326A /* BetResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9B8D301DD3EEE2007F326A /* BetResultsViewController.swift */; };
 		4AB0CB6F1DBDC5E6002EB0D2 /* CreateBetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0CB6E1DBDC5E6002EB0D2 /* CreateBetViewController.swift */; };
 		4AB0CB711DBDC60D002EB0D2 /* ViewBetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0CB701DBDC60D002EB0D2 /* ViewBetViewController.swift */; };
 		4AB0CB731DBDC61F002EB0D2 /* MakeWagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0CB721DBDC61F002EB0D2 /* MakeWagerViewController.swift */; };
@@ -104,6 +105,7 @@
 		4A93E1B41DC5764A00305C7D /* SetBetDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetBetDetailsViewController.swift; sourceTree = "<group>"; };
 		4A9B8D2C1DCFB808007F326A /* SettleBetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettleBetViewController.swift; sourceTree = "<group>"; };
 		4A9B8D2E1DCFBB26007F326A /* RestrictWagerOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestrictWagerOptionsViewController.swift; sourceTree = "<group>"; };
+		4A9B8D301DD3EEE2007F326A /* BetResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetResultsViewController.swift; sourceTree = "<group>"; };
 		4AB0CB6E1DBDC5E6002EB0D2 /* CreateBetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateBetViewController.swift; sourceTree = "<group>"; };
 		4AB0CB701DBDC60D002EB0D2 /* ViewBetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewBetViewController.swift; sourceTree = "<group>"; };
 		4AB0CB721DBDC61F002EB0D2 /* MakeWagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeWagerViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				4AFFFF411DC3DB9000B0438A /* ActiveBetsViewController.swift */,
+				4A9B8D301DD3EEE2007F326A /* BetResultsViewController.swift */,
 				4AB0CB6E1DBDC5E6002EB0D2 /* CreateBetViewController.swift */,
 				22BBBD191DCABDC70004D270 /* CreateProfileViewController.swift */,
 				4A839FF71DBD902C0078A616 /* DataViewController.swift */,
@@ -580,6 +583,7 @@
 				4A2FDFD21DBD9CC7004A8835 /* Bet.swift in Sources */,
 				22BBBD1A1DCABDC70004D270 /* CreateProfileViewController.swift in Sources */,
 				22CE1D291DC9558100DFCD11 /* MediatorViewController.swift in Sources */,
+				4A9B8D311DD3EEE2007F326A /* BetResultsViewController.swift in Sources */,
 				4A9B8D2D1DCFB808007F326A /* SettleBetViewController.swift in Sources */,
 				4AB0CB7D1DBDC6FE002EB0D2 /* LocalBetMapViewController.swift in Sources */,
 				9B5906C41DCFDDD700877220 /* BetList.swift in Sources */,

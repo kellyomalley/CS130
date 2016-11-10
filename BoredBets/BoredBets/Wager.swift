@@ -17,6 +17,7 @@ class Wager {
     var betAmount: Int
     var userBet: String        //for YesNo bet, should be of form 1 (Yes) or 0 (No)
     var betId: String?
+    var payout: Int?
 
     
     init(userId: String, betAmount:Int, userBet:String) {

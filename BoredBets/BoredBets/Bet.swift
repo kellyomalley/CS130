@@ -163,7 +163,9 @@ import Firebase
             //update the bet object to mark as settled
             Bet.betsRef().child(self.id).child("settled").setValue(FIRServerValue.timestamp())
             //update the bet object to include the payout to the mediator
-            Bet.betsRef().child(self.id).child("payout").setValue(winnings[self.currentUserId])
+            let mediatorPayout = winnings[self.currentUserId]
+            self.payout = mediatorPayout
+            Bet.betsRef().child(self.id).child("payout").setValue(mediatorPayout)
         }
         
         //updates a wager with 'payout' attribute
@@ -262,7 +264,7 @@ import Firebase
             //TODO - updates the bet so no users can bet
         }
         
-        func settleBet(){
+        func settleBet(bet: Bet, completion: @escaping() -> ()){
             self.wagerIds(completion: { wagerIds in
                 self.wagersForWagerIds(wagerIds: wagerIds, wagers: [], completion: { wagers in
                     let winners = self.determineWinners(wagers: wagers)
@@ -270,6 +272,7 @@ import Firebase
                     let winnings = self.assignWinnings(winners: winners)
                     self.distributeWinnings(winnings: winnings, completion: {
                         self.concludeBet(losers: losers, winners: winners, winnings: winnings)
+                        completion()
                     })
                 })
             })
@@ -313,6 +316,7 @@ import Firebase
                     var betId: String?
                     var betAmount: Int?
                     var userBet: String?
+                    var payout = 0
                     for (k,v) in dict!{
                         if (k as? String == "user_id"){
                             userId = v as? String
@@ -326,9 +330,13 @@ import Firebase
                         else if (k as? String == "bet_id"){
                             betId = v as? String
                         }
+                        else if(k as? String == "payout"){
+                            payout = v as! Int
+                        }
                     }
                     let tempWager = Wager(id: wagerId, userId: userId!, betAmount: betAmount!, userBet: userBet!)
                     tempWager.betId = betId
+                    tempWager.payout = payout
                     var newWagers = wagers
                     newWagers.append(tempWager)
                     self.wagersForWagerIds(wagerIds: wagerIds, wagers: newWagers, completion: {

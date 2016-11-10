@@ -53,16 +53,24 @@ class SettleBetViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         }
         else{
             self.bet.finalOutcome = self.finalBetOutcome
-            self.bet.settleBet()
+            self.bet.settleBet(bet: bet, completion: {
+                //after bet has been settled, make transition to results page
+                let baseViewController = self.navigationController?.viewControllers[0]
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let nextvc = storyboard.instantiateViewController(withIdentifier: "betResultsView") as! BetResultsViewController
+                nextvc.bet = self.bet
+                self.navigationController?.setViewControllers([baseViewController!, nextvc], animated: true)
+                //self.performSegue(withIdentifier: "settleBetToBetResults", sender: self)
+            })
             
             //determine where to navigate to
-            guard let controllers = navigationController?.viewControllers else { return }
+            /*guard let controllers = navigationController?.viewControllers else { return }
             let count = controllers.count
             if count > 2 {
                 if let mvc = controllers[count - 2] as? MediatorViewController {
                     navigationController?.popToViewController(mvc, animated: true)
                 }
-            }
+            }*/
         }
     }
     
@@ -121,14 +129,18 @@ class SettleBetViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         super.touchesBegan(touches, with: event)
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "settleBetToBetResults"){
+            let nextvc = segue.destination as! BetResultsViewController
+            nextvc.bet = self.bet
+        }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }
