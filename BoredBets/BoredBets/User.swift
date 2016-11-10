@@ -84,7 +84,7 @@ class User{
     
     //gets all betIds given a list of wager id strings, async
     func activeWagerBetIds(completion: @escaping ([String]) -> ()){
-        self.activeWagerIds{
+        self.wagerIds{
             wagerIds in
             let wagerRef = Wager.wagersRef()
             wagerRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -107,10 +107,65 @@ class User{
         }
     }
     
+    //returns all wagers that are expired (given a list of wagerids that represent wagers that may or may not be expired)
+    func expiredWagers(forIds: [String], wagers: [Wager],  completion: @escaping([Wager]) -> ()){
+        if (forIds.count == 0){
+            completion(wagers)
+        }
+        else{
+            wager(forId: forIds[0], completion: {
+                wager in
+                var newWagers = wagers
+                var newWagerIds = forIds
+                if (wager.payout != -1){
+                    newWagers.append(wager)
+                }
+                newWagerIds.remove(at: 0)
+                self.expiredWagers(forIds: newWagerIds, wagers: newWagers, completion: {
+                    wagers in
+                    completion(wagers)
+                })
+            })
+            
+        }
+    }
+    
+    //returns a wager for a wagerId
+    //if there is no payout attribute on the object, payout is set to -1
+    func wager(forId: String, completion: @escaping(Wager) -> ()){
+        let wagerRef = Wager.wagersRef()
+        wagerRef.child(forId).observeSingleEvent(of: .value, with: {(snapshot) in
+            var betAmount = 0
+            var payout = -1
+            var betId = ""
+            var userBet = ""
+            
+            let dict = snapshot.value as? NSDictionary
+            for (k, v) in dict!{
+                switch k as! String{
+                    case "bet_amount":
+                        betAmount = v as! Int
+                    case "payout":
+                        payout = v as! Int
+                    case "bet_id":
+                        betId = v as! String
+                    case "user_bet":
+                        userBet = v as! String
+                    default:
+                        print("other key")
+                }
+            }
+            let wager = Wager(id: snapshot.key, userId: self.id, betAmount: betAmount, userBet: userBet)
+            wager.payout = payout
+            wager.betId = betId
+            completion(wager)
+        })
+    }
+    
     //grab wagerIds for user for the wagers the user has made, asynchronous function call
-    func activeWagerIds(completion: @escaping ([String]) -> ()){
+    func wagerIds(completion: @escaping ([String]) -> ()){
         let userRef = User.usersRef()
-        //grab all betIds from the User under child ("BetsMediating")
+        //grab all betIds from the User under child ("Wagers")
         userRef.child(self.id).child("Wagers").observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             var wagerIds: [String] = []
