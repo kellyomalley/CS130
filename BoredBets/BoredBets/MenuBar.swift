@@ -55,10 +55,15 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
 //        let betsTableView: UITableView! = UITableView()
 //        dummySettingsViewController.betsTableView = betsTableView
 //        let dummySettingsViewController = UIViewController() as! MediatingBetsViewController
-        let dummySettingsViewController = UIViewController()
-        dummySettingsViewController.view.backgroundColor = UIColor.white
-        dummySettingsViewController.navigationItem.title = "MediatingBetsViewController"
-        self.view?.pushViewController(dummySettingsViewController, animated: true)
+//        let dummySettingsViewController = UIViewController()
+//        dummySettingsViewController.view.backgroundColor = UIColor.white
+//        dummySettingsViewController.navigationItem.title = "MediatingBetsViewController"
+//        self.view?.pushViewController(dummySettingsViewController, animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "createBet") as! SetBetDetailsViewController
+        self.view?.present(vc, animated: true, completion: nil)
+//        let secondViewController:CreateBetViewController = CreateBetViewController()
+//        self.view?.present(secondViewController, animated: true, completion: nil)
     }
     
     
