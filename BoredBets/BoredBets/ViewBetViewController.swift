@@ -11,7 +11,7 @@ import UIKit
 class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     var bet:Bet!
     var mediatorId: String!
-    var comments: [(String, String)] = []
+    var comments: [(String, String, Double)] = []
 
     @IBOutlet weak var betTypeLabel: UILabel!
     @IBOutlet weak var betTitleLabel: UILabel!
@@ -92,7 +92,7 @@ class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func reloadTable()
     {
-        self.bet.getComments(){(comments: [(String, String)]) in
+        self.bet.getComments(){(comments: [(String, String, Double)]) in
             self.comments = comments
             DispatchQueue.main.async{
                 self.tableView.reloadData()

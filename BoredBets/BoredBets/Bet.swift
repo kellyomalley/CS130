@@ -190,13 +190,14 @@ import Firebase
         
             - Parameter completion: the function to call when retrieval is finished. This is passed a tuple of usernames and their corresponding comments
          */
-        func getComments(_ completion: @escaping ([(String, String)]) -> ()){
+        func getComments(_ completion: @escaping ([(String, String, Double)]) -> ()){
             Bet.betsRef().child(self.id).child("Comments").observeSingleEvent(of: .value, with: { (snapshot) in
-                var comments: [(String, String)] = []
+                var comments : [(String, String, Double)] = []
                 for commentSnap in snapshot.children.allObjects as! [FIRDataSnapshot]{
                     let dict = commentSnap.value as? NSDictionary
                     var commentUser = ""
                     var commentText = ""
+                    var timestamp : Double = 0
                     for (k,v) in dict!{
                         if (k as? String == "username"){
                             commentUser = v as! String
@@ -204,9 +205,15 @@ import Firebase
                         if (k as? String == "comment_text"){
                             commentText = v as! String
                         }
+                        if (k as? String == "timestamp"){
+                            timestamp = v as! Double
+                        }
                     }
-                    comments.append((commentUser, commentText))
+                    comments.append((commentUser, commentText, timestamp))
                 }
+                
+                comments.sort(by: { $0.2 > $1.2 })
+                
                 completion(comments)
             })
         }
