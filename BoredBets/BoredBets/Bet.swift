@@ -30,6 +30,7 @@ import Firebase
         var id: String!
         let idLen : Int = 16
         var currentUserId : String!
+        var mediatorId: String!
         var userIsMediator: Bool?
         var userHasWagered: Bool?
         var title: String!

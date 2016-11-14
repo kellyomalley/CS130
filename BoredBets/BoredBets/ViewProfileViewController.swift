@@ -9,10 +9,23 @@
 import UIKit
 
 class ViewProfileViewController: UIViewController {
-
+    var user: User!
+    var userId: String!
+    
+    @IBOutlet weak var userNameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        if (userId == nil) {
+            self.userId = User.currentUser()
+            
+        }
+        
+        User.getUserById(userId, completion: { (user) in
+            self.user = user
+            self.userNameLabel.text = user.username
+        })
         // Do any additional setup after loading the view.
     }
 

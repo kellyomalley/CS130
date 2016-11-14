@@ -194,6 +194,7 @@ class User{
                     var outcome1 = ""
                     var outcome2 = ""
                     var userIsMediator = false
+                    var mediatorId = ""
                     var state = BetState.Active
                     var payout = 0
                     for (k,v) in dict!{
@@ -212,6 +213,7 @@ class User{
                                 if (v as! String == self.id){
                                     userIsMediator = true
                                 }
+                                mediatorId = v as! String
                             case "settled":
                                 state = BetState.Settled
                             case "payout":
@@ -229,6 +231,7 @@ class User{
                         tempBet.outcome1 = outcome1
                         tempBet.outcome2 = outcome2
                         tempBet.userIsMediator = userIsMediator
+                        tempBet.mediatorId = mediatorId
                         tempBet.state = state
                         tempBet.payout = payout
                         bets.append(tempBet)
@@ -255,6 +258,7 @@ class User{
                 var lat: Double = 0
                 var long: Double = 0
                 var userIsMediator: Bool = false
+                var mediatorId = ""
                 var type: String = ""
                 var outcome1: String = ""
                 var outcome2: String = ""
@@ -273,6 +277,7 @@ class User{
                             if (v as! String == self.id){
                                 userIsMediator = true
                             }
+                            mediatorId = v as! String
                         case "type":
                             type = v as! String
                         case "outcome1":
@@ -296,6 +301,7 @@ class User{
                         tempBet.lat = lat
                         tempBet.long = long
                         tempBet.userIsMediator = userIsMediator
+                        tempBet.mediatorId = mediatorId
                         tempBet.outcome1 = outcome1
                         tempBet.outcome2 = outcome2
                         bets.append(tempBet)
@@ -386,6 +392,16 @@ class User{
             else{
                 completion("")
             }
+        })
+    }
+    
+    class func getUserById(_ userId : String, completion: @escaping (User) -> ()) {
+        let user = User(id: userId)
+        User.usersRef().child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.hasChild("username"){
+                user.username = snapshot.childSnapshot(forPath: "username").value as! String
+            }
+            completion(user)
         })
     }
 }

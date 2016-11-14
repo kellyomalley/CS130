@@ -10,6 +10,7 @@ import UIKit
 
 class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     var bet:Bet!
+    var mediatorId: String!
     var comments: [(String, String)] = []
 
     @IBOutlet weak var betTypeLabel: UILabel!
@@ -17,6 +18,7 @@ class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var potLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commentField: UITextField!
+    @IBOutlet weak var betMediatorUserName: UIButton!
 
     
     override func viewDidLoad() {
@@ -32,6 +34,11 @@ class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewD
             //updating bet member variables
             self.bet.title = title
         })
+        self.mediatorId = bet.mediatorId
+        User.getUsernameById(self.mediatorId, completion: { (name) in
+            self.betMediatorUserName.setTitle(name, for: .normal)
+        })
+        
         self.reloadTable()
         self.betTitleLabel.text = self.bet?.title
         self.betTypeLabel.text = self.bet?.type
@@ -115,7 +122,10 @@ class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewD
         if (segue.identifier == "viewBetToMakeWager") {
             let mwvc = segue.destination as! MakeWagerViewController
             mwvc.bet = self.bet
-            
+        }
+        else if (segue.identifier == "viewProfile") {
+            let vpvc = segue.destination as! ViewProfileViewController
+            vpvc.userId = self.mediatorId
         }
     }
     
