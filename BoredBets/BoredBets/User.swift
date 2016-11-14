@@ -48,7 +48,7 @@ class User{
     func activeMediatedBets (completion: @escaping ( [Bet]) -> ()){
         //returns a list of bets that the user is mediating
         //get all ids of bets the user is mediating
-        self.activeMediatedBetIds{
+        self.mediatedBetIds{
             betIds in
             self.betsFromIds(betIds: betIds, completion: {
                 bets in
@@ -65,8 +65,26 @@ class User{
 
     }
     
+    //gets all mediated bets for a user that have already ended
+    func expiredMediatedBets(completion: @escaping ([Bet]) -> ()){
+        self.mediatedBetIds{
+            betIds in
+            self.betsFromIds(betIds: betIds, completion: {
+                bets in
+                var activeBets: [Bet] = []
+                for bet in bets{
+                    if bet.state == BetState.Settled{
+                        activeBets.append(bet)
+                    }
+                }
+                completion(activeBets)
+            })
+            
+        }
+    }
+    
     //grab betIds for user for which the user is mediating, asynchronous function call
-    func activeMediatedBetIds(completion: @escaping ([String]) -> ()){
+    func mediatedBetIds(completion: @escaping ([String]) -> ()){
         let userRef = User.usersRef()
         //grab all betIds from the User under child ("BetsMediating")
         userRef.child(self.id).child("BetsMediating").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -197,6 +215,7 @@ class User{
                     var mediatorId = ""
                     var state = BetState.Active
                     var payout = 0
+                    var finalOutcome = ""
                     for (k,v) in dict!{
                         switch k as! String{
                             case "title":
@@ -216,6 +235,8 @@ class User{
                                 mediatorId = v as! String
                             case "settled":
                                 state = BetState.Settled
+                            case "finalOutcome":
+                                finalOutcome = v as! String
                             case "payout":
                                 payout = v as! Int
                             default:
@@ -234,6 +255,9 @@ class User{
                         tempBet.mediatorId = mediatorId
                         tempBet.state = state
                         tempBet.payout = payout
+                        if (finalOutcome != ""){
+                            tempBet.finalOutcome = finalOutcome
+                        }
                         bets.append(tempBet)
                     }
                 }

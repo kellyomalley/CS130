@@ -52,7 +52,9 @@ class SettleBetViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             BBUtilities.showMessagePrompt(checkInput(), controller: self)
         }
         else{
+            self.finalBetOutcome = self.outcomeTextField.text!
             self.bet.finalOutcome = self.finalBetOutcome
+            Bet.betsRef().child(self.bet.id).child("finalOutcome").setValue(self.finalBetOutcome)
             self.bet.settleBet(bet: bet, completion: {
                 //after bet has been settled, make transition to results page
                 let baseViewController = self.navigationController?.viewControllers[0]

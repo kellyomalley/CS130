@@ -46,6 +46,69 @@ class Wager {
         return userBet
     }
     
+    func getBet(completion: @escaping(Bet) -> ()){
+        let betRef = Bet.betsRef().child(betId!)
+        betRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            // get bets with ids
+        let dict = snapshot.value as? NSDictionary
+        var title: String = "Bet"
+        var pot = 0
+        var type = ""
+        var outcome1 = ""
+        var outcome2 = ""
+        var userIsMediator = false
+        var mediatorId = ""
+        var state = BetState.Active
+        var payout = 0
+        var finalOutcome = ""
+        for (k,v) in dict!{
+            switch k as! String{
+            case "title":
+                title = v as! String
+            case "pot":
+                pot = v as! Int
+            case "type":
+                type = v as! String
+            case "outcome1":
+                outcome1 = v as! String
+            case "outcome2":
+                outcome2 = v as! String
+            case "mediator_id":
+                if (v as! String == User.currentUser()){
+                    userIsMediator = true
+                }
+                mediatorId = v as! String
+            case "settled":
+                state = BetState.Settled
+            case "payout":
+                payout = v as! Int
+            case "finalOutcome":
+                finalOutcome = v as! String
+            default:
+                print("Some other key")
+            }
+        }
+        let betFactory = BetFactory.sharedFactory
+        let tempBet: Bet! = betFactory.makeBet(type: type)
+        if (tempBet != nil){
+            tempBet.title = title
+            tempBet.id = self.betId
+            tempBet.pot = pot
+            tempBet.outcome1 = outcome1
+            tempBet.outcome2 = outcome2
+            tempBet.userIsMediator = userIsMediator
+            tempBet.mediatorId = mediatorId
+            tempBet.state = state
+            tempBet.payout = payout
+            if (finalOutcome != ""){
+                tempBet.finalOutcome = finalOutcome
+            }
+        }
+            completion(tempBet)
+        })
+        
+    }
+    
     class func wagersRef() -> FIRDatabaseReference{
         return FIRDatabase.database().reference().child("Wagers")
     }

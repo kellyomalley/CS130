@@ -12,6 +12,7 @@ class BetHistoryViewController: UIViewController, UITableViewDataSource, UITable
     
     var mediatedBets: [Bet] = []
     var wagers: [Wager] = []
+    var bet: Bet?
     
     @IBOutlet weak var betHistoryTableView: UITableView!
     
@@ -25,6 +26,11 @@ class BetHistoryViewController: UIViewController, UITableViewDataSource, UITable
                 self.wagers = wagers
                 self.betHistoryTableView.reloadData()
             })
+        })
+        user.expiredMediatedBets(completion: {
+            bets in
+            self.mediatedBets = bets
+            self.betHistoryTableView.reloadData()
         })
         //grab wagers related to user with payout...
         //sort according to bet settled timestamp
@@ -56,33 +62,54 @@ class BetHistoryViewController: UIViewController, UITableViewDataSource, UITable
         if (indexPath.section == 0){
             let cell = tableView.dequeueReusableCell(withIdentifier: "wagerCell", for: indexPath)
             let wager = self.wagers[indexPath.row]
-            cell.textLabel?.text = "Bet Amount: \(wager.betAmount)... p: \(wager.payout)"
+            let diff = wager.payout! - wager.betAmount
+            if (diff >= 0){
+                cell.textLabel?.text = "Bet Amount: \(wager.betAmount) Payout: +\(diff)"
+            }
+            else{
+                cell.textLabel?.text = "Bet Amount: \(wager.betAmount) Payout: \(diff)"
+            }
             return cell
         }
         else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "mediatedBetsCell", for: indexPath)
             let bet = self.mediatedBets[indexPath.row]
-            cell.textLabel?.text = "Your Payout: \(bet.payout)"
+            cell.textLabel?.text = "Mediator Cut: +\(bet.payout!)"
             return cell
         }
     }
     
     //currently no select functionality for rows
-    /*func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     print(self.activeBets[indexPath.row])
-     performSegue(withIdentifier: "activeBetsToBetView", sender: self)
-     }*/
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath.section == 0){
+            let wager = self.wagers[indexPath.row]
+            wager.getBet(completion: {
+                bet in
+                self.bet = bet
+                self.performSegue(withIdentifier: "betHistoryToBetResults", sender: self)
+            })
+        }
+        else{
+            self.bet = self.mediatedBets[indexPath.row]
+            self.performSegue(withIdentifier: "betHistoryToBetResults", sender: self)
+        }
+     
+     }
 
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "betHistoryToBetResults"){
+           let nvc = segue.destination as! BetResultsViewController
+           nvc.bet = self.bet!
+        }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }
