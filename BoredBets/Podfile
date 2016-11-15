@@ -14,7 +14,15 @@ target 'BoredBets' do
   target 'BoredBetsTests' do
     inherit! :search_paths
     # Pods for testing
+    use_frameworks!
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'GoogleSignIn'
+    pod 'Firebase/Database'
+    pod 'GoogleMaps'
+    pod 'GooglePlaces'
   end
+
 
   target 'BoredBetsUITests' do
     inherit! :search_paths
