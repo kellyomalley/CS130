@@ -81,7 +81,48 @@ class BoredBetsTests: XCTestCase {
         
         XCTAssert(expectedResult == odds)
     }
-
-
+    
+    func testLocationClose() {
+        let testUser: User = User(id: "testUser")
+        let userLat: Double = 100
+        let userLong: Double = 100
+        let betLat: Double = 100.2
+        let betLong: Double = 100.1
+        let radius: Double = 16
+        
+        let result = testUser.withinVicinity(latParm: userLat, longParm: userLong, lat: betLat, long: betLong, radMiles: radius)
+        
+        XCTAssertTrue(result)
+        
+    }
+    
+    func testLocationFar() {
+        let testUser: User = User(id: "testUser")
+        let userLat: Double = 100
+        let userLong: Double = 100
+        let betLat: Double = 101
+        let betLong: Double = 102
+        let radius: Double = 16
+        
+        let result = testUser.withinVicinity(latParm: userLat, longParm: userLong, lat: betLat, long: betLong, radMiles: radius)
+        
+        XCTAssertFalse(result)
+    }
+    
+    func testAddingCommentFirebase() {
+        // this test invloves manually looking in Firebase
+        let betFactory = BetFactory.sharedFactory
+        let tempBet: Bet! = betFactory.makeBet(type: "YesNoBet")
+        tempBet.id = "tempID"
+        tempBet.outcome1 = "0"
+        tempBet.outcome2 = "1"
+        
+        let testComment: Comment = Comment(id: "HERE", userId: "HERE", betId: "HERE", commentText: "LOOK HERE FOR TEST RESULTS")
+        
+        testComment.saveComment({ print("Completed") })
+        // there's no assert since this test is meant to test writing to Firebase
+        // after running I look in the database and see that this comment is present
+       
+    }
     
 }
