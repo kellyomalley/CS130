@@ -451,6 +451,7 @@ import Firebase
                     numberOfYes += 1
                 }
                 else {
+                    //let test = wager.getUserBet()
                     preconditionFailure("YesNo bet failure : input was not 0 or 1")
                 }
             }
