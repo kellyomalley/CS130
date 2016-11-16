@@ -334,7 +334,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-<<<<<<< HEAD
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9c-Dt-bMB">
                                 <state key="normal" title="Settings"/>
                             </button>
@@ -450,8 +449,6 @@
                                     <constraint firstItem="q6Z-Kr-XiS" firstAttribute="bottom" secondItem="ZU9-uS-avS" secondAttribute="bottom" id="uea-tp-0NS"/>
                                     <constraint firstItem="ZU9-uS-avS" firstAttribute="leading" secondItem="q6Z-Kr-XiS" secondAttribute="leading" id="x9i-Ld-Oca"/>
                                 </constraints>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZU9-uS-avS" customClass="GMSMapView">
-                                <frame key="frameInset" minY="64" width="375" height="603"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -470,12 +467,10 @@
                             <constraint firstItem="26B-M0-0Zf" firstAttribute="leading" secondItem="eUg-q2-iE1" secondAttribute="leadingMargin" id="gDM-Ng-wzZ"/>
                             <constraint firstAttribute="bottom" secondItem="MLq-gp-LoG" secondAttribute="bottom" constant="20" symbolic="YES" id="m2I-mK-CAZ"/>
                             <constraint firstItem="1zG-gk-myC" firstAttribute="top" secondItem="v9c-Dt-bMB" secondAttribute="bottom" constant="8" symbolic="YES" id="noD-7O-tWe"/>
-=======
                             <constraint firstItem="ZU9-uS-avS" firstAttribute="centerX" secondItem="eUg-q2-iE1" secondAttribute="centerX" id="30O-zf-IAg"/>
                             <constraint firstItem="ZU9-uS-avS" firstAttribute="bottom" secondItem="o0U-Eo-sPA" secondAttribute="top" id="j1s-DQ-9MZ"/>
                             <constraint firstItem="ZU9-uS-avS" firstAttribute="leading" secondItem="eUg-q2-iE1" secondAttribute="leadingMargin" constant="4" id="p0g-gw-ajY"/>
                             <constraint firstItem="ZU9-uS-avS" firstAttribute="top" secondItem="86a-f5-ya3" secondAttribute="bottom" id="slB-eS-QKl"/>
->>>>>>> 7694a25... MENU BAR FINALLY
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ED5-Wk-fdk"/>
