@@ -12,6 +12,8 @@ import GoogleSignIn
 
 class LoginViewController: UIViewController, GIDSignInUIDelegate {
 
+    var overlay: UIView!
+    
     @IBOutlet weak var emailOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     override func viewDidLoad() {
@@ -30,8 +32,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
 
     @IBAction func createAccountAction(_ sender: AnyObject)
     {
+        self.overlay = BBUtilities.showOverlay(view: self.view)
         if self.emailOutlet.text == "" || self.passwordOutlet.text == ""
         {
+            BBUtilities.removeOverlay(overlay: self.overlay)
             BBUtilities.showMessagePrompt("Please enter an email and password.", controller: self)
         }
         else
@@ -44,6 +48,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 }
                 else
                 {
+                    BBUtilities.removeOverlay(overlay: self.overlay)
                     BBUtilities.showMessagePrompt(error!.localizedDescription, controller: self)
                 }
             }
@@ -52,8 +57,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     @IBAction func loginAction(_ sender: AnyObject)
     {
+        self.overlay = BBUtilities.showOverlay(view: self.view)
         if self.emailOutlet.text == "" || self.passwordOutlet.text == ""
         {
+            BBUtilities.removeOverlay(overlay: self.overlay)
             BBUtilities.showMessagePrompt("Please enter an email and password.", controller: self)
         }
         else
@@ -77,6 +84,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 }
                 else
                 {
+                    BBUtilities.removeOverlay(overlay: self.overlay)
                     BBUtilities.showMessagePrompt(error!.localizedDescription, controller: self)
                 }
             }
