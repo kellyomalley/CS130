@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import Cosmos
+
 
 class ViewProfileViewController: UIViewController {
     var user: User!
     var userId: String!
     
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var starRating: CosmosView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +28,14 @@ class ViewProfileViewController: UIViewController {
         User.getUserById(userId, completion: { (user) in
             self.user = user
             self.userNameLabel.text = user.username
+            self.starRating.rating = user.rating
+            self.starRating.text = String(user.rating)
+
         })
-        // Do any additional setup after loading the view.
+        
+        starRating.settings.fillMode = .precise
+        starRating.settings.updateOnTouch = false
+                // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

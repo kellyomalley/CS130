@@ -28,6 +28,8 @@ class CreateProfileViewController: UIViewController {
             
             //Give User initial $$$
             User.usersRef().child(User.currentUser()).child("coins").setValue(100)
+            User.usersRef().child(User.currentUser()).child("rating").setValue(-1)
+            User.usersRef().child(User.currentUser()).child("numberRatings").setValue(0)
             self.performSegue(withIdentifier: "enterAppSegue", sender: nil)
         }
     }

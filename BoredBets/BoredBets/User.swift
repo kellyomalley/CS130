@@ -13,6 +13,8 @@ import CoreLocation
 class User{
     var id:String!
     var username:String!
+    var rating:Double!
+    var numberRatings:Int!
     
     init(id: String){
         self.id = id
@@ -421,10 +423,24 @@ class User{
     
     class func getUserById(_ userId : String, completion: @escaping (User) -> ()) {
         let user = User(id: userId)
+        var username = ""
+        var rating = -1.0
+        var numberRatings = 0
         User.usersRef().child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild("username"){
-                user.username = snapshot.childSnapshot(forPath: "username").value as! String
+                username = snapshot.childSnapshot(forPath: "username").value as! String
             }
+            if snapshot.hasChild("rating"){
+                rating = snapshot.childSnapshot(forPath: "rating").value as! Double
+            }
+            if snapshot.hasChild("numberRatings"){
+                numberRatings = snapshot.childSnapshot(forPath: "numberRatings").value as! Int
+            }
+            
+            user.username = username
+            user.rating = rating
+            user.numberRatings = numberRatings
+            
             completion(user)
         })
     }

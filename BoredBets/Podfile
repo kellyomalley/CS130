@@ -10,6 +10,7 @@ target 'BoredBets' do
   pod 'Firebase/Database'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'Cosmos', '~> 7.0'
 
   target 'BoredBetsTests' do
     inherit! :search_paths
