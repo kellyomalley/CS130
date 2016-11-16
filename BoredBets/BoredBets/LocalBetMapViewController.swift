@@ -59,9 +59,22 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     
     fileprivate func setupMenuBar() {
         menuBar.setView(view: navigationController!)
+        menuBar.setCurrentPos(currentPos: 0)
         view.addSubview(menuBar)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
         view.addConstraintsWithFormat(format: "V:|[v0(50)]", views: menuBar)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.navigationItem.hidesBackButton = true
+//        self.navigationItem.setHidesBackButton(true, animated:true)
+        //        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tabBarController?.navigationItem.hidesBackButton = false
+//        self.navigationItem.setHidesBackButton(false, animated:true)
+        //        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {

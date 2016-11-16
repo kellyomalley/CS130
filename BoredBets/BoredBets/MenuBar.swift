@@ -20,12 +20,17 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     }()
     
     var view: UINavigationController? = nil
+    var currentPos = 0
     let cellId = "cellId"
-    let imageNames = ["home", "trending", "subscriptions", "account"]
+    let imageNames = ["trending", "trending", "subscriptions", "account", "account"]
+    
+    init(frame: CGRect, currentPos: Int) {
+        self.currentPos = currentPos
+        super.init(frame: frame)
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         collectionView.register(MenuCell.self, forCellWithReuseIdentifier: cellId)
         
         addSubview(collectionView)
@@ -36,40 +41,47 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         collectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: UICollectionViewScrollPosition())
     }
     
+    func setCurrentPos(currentPos: Int) {
+        self.currentPos = currentPos
+    }
+    
     func setView(view: UINavigationController) {
         self.view = view
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
-        handleDismiss()
-    }
-    
-    func handleDismiss() {
-        self.showControllerForSetting()
-    }
-    
-    func showControllerForSetting() {
-//        let dummySettingsViewController = MediatingBetsViewController()
-//        let betsTableView: UITableView! = UITableView()
-//        dummySettingsViewController.betsTableView = betsTableView
-//        let dummySettingsViewController = UIViewController() as! MediatingBetsViewController
-//        let dummySettingsViewController = UIViewController()
-//        dummySettingsViewController.view.backgroundColor = UIColor.white
-//        dummySettingsViewController.navigationItem.title = "MediatingBetsViewController"
-//        self.view?.pushViewController(dummySettingsViewController, animated: true)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "createBet") as! SetBetDetailsViewController
-        self.view?.present(vc, animated: true, completion: nil)
-//        let secondViewController:CreateBetViewController = CreateBetViewController()
-//        self.view?.present(secondViewController, animated: true, completion: nil)
+        let n = indexPath.item
+        if (n == 0) {
+            let dummySettingsViewController = UIViewController()
+            dummySettingsViewController.view.backgroundColor = UIColor.white
+            dummySettingsViewController.navigationItem.title = "Settings"
+            dummySettingsViewController.navigationItem.setHidesBackButton(false, animated:true)
+            self.view?.pushViewController(dummySettingsViewController, animated: true)
+        }
+        else if (n == 1) {
+            let vc = storyboard.instantiateViewController(withIdentifier: "betsMediating") as! MediatingBetsViewController
+            self.view?.pushViewController(vc, animated: true)
+        }
+        else if (n == 2) {
+            let vc = storyboard.instantiateViewController(withIdentifier: "activeBets") as! ActiveBetsViewController
+            self.view?.pushViewController(vc, animated: true)
+        }
+        else if (n == 3) {
+            let vc = storyboard.instantiateViewController(withIdentifier: "viewProfile") as! ViewProfileViewController
+            self.view?.pushViewController(vc, animated: true)
+        }
+        else if (n == 4) {
+            let vc = storyboard.instantiateViewController(withIdentifier: "createBet") as! SetBetDetailsViewController
+            self.view?.pushViewController(vc, animated: true)
+        }
     }
     
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -77,12 +89,11 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         
         cell.imageView.image = UIImage(named: imageNames[(indexPath as NSIndexPath).item])?.withRenderingMode(.alwaysTemplate)
         cell.tintColor = UIColor.rgb(red: 91, green: 14, blue: 13)
-        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.width / 4, height: frame.height)
+        return CGSize(width: frame.width / 5, height: frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -107,12 +118,6 @@ class MenuCell: BaseCell {
     override var isHighlighted: Bool {
         didSet {
             imageView.tintColor = isHighlighted ? UIColor.white : UIColor.rgb(red: 91, green: 14, blue: 13)
-        }
-    }
-    
-    override var isSelected: Bool {
-        didSet {
-            imageView.tintColor = isSelected ? UIColor.white : UIColor.rgb(red: 91, green: 14, blue: 13)
         }
     }
     

@@ -10,7 +10,7 @@
         <!--Active Bets-->
         <scene sceneID="tLc-FQ-FkY">
             <objects>
-                <viewController title="Active Bets" id="pui-ZW-stH" customClass="ActiveBetsViewController" customModule="BoredBets" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="activeBets" title="Active Bets" id="pui-ZW-stH" customClass="ActiveBetsViewController" customModule="BoredBets" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ycd-QC-7YE"/>
                         <viewControllerLayoutGuide type="bottom" id="F5Y-JM-4Wg"/>
@@ -25,14 +25,14 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="activeBetCell" textLabel="hy3-lf-3et" style="IBUITableViewCellStyleDefault" id="qU8-Vf-heJ">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qU8-Vf-heJ" id="ASB-vf-KQU">
-                                            <frame key="frameInset" width="375" height="43.5"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hy3-lf-3et">
-                                                    <frame key="frameInset" minX="15" width="345" height="43.5"/>
+                                                    <frame key="frameInset" minX="15" width="345" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -62,7 +62,7 @@
         <!--Bets Mediating-->
         <scene sceneID="Q8E-3z-ej6">
             <objects>
-                <viewController title="Bets Mediating" id="Abc-K4-MZr" customClass="MediatingBetsViewController" customModule="BoredBets" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="betsMediating" title="Bets Mediating" id="Abc-K4-MZr" customClass="MediatingBetsViewController" customModule="BoredBets" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="J6f-ja-lRx"/>
                         <viewControllerLayoutGuide type="bottom" id="8vb-f3-aW2"/>
@@ -77,14 +77,14 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellBet" textLabel="lMd-lv-4iP" style="IBUITableViewCellStyleDefault" id="x1y-DE-9Yx">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x1y-DE-9Yx" id="37b-U6-MHn">
-                                            <frame key="frameInset" width="375" height="43.5"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lMd-lv-4iP">
-                                                    <frame key="frameInset" minX="15" width="345" height="43.5"/>
+                                                    <frame key="frameInset" minX="15" width="345" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -325,7 +325,7 @@
         <!--HomeMapView-->
         <scene sceneID="tOv-4y-xr9">
             <objects>
-                <viewController title="HomeMapView" id="Krk-rh-40z" customClass="LocalBetMapViewController" customModule="BoredBets" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="localBet" title="HomeMapView" id="Krk-rh-40z" customClass="LocalBetMapViewController" customModule="BoredBets" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="86a-f5-ya3"/>
                         <viewControllerLayoutGuide type="bottom" id="o0U-Eo-sPA"/>
@@ -334,6 +334,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+<<<<<<< HEAD
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9c-Dt-bMB">
                                 <state key="normal" title="Settings"/>
                             </button>
@@ -449,6 +450,8 @@
                                     <constraint firstItem="q6Z-Kr-XiS" firstAttribute="bottom" secondItem="ZU9-uS-avS" secondAttribute="bottom" id="uea-tp-0NS"/>
                                     <constraint firstItem="ZU9-uS-avS" firstAttribute="leading" secondItem="q6Z-Kr-XiS" secondAttribute="leading" id="x9i-Ld-Oca"/>
                                 </constraints>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZU9-uS-avS" customClass="GMSMapView">
+                                <frame key="frameInset" minY="64" width="375" height="603"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -467,15 +470,15 @@
                             <constraint firstItem="26B-M0-0Zf" firstAttribute="leading" secondItem="eUg-q2-iE1" secondAttribute="leadingMargin" id="gDM-Ng-wzZ"/>
                             <constraint firstAttribute="bottom" secondItem="MLq-gp-LoG" secondAttribute="bottom" constant="20" symbolic="YES" id="m2I-mK-CAZ"/>
                             <constraint firstItem="1zG-gk-myC" firstAttribute="top" secondItem="v9c-Dt-bMB" secondAttribute="bottom" constant="8" symbolic="YES" id="noD-7O-tWe"/>
+=======
+                            <constraint firstItem="ZU9-uS-avS" firstAttribute="centerX" secondItem="eUg-q2-iE1" secondAttribute="centerX" id="30O-zf-IAg"/>
+                            <constraint firstItem="ZU9-uS-avS" firstAttribute="bottom" secondItem="o0U-Eo-sPA" secondAttribute="top" id="j1s-DQ-9MZ"/>
+                            <constraint firstItem="ZU9-uS-avS" firstAttribute="leading" secondItem="eUg-q2-iE1" secondAttribute="leadingMargin" constant="4" id="p0g-gw-ajY"/>
+                            <constraint firstItem="ZU9-uS-avS" firstAttribute="top" secondItem="86a-f5-ya3" secondAttribute="bottom" id="slB-eS-QKl"/>
+>>>>>>> 7694a25... MENU BAR FINALLY
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ED5-Wk-fdk">
-                        <barButtonItem key="rightBarButtonItem" title="Create" id="DbD-UG-1M6">
-                            <connections>
-                                <segue destination="dnP-z0-q1Q" kind="show" id="XCP-dZ-qPC"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="ED5-Wk-fdk"/>
                     <connections>
                         <outlet property="containerView" destination="7Gz-Yz-IhH" id="rz4-wl-h3Y"/>
                         <outlet property="listView" destination="q6Z-Kr-XiS" id="7Qg-a6-FDO"/>
@@ -492,7 +495,7 @@
         <!--Profile-->
         <scene sceneID="U7P-sP-fkc">
             <objects>
-                <viewController title="Profile" id="esa-xT-N0z" customClass="ViewProfileViewController" customModule="BoredBets" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="viewProfile" title="Profile" id="esa-xT-N0z" customClass="ViewProfileViewController" customModule="BoredBets" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xc5-hE-2rz"/>
                         <viewControllerLayoutGuide type="bottom" id="TMs-Kn-RkB"/>
@@ -706,12 +709,14 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s1b-V9-EN7">
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CFF-Uc-LL6">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CFF-Uc-LL6">
+                                        <frame key="frameInset" width="1000" height="1000"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wmx-Jk-eMq">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wmx-Jk-eMq">
+                                        <frame key="frameInset" width="1000" height="1000"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -724,13 +729,15 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFF-Vs-Swy">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFF-Vs-Swy">
+                                        <frame key="frameInset" width="1000" height="1000"/>
                                         <state key="normal" title="Login"/>
                                         <connections>
                                             <action selector="loginAction:" destination="S4R-Ja-viH" eventType="touchUpInside" id="zDW-UH-RDs"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVe-GD-8fk">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVe-GD-8fk">
+                                        <frame key="frameInset" width="1000" height="1000"/>
                                         <state key="normal" title="Create Account"/>
                                         <connections>
                                             <action selector="createAccountAction:" destination="S4R-Ja-viH" eventType="touchUpInside" id="zLl-U5-Xt1"/>
