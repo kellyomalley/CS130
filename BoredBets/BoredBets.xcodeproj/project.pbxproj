@@ -14,6 +14,7 @@
 		22BEE46E1DBD90FD007B3982 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22BEE46C1DBD90FD007B3982 /* GoogleService-Info.plist */; };
 		22BEE46F1DBD90FD007B3982 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22BEE46C1DBD90FD007B3982 /* GoogleService-Info.plist */; };
 		22CE1D291DC9558100DFCD11 /* MediatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE1D281DC9558100DFCD11 /* MediatorViewController.swift */; };
+		22EF06C01DDF9CA3002E4116 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF06BF1DDF9CA3002E4116 /* SettingsViewController.swift */; };
 		2779392F1DC9C4FE00B5A401 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779392E1DC9C4FE00B5A401 /* Extensions.swift */; };
 		277939321DC9C5D400B5A401 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277939311DC9C5D400B5A401 /* MenuBar.swift */; };
 		277939361DC9CBB400B5A401 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277939351DC9CBB400B5A401 /* Cells.swift */; };
@@ -83,6 +84,7 @@
 		22CE1D271DC7F66800DFCD11 /* BoredBets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BoredBets.entitlements; sourceTree = "<group>"; };
 		22CE1D281DC9558100DFCD11 /* MediatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediatorViewController.swift; sourceTree = "<group>"; };
 		22E4995E1DC05F8C006EE352 /* BoredBets-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BoredBets-Bridging-Header.h"; sourceTree = "<group>"; };
+		22EF06BF1DDF9CA3002E4116 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2779392E1DC9C4FE00B5A401 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		277939311DC9C5D400B5A401 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		277939351DC9CBB400B5A401 /* Cells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				4AB0CB781DBDC6B8002EB0D2 /* ViewBetHistoryViewController.swift */,
 				4AB0CB701DBDC60D002EB0D2 /* ViewBetViewController.swift */,
 				4AB0CB761DBDC682002EB0D2 /* ViewProfileViewController.swift */,
+				22EF06BF1DDF9CA3002E4116 /* SettingsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -631,6 +634,7 @@
 				4AB0CB7B1DBDC6E5002EB0D2 /* EditBetViewController.swift in Sources */,
 				9B9939801DC56BA1003B0E17 /* Map.swift in Sources */,
 				4A839FFA1DBD902C0078A616 /* ModelController.swift in Sources */,
+				22EF06C01DDF9CA3002E4116 /* SettingsViewController.swift in Sources */,
 				4AB0CB6F1DBDC5E6002EB0D2 /* CreateBetViewController.swift in Sources */,
 				4AF9242D1DC320A1009E1CD9 /* BBUtilities.swift in Sources */,
 				4AB0CB711DBDC60D002EB0D2 /* ViewBetViewController.swift in Sources */,

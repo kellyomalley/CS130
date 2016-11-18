@@ -54,11 +54,8 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let n = indexPath.item
         if (n == 0) {
-            let dummySettingsViewController = UIViewController()
-            dummySettingsViewController.view.backgroundColor = UIColor.white
-            dummySettingsViewController.navigationItem.title = "Settings"
-            dummySettingsViewController.navigationItem.setHidesBackButton(false, animated:true)
-            self.view?.pushViewController(dummySettingsViewController, animated: true)
+            let vc = storyboard.instantiateViewController(withIdentifier: "settings") as! SettingsViewController
+            self.view?.pushViewController(vc, animated: true)
         }
         else if (n == 1) {
             let vc = storyboard.instantiateViewController(withIdentifier: "betsMediating") as! MediatingBetsViewController
