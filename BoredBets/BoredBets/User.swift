@@ -360,6 +360,45 @@ class User{
         }
     }
     
+    func allUsers(completion: @escaping([User]) -> ()){
+        let userRef = User.usersRef()
+        userRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            // get bets with ids
+            var users: [User] = []
+            for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
+                let dict = child.value as? NSDictionary
+                var tid:String!
+                var tusername:String!
+                var trating:Double!
+                var tnumberRatings:Int!
+                for (k,v) in dict!{
+                    switch k as! String{
+                    case "id":
+                        tid = v as! String
+                    case "username":
+                        tusername = v as! String
+                    case "rating":
+                        trating = v as! Double
+                    case "numberRatings":
+                        tnumberRatings = v as! Int
+                    default:
+                        print("Some other key")
+                    }
+                }
+                //check if the longitude and latitude are within the defined parms
+                if (true) {
+                    let tempUser = User(id: child.key)
+                    tempUser.username = tusername
+                    tempUser.rating = trating
+                    tempUser.numberRatings = tnumberRatings
+                    users.append(tempUser)
+                }
+            }
+            completion(users)
+        })
+        
+    }
+    
     //gets userIds for users that have placed wagers on a bet
     func userIdsForBetId(betId: String, completion: @escaping([String]) -> ()){
         let wagersRef = Wager.wagersRef()

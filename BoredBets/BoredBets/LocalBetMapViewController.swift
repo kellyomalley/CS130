@@ -50,6 +50,7 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
         navigationController?.navigationBar.isTranslucent = false
 //        var nc: UINavigationController = navigationController
         setupMenuBar()
+        setupSearchButton()
     }
     
     let menuBar: MenuBar = {
@@ -65,6 +66,19 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
         view.addConstraintsWithFormat(format: "V:|[v0(50)]", views: menuBar)
     }
     
+    func setupSearchButton() {
+        let searchButtonImg = UIImage(named: "search_icon")?.withRenderingMode(.alwaysOriginal)
+        let searchBarButtonItem = UIBarButtonItem(image: searchButtonImg, style: .plain, target: self, action: #selector(searchFunc))
+        
+        navigationItem.rightBarButtonItems = [searchBarButtonItem]
+    }
+    
+    func searchFunc() {
+        print("Search")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "search") as! SearchViewController
+        navigationController?.pushViewController(vc, animated: true)
+    }
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.navigationItem.hidesBackButton = true
 //        self.navigationItem.setHidesBackButton(true, animated:true)
