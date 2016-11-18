@@ -28,7 +28,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="activeBetCell" textLabel="hy3-lf-3et" style="IBUITableViewCellStyleDefault" id="qU8-Vf-heJ">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qU8-Vf-heJ" id="ASB-vf-KQU">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -80,7 +80,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellBet" textLabel="lMd-lv-4iP" style="IBUITableViewCellStyleDefault" id="x1y-DE-9Yx">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x1y-DE-9Yx" id="37b-U6-MHn">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -113,6 +113,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DPR-It-gLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4364" y="-1009"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="qVn-el-5al">
+            <objects>
+                <tableViewController storyboardIdentifier="search" id="gTh-Yo-hT4" customClass="SearchViewController" customModule="BoredBets" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="N0w-FC-3fI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="1SF-yl-gSw" detailTextLabel="7Sp-ts-dq7" style="IBUITableViewCellStyleSubtitle" id="hh5-qm-MQ4">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hh5-qm-MQ4" id="SLT-YI-MvP">
+                                    <frame key="frameInset" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1SF-yl-gSw">
+                                            <frame key="frameInset" minX="15" minY="4" width="34" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Sp-ts-dq7">
+                                            <frame key="frameInset" minX="15" minY="25" width="44" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="gTh-Yo-hT4" id="bP0-5u-d8J"/>
+                            <outlet property="delegate" destination="gTh-Yo-hT4" id="o0X-a4-WE9"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="2YN-Db-3jX" kind="show" identifier="searchToBet" id="mYs-zr-W6w"/>
+                        <segue destination="esa-xT-N0z" kind="show" identifier="searchToUser" id="uMG-ss-PTv"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vhi-OS-aEc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5693.6000000000004" y="-1448.7256371814094"/>
         </scene>
         <!--Settle Bet-->
         <scene sceneID="uP1-Yt-kMC">
@@ -451,6 +499,7 @@
                         <outlet property="toggleViewButton" destination="9Lg-V5-S1J" id="3no-t3-f3B"/>
                         <segue destination="2YN-Db-3jX" kind="show" identifier="mapToBetView" id="BJU-xv-EFM"/>
                         <segue destination="Rpa-az-Zcy" kind="show" identifier="mapToEditBet" id="sPV-OC-Pj8"/>
+                        <segue destination="gTh-Yo-hT4" kind="show" id="xgf-XC-aeG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXs-Tx-WUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1250,9 +1299,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Vpu-GL-U7Q"/>
         <segue reference="BJU-xv-EFM"/>
-        <segue reference="Ngd-Bg-eNG"/>
         <segue reference="sPV-OC-Pj8"/>
+        <segue reference="Ngd-Bg-eNG"/>
+        <segue reference="68x-Yp-DGJ"/>
+        <segue reference="mYs-zr-W6w"/>
+        <segue reference="uMG-ss-PTv"/>
+        <segue reference="Vpu-GL-U7Q"/>
     </inferredMetricsTieBreakers>
 </document>
