@@ -14,6 +14,8 @@
 		22BEE46E1DBD90FD007B3982 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22BEE46C1DBD90FD007B3982 /* GoogleService-Info.plist */; };
 		22BEE46F1DBD90FD007B3982 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22BEE46C1DBD90FD007B3982 /* GoogleService-Info.plist */; };
 		22CE1D291DC9558100DFCD11 /* MediatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE1D281DC9558100DFCD11 /* MediatorViewController.swift */; };
+		22EA486C1DDFB44C00464B6A /* BetsInCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EA486B1DDFB44C00464B6A /* BetsInCategoryViewController.swift */; };
+		22EA486E1DDFBBE300464B6A /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EA486D1DDFBBE300464B6A /* Categories.swift */; };
 		22EF06C01DDF9CA3002E4116 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF06BF1DDF9CA3002E4116 /* SettingsViewController.swift */; };
 		2779392F1DC9C4FE00B5A401 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779392E1DC9C4FE00B5A401 /* Extensions.swift */; };
 		277939321DC9C5D400B5A401 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277939311DC9C5D400B5A401 /* MenuBar.swift */; };
@@ -85,6 +87,8 @@
 		22CE1D271DC7F66800DFCD11 /* BoredBets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BoredBets.entitlements; sourceTree = "<group>"; };
 		22CE1D281DC9558100DFCD11 /* MediatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediatorViewController.swift; sourceTree = "<group>"; };
 		22E4995E1DC05F8C006EE352 /* BoredBets-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BoredBets-Bridging-Header.h"; sourceTree = "<group>"; };
+		22EA486B1DDFB44C00464B6A /* BetsInCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetsInCategoryViewController.swift; sourceTree = "<group>"; };
+		22EA486D1DDFBBE300464B6A /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		22EF06BF1DDF9CA3002E4116 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2779392E1DC9C4FE00B5A401 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		277939311DC9C5D400B5A401 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
@@ -253,6 +257,7 @@
 				4AFFFF411DC3DB9000B0438A /* ActiveBetsViewController.swift */,
 				4A9B8D321DD3FD5D007F326A /* BetHistoryViewController.swift */,
 				4A9B8D301DD3EEE2007F326A /* BetResultsViewController.swift */,
+				22EA486B1DDFB44C00464B6A /* BetsInCategoryViewController.swift */,
 				4AB0CB6E1DBDC5E6002EB0D2 /* CreateBetViewController.swift */,
 				22BBBD191DCABDC70004D270 /* CreateProfileViewController.swift */,
 				4A839FF71DBD902C0078A616 /* DataViewController.swift */,
@@ -265,13 +270,13 @@
 				4A839FF91DBD902C0078A616 /* ModelController.swift */,
 				4A9B8D2E1DCFBB26007F326A /* RestrictWagerOptionsViewController.swift */,
 				4A839FF51DBD902C0078A616 /* RootViewController.swift */,
+				27A1AC071DDED0180051048D /* SearchViewController.swift */,
 				4A93E1B41DC5764A00305C7D /* SetBetDetailsViewController.swift */,
+				22EF06BF1DDF9CA3002E4116 /* SettingsViewController.swift */,
 				4A9B8D2C1DCFB808007F326A /* SettleBetViewController.swift */,
 				4AB0CB781DBDC6B8002EB0D2 /* ViewBetHistoryViewController.swift */,
 				4AB0CB701DBDC60D002EB0D2 /* ViewBetViewController.swift */,
 				4AB0CB761DBDC682002EB0D2 /* ViewProfileViewController.swift */,
-				22EF06BF1DDF9CA3002E4116 /* SettingsViewController.swift */,
-				27A1AC071DDED0180051048D /* SearchViewController.swift */
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -283,16 +288,17 @@
 				4A2FDFD11DBD9CC7004A8835 /* Bet.swift */,
 				4A6812051DCE9DB2000441AC /* BetFactory.swift */,
 				9B1CE0131DC5B24A004A1A1A /* BetInfoWindow.swift */,
-				9B1CE0111DC5B196004A1A1A /* InfoWindow.xib */,
 				9B5906C31DCFDDD700877220 /* BetList.swift */,
 				9B5906C51DCFFF5F00877220 /* BetListCell.swift */,
 				9B0A5BCC1DC5BD8800D12446 /* BetMarker.swift */,
+				22EA486D1DDFBBE300464B6A /* Categories.swift */,
 				4A7B0CC11DBDA012008144C4 /* Comment.swift */,
 				9B5906BF1DCFC88C00877220 /* CreateBetMap.swift */,
+				9B1CE0111DC5B196004A1A1A /* InfoWindow.xib */,
 				9B99397F1DC56BA1003B0E17 /* Map.swift */,
+				9B5906C11DCFC8AD00877220 /* SetLocationInfoWindow.xib */,
 				4A7B0CBD1DBD9F38008144C4 /* User.swift */,
 				4A7B0CC31DBDA1C7008144C4 /* Wager.swift */,
-				9B5906C11DCFC8AD00877220 /* SetLocationInfoWindow.xib */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -629,6 +635,7 @@
 				4A839FF61DBD902C0078A616 /* RootViewController.swift in Sources */,
 				4A7B0CBE1DBD9F38008144C4 /* User.swift in Sources */,
 				4AB0CB731DBDC61F002EB0D2 /* MakeWagerViewController.swift in Sources */,
+				22EA486E1DDFBBE300464B6A /* Categories.swift in Sources */,
 				4A7B0CC21DBDA012008144C4 /* Comment.swift in Sources */,
 				4A9B8D2F1DCFBB26007F326A /* RestrictWagerOptionsViewController.swift in Sources */,
 				4A7B0CC41DBDA1C7008144C4 /* Wager.swift in Sources */,
@@ -638,6 +645,7 @@
 				9B9939801DC56BA1003B0E17 /* Map.swift in Sources */,
 				4A839FFA1DBD902C0078A616 /* ModelController.swift in Sources */,
 				22EF06C01DDF9CA3002E4116 /* SettingsViewController.swift in Sources */,
+				22EA486C1DDFB44C00464B6A /* BetsInCategoryViewController.swift in Sources */,
 				4AB0CB6F1DBDC5E6002EB0D2 /* CreateBetViewController.swift in Sources */,
 				27A1AC081DDED0180051048D /* SearchViewController.swift in Sources */,
 				4AF9242D1DC320A1009E1CD9 /* BBUtilities.swift in Sources */,

@@ -24,9 +24,10 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     var long = -122.0312186
     var radius = 5.0
     var map: Map!
-    var selectedBet: Bet!
+    var selectedBet : Bet!
+    var selectedCategory : Int!
     var showMap: Bool!
-    var bets: [Bet] = []
+    var categories: [(String, Int)] = []
     var betsLoaded: Bool = false
     
     override func viewDidLoad() {
@@ -96,7 +97,7 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
         map.locationManager.startUpdatingLocation()
         locationManager.startUpdatingLocation()
         betsLoaded = false
-        bets = []
+        self.categories = []
     }
 
     override func didReceiveMemoryWarning() {
@@ -119,15 +120,8 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "mapToBetView")
-        {
-            let vc = segue.destination as! ViewBetViewController
-            vc.bet = self.selectedBet
-        }
-        else if (segue.identifier == "mapToEditBet") {
-            let vc = segue.destination as! MediatorViewController
-            vc.bet = self.selectedBet
-        }
+        let vc = segue.destination as! BetsInCategoryViewController
+        vc.selectedCategory = self.selectedCategory
     }
 
     @IBAction func toggleView(_ sender: AnyObject) {
@@ -148,23 +142,12 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.bets.count // your number of cell here
+        return self.categories.count // your number of cell here
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:BetListCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BetListCell
-        let bet = self.bets[indexPath.row]
-        let potText = "Pot: " + String(bet.pot)
-        let userLocation = CLLocation(latitude: lat, longitude: long)
-        let betLocation = CLLocation(latitude: bet.lat, longitude: bet.long)
-        let distance = userLocation.distance(from: betLocation) / 1609
-        let distanceText = String(format: "%.2f", distance) + " miles away"
-
-        cell.title?.text = bet.title
-        cell.title?.font = cell.title?.font.withSize(20)
-        cell.pot?.text = potText
-        cell.distance?.text = distanceText
-        cell.distance?.textAlignment = .right
+        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
+        cell.textLabel?.text = self.categories[indexPath.row].0
         return cell
     }
     
@@ -174,7 +157,7 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedBet = self.bets[indexPath.row]
+        self.selectedCategory = self.categories[indexPath.row].1
         performSegue(withIdentifier: "mapToBetView", sender: self)
     }
     
@@ -193,20 +176,10 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     }
     
     func prepareList(){
-        let user = User(id: User.currentUser())
-        user.betsWithinVicinity(latParm: self.lat, longParm: self.long, radMiles: 2, completion: {
-            bets in
-            if (self.betsLoaded == true){
-                self.listView.reloadData()
-                return
-            }
-            else {
-                for bet in bets {
-                    self.bets.append(bet)
-                }
-                self.betsLoaded = true
-            }
-        })
+        Categories.getCategories(){
+            self.categories = $0
+            self.betsLoaded = true
+        }
     }
 
 }

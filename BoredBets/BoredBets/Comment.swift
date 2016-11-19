@@ -58,8 +58,4 @@ class Comment{
             completion()
         })
     }
-    
-    class func commentRef() -> FIRDatabaseReference{
-        return FIRDatabase.database().reference().child("Comments")
-    }
 }
