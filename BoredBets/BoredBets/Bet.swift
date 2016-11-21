@@ -40,6 +40,8 @@ import Firebase
         var lat: Double!
         var long: Double!
         var type: String!
+        var isGlobal: Bool = false
+        var category: String = ""
         
         var outcome1: String! = ""
         var outcome2: String! = ""
@@ -389,7 +391,9 @@ import Firebase
                   "outcome2": self.outcome2,
                   "lat": self.lat,
                   "long": self.long,
-                  "pot" : 0
+                  "pot" : 0,
+                  "isGlobal": self.isGlobal,
+                  "category": self.category
             ]
             
             let userBetData : [String : String] = [

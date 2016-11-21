@@ -288,6 +288,9 @@ class User{
                 var type: String = ""
                 var outcome1: String = ""
                 var outcome2: String = ""
+                var isGlobal: Bool = false
+                var category: String = ""
+                
                 var state: BetState = BetState.Active
                 for (k,v) in dict!{
                     switch k as! String{
@@ -312,6 +315,10 @@ class User{
                             outcome2 = v as! String
                         case "settled":
                             state = BetState.Settled
+                        case "isGlobal":
+                            isGlobal = v as! Bool
+                        case "category":
+                            category = v as! String
                         default:
                             print("Some other key")
                     }
@@ -330,11 +337,93 @@ class User{
                         tempBet.mediatorId = mediatorId
                         tempBet.outcome1 = outcome1
                         tempBet.outcome2 = outcome2
+                        tempBet.isGlobal = isGlobal
+                        tempBet.category = category
                         bets.append(tempBet)
                     }
                 }
             }
             print("Bets included in vicinity:")
+            for bet in bets{
+                print(bet.title)
+            }
+            completion(bets)
+        })
+        
+    }
+    
+    func betsinCategory(selectedCategory: String, completion: @escaping([Bet]) -> ()){
+        let betsRef = Bet.betsRef()
+        betsRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            // get bets with ids
+            var bets: [Bet] = []
+            for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
+                let dict = child.value as? NSDictionary
+                var title: String = "Bet"
+                var pot: Int = 0
+                var lat: Double = 0
+                var long: Double = 0
+                var userIsMediator: Bool = false
+                var mediatorId = ""
+                var type: String = ""
+                var outcome1: String = ""
+                var outcome2: String = ""
+                var isGlobal: Bool = false
+                var category: String = ""
+                
+                var state: BetState = BetState.Active
+                for (k,v) in dict!{
+                    switch k as! String{
+                    case "title":
+                        title = v as! String
+                    case "pot":
+                        pot = v as! Int
+                    case "lat":
+                        lat = v as! Double
+                    case "long":
+                        long = v as! Double
+                    case "mediator_id":
+                        if (v as! String == self.id){
+                            userIsMediator = true
+                        }
+                        mediatorId = v as! String
+                    case "type":
+                        type = v as! String
+                    case "outcome1":
+                        outcome1 = v as! String
+                    case "outcome2":
+                        outcome2 = v as! String
+                    case "settled":
+                        state = BetState.Settled
+                    case "isGlobal":
+                        isGlobal = v as! Bool
+                    case "category":
+                        category = v as! String
+                    default:
+                        print("Some other key")
+                    }
+                }
+                //check if the longitude and latitude are within the defined parms
+                if (category == selectedCategory){
+                    let betFactory = BetFactory.sharedFactory
+                    let tempBet: Bet! = betFactory.makeBet(type: type)
+                    if (tempBet != nil){
+                        tempBet.id = child.key
+                        tempBet.title = title
+                        tempBet.pot = pot
+                        tempBet.lat = lat
+                        tempBet.long = long
+                        tempBet.userIsMediator = userIsMediator
+                        tempBet.mediatorId = mediatorId
+                        tempBet.outcome1 = outcome1
+                        tempBet.outcome2 = outcome2
+                        tempBet.isGlobal = isGlobal
+                        tempBet.category = category
+                        
+                        bets.append(tempBet)
+                    }
+                }
+            }
             for bet in bets{
                 print(bet.title)
             }

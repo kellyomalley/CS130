@@ -57,6 +57,8 @@
 		9B5906C21DCFC8AD00877220 /* SetLocationInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B5906C11DCFC8AD00877220 /* SetLocationInfoWindow.xib */; };
 		9B5906C41DCFDDD700877220 /* BetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5906C31DCFDDD700877220 /* BetList.swift */; };
 		9B5906C61DCFFF5F00877220 /* BetListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5906C51DCFFF5F00877220 /* BetListCell.swift */; };
+		9B84CBC71DE291DD00695679 /* GlobalBetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B84CBC61DE291DD00695679 /* GlobalBetViewController.swift */; };
+		9B8BF58D1DE29C0F0083429F /* SpecificCategoryBetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8BF58C1DE29C0F0083429F /* SpecificCategoryBetViewController.swift */; };
 		9B9939801DC56BA1003B0E17 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B99397F1DC56BA1003B0E17 /* Map.swift */; };
 /* End PBXBuildFile section */
 
@@ -137,6 +139,8 @@
 		9B5906C11DCFC8AD00877220 /* SetLocationInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetLocationInfoWindow.xib; sourceTree = "<group>"; };
 		9B5906C31DCFDDD700877220 /* BetList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetList.swift; sourceTree = "<group>"; };
 		9B5906C51DCFFF5F00877220 /* BetListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetListCell.swift; sourceTree = "<group>"; };
+		9B84CBC61DE291DD00695679 /* GlobalBetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalBetViewController.swift; sourceTree = "<group>"; };
+		9B8BF58C1DE29C0F0083429F /* SpecificCategoryBetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecificCategoryBetViewController.swift; sourceTree = "<group>"; };
 		9B99397F1DC56BA1003B0E17 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		9E8C6FB1082242944FA4CB22 /* Pods-BoredBetsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoredBetsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoredBetsUITests/Pods-BoredBetsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C23EB6C866FFFAFAF31BD121 /* Pods_BoredBetsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BoredBetsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -271,7 +275,9 @@
 				4AB0CB701DBDC60D002EB0D2 /* ViewBetViewController.swift */,
 				4AB0CB761DBDC682002EB0D2 /* ViewProfileViewController.swift */,
 				22EF06BF1DDF9CA3002E4116 /* SettingsViewController.swift */,
-				27A1AC071DDED0180051048D /* SearchViewController.swift */
+				27A1AC071DDED0180051048D /* SearchViewController.swift */,
+				9B84CBC61DE291DD00695679 /* GlobalBetViewController.swift */,
+				9B8BF58C1DE29C0F0083429F /* SpecificCategoryBetViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -620,8 +626,10 @@
 				4A9B8D311DD3EEE2007F326A /* BetResultsViewController.swift in Sources */,
 				4A9B8D2D1DCFB808007F326A /* SettleBetViewController.swift in Sources */,
 				4AB0CB7D1DBDC6FE002EB0D2 /* LocalBetMapViewController.swift in Sources */,
+				9B8BF58D1DE29C0F0083429F /* SpecificCategoryBetViewController.swift in Sources */,
 				4A9B8D331DD3FD5D007F326A /* BetHistoryViewController.swift in Sources */,
 				9B5906C41DCFDDD700877220 /* BetList.swift in Sources */,
+				9B84CBC71DE291DD00695679 /* GlobalBetViewController.swift in Sources */,
 				9B5906C61DCFFF5F00877220 /* BetListCell.swift in Sources */,
 				4AFFFF421DC3DB9000B0438A /* ActiveBetsViewController.swift in Sources */,
 				9B5906C01DCFC88C00877220 /* CreateBetMap.swift in Sources */,

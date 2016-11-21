@@ -54,7 +54,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let n = indexPath.item
         if (n == 0) {
-            let vc = storyboard.instantiateViewController(withIdentifier: "settings") as! SettingsViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: "settings") as! GlobalBetViewController
             self.view?.pushViewController(vc, animated: true)
         }
         else if (n == 1) {
