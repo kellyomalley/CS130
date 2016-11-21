@@ -10,8 +10,11 @@ import UIKit
 
 
 
-class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var betTitleLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var categoryPicker: UIPickerView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var betTypePicker: UIPickerView!
@@ -23,8 +26,13 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIPick
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.navigationController!.navigationBar.topItem!.title = "Cancel"
+        
+        //setup hidden textlabels
+        
+        self.descriptionTextView.delegate = self
+        self.descriptionTextView.textColor = UIColor.gray
         self.titleTextField.delegate = self;
+        
         self.betTypePicker.tag = 0
         self.betTypes = BetFactory.supportedBetTypes()
         self.selectedBetType = self.betTypes[0]
@@ -39,6 +47,48 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIPick
             debugPrint(self.categoryPickerData)
         }
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.descriptionLabel.center.y += 25
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if (self.betTitleLabel.isHidden == true){
+            self.betTitleLabel.center.y += 25
+            self.betTitleLabel.isHidden = false
+            UIView.animate(withDuration: 0.5, animations: {
+                self.betTitleLabel.center.y -= 25
+            })
+
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if (textField.text?.isEmpty)! {
+            self.betTitleLabel.center.y += 25
+            self.betTitleLabel.isHidden = true
+        }
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.gray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+            self.descriptionLabel.isHidden = false
+            UIView.animate(withDuration: 0.5, animations: {
+                self.descriptionLabel.center.y -= 25
+            })
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Optional Description"
+            textView.textColor = UIColor.gray
+            self.descriptionLabel.center.y += 25
+            self.descriptionLabel.isHidden = true
+        }
     }
     
 //    override func viewWillAppear(_ animated: Bool) {
