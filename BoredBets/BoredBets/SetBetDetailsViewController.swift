@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var categoryPicker: UIPickerView!
@@ -23,11 +25,13 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIPick
         super.viewDidLoad()
         //self.navigationController!.navigationBar.topItem!.title = "Cancel"
         self.titleTextField.delegate = self;
+        self.betTypePicker.tag = 0
         self.betTypes = BetFactory.supportedBetTypes()
         self.selectedBetType = self.betTypes[0]
         for type in self.betTypes{
             self.betTypePickerData.append(BetFactory.betTypeUserDisplay(type: type)!)
         }
+        self.categoryPicker.tag = 1
         Categories.getCategories { (categoriesList) in
             self.categoryPickerData = categoriesList
             self.categoryPickerData.insert("None", at: 0)
