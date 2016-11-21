@@ -17,6 +17,7 @@ class BetsInCategoryViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         Categories.getBetsInCategory(selectedCategory)
         {
             self.bets = $0
@@ -34,13 +35,12 @@ class BetsInCategoryViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:BetListCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BetListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let bet = self.bets[indexPath.row]
         let potText = "Pot: " + String(bet.pot)
         
-        cell.title?.text = bet.title
-        cell.title?.font = cell.title?.font.withSize(20)
-        cell.pot?.text = potText
+        cell.textLabel?.text = bet.title
+        cell.detailTextLabel?.text = potText
         return cell
     }
     
@@ -64,13 +64,6 @@ class BetsInCategoryViewController: UITableViewController {
             vc.bet = self.selectedBet
         } else if let vc = segue.destination as? MediatorViewController {
             vc.bet = self.selectedBet
-        }
-    }
-    
-    func prepareList(){
-        Categories.getBetsInCategory(self.selectedCategory){
-            self.bets = $0
-            self.betsLoaded = true
         }
     }
 }

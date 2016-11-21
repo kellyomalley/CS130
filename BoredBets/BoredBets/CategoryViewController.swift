@@ -10,12 +10,17 @@ import UIKit
 
 class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var categoryTable: UITableView!
     var selectedCategory : String!
     var categories: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.categoryTable.register(UITableViewCell.self, forCellReuseIdentifier: "globalBetCell")
+        Categories.getCategories {
+            self.categories = $0
+            self.categoryTable.reloadData()
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -29,7 +34,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "globalBetCell", for: indexPath)
         cell.textLabel?.text = self.categories[indexPath.row]
         return cell
     }
