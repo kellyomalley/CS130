@@ -338,7 +338,6 @@ class User{
                         tempBet.mediatorId = mediatorId
                         tempBet.outcome1 = outcome1
                         tempBet.outcome2 = outcome2
-                        tempBet.isGlobal = isGlobal
                         tempBet.category = category
                         bets.append(tempBet)
                     }
@@ -418,7 +417,6 @@ class User{
                         tempBet.mediatorId = mediatorId
                         tempBet.outcome1 = outcome1
                         tempBet.outcome2 = outcome2
-                        tempBet.isGlobal = isGlobal
                         tempBet.category = category
                         
                         bets.append(tempBet)

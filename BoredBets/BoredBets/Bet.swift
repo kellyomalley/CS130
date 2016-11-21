@@ -48,7 +48,6 @@ import Firebase
         var finalOutcome: String?
         var state: BetState = BetState.Active
         var payout: Int?
-        var category: String = ""
 
         init(){
             //for default init in createBet VC
