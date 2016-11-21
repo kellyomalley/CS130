@@ -24,10 +24,9 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     var long = -122.0312186
     var radius = 5.0
     var map: Map!
-    var selectedBet : Bet!
-    var selectedCategory : String!
+    var selectedBet: Bet!
     var showMap: Bool!
-    var categories: [String] = []
+    var bets: [Bet] = []
     var betsLoaded: Bool = false
     
     override func viewDidLoad() {
@@ -49,7 +48,7 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
 
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.isTranslucent = false
-        // var nc: UINavigationController = navigationController
+//        var nc: UINavigationController = navigationController
         setupMenuBar()
         setupSearchButton()
     }
@@ -97,6 +96,7 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
         map.locationManager.startUpdatingLocation()
         locationManager.startUpdatingLocation()
         betsLoaded = false
+        bets = []
     }
 
     override func didReceiveMemoryWarning() {
@@ -119,11 +119,13 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? BetsInCategoryViewController {
-            vc.selectedCategory = self.selectedCategory
-        } else if let vc = segue.destination as? ViewBetViewController {
+        if (segue.identifier == "mapToBetView")
+        {
+            let vc = segue.destination as! ViewBetViewController
             vc.bet = self.selectedBet
-        } else if let vc = segue.destination as? MediatorViewController {
+        }
+        else if (segue.identifier == "mapToEditBet") {
+            let vc = segue.destination as! MediatorViewController
             vc.bet = self.selectedBet
         }
     }
@@ -146,12 +148,23 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.categories.count // your number of cell here
+        return self.bets.count // your number of cell here
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = self.categories[indexPath.row]
+        let cell:BetListCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BetListCell
+        let bet = self.bets[indexPath.row]
+        let potText = "Pot: " + String(bet.pot)
+        let userLocation = CLLocation(latitude: lat, longitude: long)
+        let betLocation = CLLocation(latitude: bet.lat, longitude: bet.long)
+        let distance = userLocation.distance(from: betLocation) / 1609
+        let distanceText = String(format: "%.2f", distance) + " miles away"
+
+        cell.title?.text = bet.title
+        cell.title?.font = cell.title?.font.withSize(20)
+        cell.pot?.text = potText
+        cell.distance?.text = distanceText
+        cell.distance?.textAlignment = .right
         return cell
     }
     
@@ -161,8 +174,8 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedCategory = self.categories[indexPath.row]
-        performSegue(withIdentifier: "categoryToBetList", sender: self)
+        self.selectedBet = self.bets[indexPath.row]
+        performSegue(withIdentifier: "mapToBetView", sender: self)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -180,10 +193,20 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     }
     
     func prepareList(){
-        Categories.getCategories(){
-            self.categories = $0
-            self.betsLoaded = true
-        }
+        let user = User(id: User.currentUser())
+        user.betsWithinVicinity(latParm: self.lat, longParm: self.long, radMiles: 2, completion: {
+            bets in
+            if (self.betsLoaded == true){
+                self.listView.reloadData()
+                return
+            }
+            else {
+                for bet in bets {
+                    self.bets.append(bet)
+                }
+                self.betsLoaded = true
+            }
+        })
     }
 
 }

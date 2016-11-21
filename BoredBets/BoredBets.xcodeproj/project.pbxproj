@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		16B54A80B7B47B636EBCCDDE /* Pods_BoredBets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E78CCF20A5766BA0841F330F /* Pods_BoredBets.framework */; };
 		228089DA1DC0598C00AF3E9A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228089D91DC0598C00AF3E9A /* LoginViewController.swift */; };
+		22B993221DE2BC55002AA1CC /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B993211DE2BC55002AA1CC /* CategoryViewController.swift */; };
 		22BBBD1A1DCABDC70004D270 /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BBBD191DCABDC70004D270 /* CreateProfileViewController.swift */; };
 		22BEE46D1DBD90FD007B3982 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22BEE46C1DBD90FD007B3982 /* GoogleService-Info.plist */; };
 		22BEE46E1DBD90FD007B3982 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22BEE46C1DBD90FD007B3982 /* GoogleService-Info.plist */; };
@@ -59,8 +60,6 @@
 		9B5906C21DCFC8AD00877220 /* SetLocationInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B5906C11DCFC8AD00877220 /* SetLocationInfoWindow.xib */; };
 		9B5906C41DCFDDD700877220 /* BetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5906C31DCFDDD700877220 /* BetList.swift */; };
 		9B5906C61DCFFF5F00877220 /* BetListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5906C51DCFFF5F00877220 /* BetListCell.swift */; };
-		9B84CBC71DE291DD00695679 /* GlobalBetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B84CBC61DE291DD00695679 /* GlobalBetViewController.swift */; };
-		9B8BF58D1DE29C0F0083429F /* SpecificCategoryBetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8BF58C1DE29C0F0083429F /* SpecificCategoryBetViewController.swift */; };
 		9B9939801DC56BA1003B0E17 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B99397F1DC56BA1003B0E17 /* Map.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +83,7 @@
 /* Begin PBXFileReference section */
 		0575511BDFC8A31F6E5A41B8 /* Pods-BoredBets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoredBets.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoredBets/Pods-BoredBets.debug.xcconfig"; sourceTree = "<group>"; };
 		228089D91DC0598C00AF3E9A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		22B993211DE2BC55002AA1CC /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		22BBBD191DCABDC70004D270 /* CreateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		22BEE46C1DBD90FD007B3982 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22CE1D271DC7F66800DFCD11 /* BoredBets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BoredBets.entitlements; sourceTree = "<group>"; };
@@ -143,8 +143,6 @@
 		9B5906C11DCFC8AD00877220 /* SetLocationInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetLocationInfoWindow.xib; sourceTree = "<group>"; };
 		9B5906C31DCFDDD700877220 /* BetList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetList.swift; sourceTree = "<group>"; };
 		9B5906C51DCFFF5F00877220 /* BetListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetListCell.swift; sourceTree = "<group>"; };
-		9B84CBC61DE291DD00695679 /* GlobalBetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalBetViewController.swift; sourceTree = "<group>"; };
-		9B8BF58C1DE29C0F0083429F /* SpecificCategoryBetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecificCategoryBetViewController.swift; sourceTree = "<group>"; };
 		9B99397F1DC56BA1003B0E17 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		9E8C6FB1082242944FA4CB22 /* Pods-BoredBetsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoredBetsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoredBetsUITests/Pods-BoredBetsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C23EB6C866FFFAFAF31BD121 /* Pods_BoredBetsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BoredBetsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -274,17 +272,14 @@
 				4A839FF91DBD902C0078A616 /* ModelController.swift */,
 				4A9B8D2E1DCFBB26007F326A /* RestrictWagerOptionsViewController.swift */,
 				4A839FF51DBD902C0078A616 /* RootViewController.swift */,
-				27A1AC071DDED0180051048D /* SearchViewController.swift */,
 				4A93E1B41DC5764A00305C7D /* SetBetDetailsViewController.swift */,
-				22EF06BF1DDF9CA3002E4116 /* SettingsViewController.swift */,
 				4A9B8D2C1DCFB808007F326A /* SettleBetViewController.swift */,
 				4AB0CB781DBDC6B8002EB0D2 /* ViewBetHistoryViewController.swift */,
 				4AB0CB701DBDC60D002EB0D2 /* ViewBetViewController.swift */,
 				4AB0CB761DBDC682002EB0D2 /* ViewProfileViewController.swift */,
 				22EF06BF1DDF9CA3002E4116 /* SettingsViewController.swift */,
 				27A1AC071DDED0180051048D /* SearchViewController.swift */,
-				9B84CBC61DE291DD00695679 /* GlobalBetViewController.swift */,
-				9B8BF58C1DE29C0F0083429F /* SpecificCategoryBetViewController.swift */,
+				22B993211DE2BC55002AA1CC /* CategoryViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -632,12 +627,11 @@
 				22BBBD1A1DCABDC70004D270 /* CreateProfileViewController.swift in Sources */,
 				22CE1D291DC9558100DFCD11 /* MediatorViewController.swift in Sources */,
 				4A9B8D311DD3EEE2007F326A /* BetResultsViewController.swift in Sources */,
+				22B993221DE2BC55002AA1CC /* CategoryViewController.swift in Sources */,
 				4A9B8D2D1DCFB808007F326A /* SettleBetViewController.swift in Sources */,
 				4AB0CB7D1DBDC6FE002EB0D2 /* LocalBetMapViewController.swift in Sources */,
-				9B8BF58D1DE29C0F0083429F /* SpecificCategoryBetViewController.swift in Sources */,
 				4A9B8D331DD3FD5D007F326A /* BetHistoryViewController.swift in Sources */,
 				9B5906C41DCFDDD700877220 /* BetList.swift in Sources */,
-				9B84CBC71DE291DD00695679 /* GlobalBetViewController.swift in Sources */,
 				9B5906C61DCFFF5F00877220 /* BetListCell.swift in Sources */,
 				4AFFFF421DC3DB9000B0438A /* ActiveBetsViewController.swift in Sources */,
 				9B5906C01DCFC88C00877220 /* CreateBetMap.swift in Sources */,
