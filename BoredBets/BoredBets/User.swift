@@ -289,7 +289,6 @@ class User{
                 var type: String = ""
                 var outcome1: String = ""
                 var outcome2: String = ""
-                var isGlobal: Bool = false
                 var category: String = ""
                 
                 var state: BetState = BetState.Active
@@ -316,8 +315,6 @@ class User{
                             outcome2 = v as! String
                         case "settled":
                             state = BetState.Settled
-                        case "isGlobal":
-                            isGlobal = v as! Bool
                         case "category":
                             category = v as! String
                         default:
@@ -368,7 +365,6 @@ class User{
                 var type: String = ""
                 var outcome1: String = ""
                 var outcome2: String = ""
-                var isGlobal: Bool = false
                 var category: String = ""
                 
                 var state: BetState = BetState.Active
@@ -395,8 +391,6 @@ class User{
                         outcome2 = v as! String
                     case "settled":
                         state = BetState.Settled
-                    case "isGlobal":
-                        isGlobal = v as! Bool
                     case "category":
                         category = v as! String
                     default:
