@@ -260,6 +260,7 @@
 				4A9B8D321DD3FD5D007F326A /* BetHistoryViewController.swift */,
 				4A9B8D301DD3EEE2007F326A /* BetResultsViewController.swift */,
 				22EA486B1DDFB44C00464B6A /* BetsInCategoryViewController.swift */,
+				22B993211DE2BC55002AA1CC /* CategoryViewController.swift */,
 				4AB0CB6E1DBDC5E6002EB0D2 /* CreateBetViewController.swift */,
 				22BBBD191DCABDC70004D270 /* CreateProfileViewController.swift */,
 				4A839FF71DBD902C0078A616 /* DataViewController.swift */,
@@ -272,14 +273,13 @@
 				4A839FF91DBD902C0078A616 /* ModelController.swift */,
 				4A9B8D2E1DCFBB26007F326A /* RestrictWagerOptionsViewController.swift */,
 				4A839FF51DBD902C0078A616 /* RootViewController.swift */,
+				27A1AC071DDED0180051048D /* SearchViewController.swift */,
 				4A93E1B41DC5764A00305C7D /* SetBetDetailsViewController.swift */,
+				22EF06BF1DDF9CA3002E4116 /* SettingsViewController.swift */,
 				4A9B8D2C1DCFB808007F326A /* SettleBetViewController.swift */,
 				4AB0CB781DBDC6B8002EB0D2 /* ViewBetHistoryViewController.swift */,
 				4AB0CB701DBDC60D002EB0D2 /* ViewBetViewController.swift */,
 				4AB0CB761DBDC682002EB0D2 /* ViewProfileViewController.swift */,
-				22EF06BF1DDF9CA3002E4116 /* SettingsViewController.swift */,
-				27A1AC071DDED0180051048D /* SearchViewController.swift */,
-				22B993211DE2BC55002AA1CC /* CategoryViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

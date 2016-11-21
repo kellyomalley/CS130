@@ -96,9 +96,7 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
         let infoWindow = Bundle.main.loadNibNamed("InfoWindow", owner: self, options: nil)?.first! as! BetInfoWindow
         infoWindow.isUserInteractionEnabled = false
         infoWindow.title.text = marker.bet.title
-        infoWindow.title.textAlignment = .center
         infoWindow.pot.text = String(marker.bet.pot)
-        infoWindow.pot.textAlignment = .center
         infoWindow.map = self
         infoWindow.clipsToBounds = true
         return infoWindow
