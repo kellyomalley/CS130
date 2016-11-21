@@ -32,19 +32,6 @@ class CreateBetViewController: UIViewController, MapDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-
-    @IBAction func createBetDidTouch(_ sender: UIButton) {
-        self.bet.lat = self.map.marker.position.latitude
-        self.bet.long = self.map.marker.position.longitude
-        self.bet.saveNewBetToFB()
-        
-        let baseViewController = self.navigationController?.viewControllers[0]
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "MediatorView") as! MediatorViewController
-        controller.bet = self.bet
-        self.navigationController?.setViewControllers([baseViewController!, controller], animated: true)
-    }
-    
     func createBetAtLocation() {
         self.bet.lat = self.map.marker.position.latitude
         self.bet.long = self.map.marker.position.longitude

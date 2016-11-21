@@ -1162,30 +1162,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TvZ-Po-E2p" customClass="GMSMapView">
-                                <rect key="frame" x="20" y="20" width="335" height="457"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" alpha="0.85000002384185802" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="567-Ns-eif">
-                                <rect key="frame" x="116" y="515" width="142" height="30"/>
-                                <color key="backgroundColor" red="0.094360195100000002" green="0.59388017650000002" blue="0.1227843389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="142" id="gAQ-vu-72Z"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Confirm Creation"/>
-                                <connections>
-                                    <action selector="createBetDidTouch:" destination="BvF-2s-w6O" eventType="touchUpInside" id="SUm-CJ-yQn"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="567-Ns-eif" firstAttribute="centerX" secondItem="xbG-QJ-TPw" secondAttribute="centerX" id="0HV-bJ-og2"/>
-                            <constraint firstItem="gyd-jt-F1M" firstAttribute="top" secondItem="567-Ns-eif" secondAttribute="bottom" constant="122" id="3YP-bJ-9aJ"/>
-                            <constraint firstItem="TvZ-Po-E2p" firstAttribute="top" secondItem="xbG-QJ-TPw" secondAttribute="top" constant="20" symbolic="YES" id="GGF-45-qBu"/>
-                            <constraint firstItem="567-Ns-eif" firstAttribute="top" secondItem="TvZ-Po-E2p" secondAttribute="bottom" constant="38" id="SVI-wE-eff"/>
-                            <constraint firstItem="TvZ-Po-E2p" firstAttribute="leading" secondItem="xbG-QJ-TPw" secondAttribute="leadingMargin" constant="4" id="giK-Pe-Ifa"/>
-                            <constraint firstItem="TvZ-Po-E2p" firstAttribute="centerX" secondItem="567-Ns-eif" secondAttribute="centerX" id="yVq-oe-im2"/>
+                            <constraint firstItem="TvZ-Po-E2p" firstAttribute="top" secondItem="9fd-kd-XFV" secondAttribute="bottom" id="K3f-9x-XNe"/>
+                            <constraint firstItem="TvZ-Po-E2p" firstAttribute="bottom" secondItem="gyd-jt-F1M" secondAttribute="top" id="aRM-aW-ZZZ"/>
+                            <constraint firstAttribute="trailing" secondItem="TvZ-Po-E2p" secondAttribute="trailing" id="mQV-xy-rxj"/>
+                            <constraint firstItem="TvZ-Po-E2p" firstAttribute="leading" secondItem="xbG-QJ-TPw" secondAttribute="leading" id="xnq-7t-YS6"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1527,7 +1513,7 @@
         <image name="coinstack" width="114" height="107"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sPV-OC-Pj8"/>
+        <segue reference="YCw-U3-gL3"/>
         <segue reference="Ngd-Bg-eNG"/>
         <segue reference="BJU-xv-EFM"/>
         <segue reference="Sm7-95-ff1"/>
