@@ -24,6 +24,7 @@ class ActiveBetsViewController: UIViewController, UITableViewDelegate, UITableVi
                 print(bet.id)
             }
             self.activeBets = bets
+            print(self.activeBets)
             self.activeBetsTableView.reloadData()
         }
 

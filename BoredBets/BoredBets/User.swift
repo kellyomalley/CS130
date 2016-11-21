@@ -429,7 +429,7 @@ class User{
     //if no coin attribute on user, returns -1
     func userCoinCount(completion: @escaping (Int) -> ()){
         User.usersRef().child(self.id).child("coins").observe(.value, with: { snapshot in
-            if let coin = snapshot.childSnapshot(forPath: "coins").value as? Int {
+            if let coin = snapshot.value as? Int {
                 completion(coin)
             }
             else {

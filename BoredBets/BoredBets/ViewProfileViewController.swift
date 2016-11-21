@@ -16,6 +16,7 @@ class ViewProfileViewController: UIViewController {
     
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var starRating: CosmosView!
+    @IBOutlet weak var coinCountLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,10 @@ class ViewProfileViewController: UIViewController {
             self.userNameLabel.text = user.username
             self.starRating.rating = user.rating
             self.starRating.text = String(user.rating)
+            user.userCoinCount(completion: {
+                count in
+                self.coinCountLabel.text = String(count)
+            })
 
         })
         
