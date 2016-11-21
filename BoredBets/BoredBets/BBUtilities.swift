@@ -72,4 +72,8 @@ class BBUtilities{
     class func removeOverlay(overlay: UIView) {
         overlay.removeFromSuperview()
     }
+    
+    class func betCategories() -> [String] {
+        return ["Sports", "Politics", "Television"]
+    }
 }

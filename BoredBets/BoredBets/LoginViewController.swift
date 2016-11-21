@@ -17,6 +17,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     @IBOutlet weak var emailOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     override func viewDidLoad() {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         super.viewDidLoad()
         GIDSignIn.sharedInstance().uiDelegate = self
     }

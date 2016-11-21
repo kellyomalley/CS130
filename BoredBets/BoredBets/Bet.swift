@@ -40,6 +40,8 @@ import Firebase
         var lat: Double!
         var long: Double!
         var type: String!
+        var isGlobal: Bool = false
+        var category: String = ""
         
         var outcome1: String! = ""
         var outcome2: String! = ""
