@@ -10,11 +10,14 @@ import UIKit
 
 class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    @IBOutlet weak var categoryPicker: UIPickerView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var betTypePicker: UIPickerView!
     var betTypePickerData: [String] = [String]()
+    var categoryPickerData : [String] = []
     var betTypes: [String] = [String]()
     var selectedBetType: String = ""
+    var selectedCategory: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +27,12 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIPick
         self.selectedBetType = self.betTypes[0]
         for type in self.betTypes{
             self.betTypePickerData.append(BetFactory.betTypeUserDisplay(type: type)!)
+        }
+        Categories.getCategories { (categoriesList) in
+            self.categoryPickerData = categoriesList
+            self.categoryPickerData.insert("None", at: 0)
+            self.categoryPicker.reloadAllComponents()
+            debugPrint(self.categoryPickerData)
         }
         // Do any additional setup after loading the view.
     }
@@ -50,18 +59,38 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIPick
     
     // The number of rows of data
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.betTypePickerData.count
+        if(pickerView.tag == 0){
+            return self.betTypePickerData.count
+        }
+        else{
+            debugPrint(self.categoryPickerData.count)
+            return self.categoryPickerData.count
+        }
+        
     }
     
     // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.betTypePickerData[row]
+        if(pickerView.tag == 0){
+            return self.betTypePickerData[row]
+        }
+        else{
+            return self.categoryPickerData[row]
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.selectedBetType = self.betTypes[row]
+        if(pickerView.tag == 0){
+            self.selectedBetType = self.betTypes[row]
+        }
+        else{
+            self.selectedCategory = self.categoryPickerData[row]
+            if(self.selectedCategory == "None")
+            {
+                self.selectedCategory = ""
+            }
+        }
     }
-
     
     @IBAction func continueDidTouch(_ sender: Any) {
         if(self.titleTextField.text == ""){
@@ -80,6 +109,7 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIPick
             let bet = BetFactory.sharedFactory.makeBet(type: self.selectedBetType)
             bet?.title = self.titleTextField.text
             bet?.state = BetState.Active
+            bet?.category = self.selectedCategory
             vc.bet = bet
         }
     }

@@ -40,6 +40,8 @@ import Firebase
         var lat: Double!
         var long: Double!
         var type: String!
+        var isGlobal: Bool = false
+        var category: String = ""
         
         var outcome1: String! = ""
         var outcome2: String! = ""
@@ -389,16 +391,21 @@ import Firebase
                   "outcome2": self.outcome2,
                   "lat": self.lat,
                   "long": self.long,
-                  "pot" : 0
+                  "pot" : 0,
+                  "category" :  self.category
             ]
             
             let userBetData : [String : String] = [
                 "bet_id" : betId
             ]
+            
           //save bet in bets object
           Bet.betsRef().child(betId).setValue(betData)
             //save bet id in user object so user has reference to it
           User.usersRef().child(self.currentUserId).child("BetsMediating").child(betId).setValue(userBetData)
+          if self.category != "" {
+               Categories.categoriesRef().child(category).setValue([betId: betId])
+          }
             
         }
     
