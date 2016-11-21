@@ -10,62 +10,23 @@ import UIKit
 
 class BetsInCategoryViewController: UITableViewController {
     
-    var selectedCategory: Int!
+    var selectedCategory: String!
     var selectedBet: Bet!
     var bets: [Bet] = []
     var betsLoaded: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupMenuBar()
-        setupSearchButton()
-    }
-
-    let menuBar: MenuBar = {
-        let mb = MenuBar()
-        return mb
-    }()
-    
-    fileprivate func setupMenuBar() {
-        menuBar.setView(view: navigationController!)
-        menuBar.setCurrentPos(currentPos: 0)
-        view.addSubview(menuBar)
-        view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
-        view.addConstraintsWithFormat(format: "V:|[v0(50)]", views: menuBar)
-    }
-    
-    func setupSearchButton() {
-        let searchButtonImg = UIImage(named: "search_icon")?.withRenderingMode(.alwaysOriginal)
-        let searchBarButtonItem = UIBarButtonItem(image: searchButtonImg, style: .plain, target: self, action: #selector(searchFunc))
-        
-        navigationItem.rightBarButtonItems = [searchBarButtonItem]
-    }
-    
-    func searchFunc() {
-        print("Search")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "search") as! SearchViewController
-        navigationController?.pushViewController(vc, animated: true)
+        Categories.getBetsInCategory(selectedCategory)
+        {
+            self.bets = $0
+            self.tableView.reloadData()
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        betsLoaded = false
-        self.bets = []
-    }
-    
-    func showSelectedBet(_ bet : Bet){
-        self.selectedBet = bet
-        if (bet.userIsMediator == true) {
-            performSegue(withIdentifier: "betListToMediate", sender: self)
-        }
-        else {
-            performSegue(withIdentifier: "betListToBet", sender: self)
-        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -90,7 +51,20 @@ class BetsInCategoryViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedBet = self.bets[indexPath.row]
-        performSegue(withIdentifier: "mapToBetView", sender: self)
+        if (self.selectedBet.userIsMediator == true) {
+            performSegue(withIdentifier: "betListToMediate", sender: self)
+        }
+        else {
+            performSegue(withIdentifier: "betListToBet", sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? ViewBetViewController {
+            vc.bet = self.selectedBet
+        } else if let vc = segue.destination as? MediatorViewController {
+            vc.bet = self.selectedBet
+        }
     }
     
     func prepareList(){

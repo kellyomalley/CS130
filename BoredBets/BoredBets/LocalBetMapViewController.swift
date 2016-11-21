@@ -25,9 +25,9 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     var radius = 5.0
     var map: Map!
     var selectedBet : Bet!
-    var selectedCategory : Int!
+    var selectedCategory : String!
     var showMap: Bool!
-    var categories: [(String, Int)] = []
+    var categories: [String] = []
     var betsLoaded: Bool = false
     
     override func viewDidLoad() {
@@ -49,7 +49,7 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
 
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.isTranslucent = false
-//        var nc: UINavigationController = navigationController
+        // var nc: UINavigationController = navigationController
         setupMenuBar()
         setupSearchButton()
     }
@@ -97,7 +97,6 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
         map.locationManager.startUpdatingLocation()
         locationManager.startUpdatingLocation()
         betsLoaded = false
-        self.categories = []
     }
 
     override func didReceiveMemoryWarning() {
@@ -120,8 +119,13 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! BetsInCategoryViewController
-        vc.selectedCategory = self.selectedCategory
+        if let vc = segue.destination as? BetsInCategoryViewController {
+            vc.selectedCategory = self.selectedCategory
+        } else if let vc = segue.destination as? ViewBetViewController {
+            vc.bet = self.selectedBet
+        } else if let vc = segue.destination as? MediatorViewController {
+            vc.bet = self.selectedBet
+        }
     }
 
     @IBAction func toggleView(_ sender: AnyObject) {
@@ -146,8 +150,8 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
-        cell.textLabel?.text = self.categories[indexPath.row].0
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = self.categories[indexPath.row]
         return cell
     }
     
@@ -157,8 +161,8 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedCategory = self.categories[indexPath.row].1
-        performSegue(withIdentifier: "mapToBetView", sender: self)
+        self.selectedCategory = self.categories[indexPath.row]
+        performSegue(withIdentifier: "categoryToBetList", sender: self)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

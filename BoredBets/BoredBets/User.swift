@@ -11,6 +11,7 @@ import Firebase
 import CoreLocation
 
 class User{
+    static var thisUser : User? = nil
     var id:String!
     var username:String!
     var rating:Double!
@@ -18,6 +19,7 @@ class User{
     
     init(id: String){
         self.id = id
+        User.thisUser = self
     }
     
     func setUserName(name : String){
@@ -64,7 +66,6 @@ class User{
             })
             
         }
-
     }
     
     //gets all mediated bets for a user that have already ended
