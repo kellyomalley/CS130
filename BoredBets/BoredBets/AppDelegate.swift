@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.rgb(red: 35, green: 135, blue: 35)
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        UITextField.appearance().tintColor = UIColor.black
+        UITextView.appearance().tintColor = UIColor.black
 
         
         
