@@ -50,7 +50,7 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIText
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.descriptionLabel.center.y += 25
+        //self.descriptionLabel.center.y += 25
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

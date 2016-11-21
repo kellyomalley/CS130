@@ -12,8 +12,20 @@ class RestrictWagerOptionsViewController: UIViewController, UITextFieldDelegate 
 
     var bet: Bet!
     
-    @IBOutlet weak var exactNumericalBetView: UIStackView!
-    @IBOutlet weak var yesNoBet: UIStackView!
+    let outcome1TextFieldTag = 0
+    let outcome2TextFieldTag = 1
+    let minOutcomeTextFieldTag = 2
+    let maxOutcomeTextFieldTag = 3
+    var changedLabelPositioning = false
+    
+    @IBOutlet weak var maxOutcomeLabel: UILabel!
+    @IBOutlet weak var minOutcomeLabel: UILabel!
+    @IBOutlet weak var outcome2Label: UILabel!
+    @IBOutlet weak var outcome1Label: UILabel!
+
+    @IBOutlet weak var exactNumericalBetView: UIView!
+    @IBOutlet weak var yesNoBet: UIView!
+    
     @IBOutlet weak var outcome2TextField: UITextField!
     @IBOutlet weak var outcome1TextField: UITextField!
     
@@ -26,8 +38,15 @@ class RestrictWagerOptionsViewController: UIViewController, UITextFieldDelegate 
         
         self.outcome1TextField.delegate = self
         self.outcome2TextField.delegate = self
+        self.outcome1TextField.tag = outcome1TextFieldTag
+        self.outcome2TextField.tag = outcome2TextFieldTag
+        
         self.minOutcomeTextField.delegate = self
         self.maxOutcomeTextField.delegate = self
+        self.minOutcomeTextField.tag = minOutcomeTextFieldTag
+        self.maxOutcomeTextField.tag = maxOutcomeTextFieldTag
+        
+        
         // Do any additional setup after loading the view.
     }
     
@@ -124,10 +143,68 @@ class RestrictWagerOptionsViewController: UIViewController, UITextFieldDelegate 
         }
         // Pass the selected object to the new view controller.
     }
- 
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return false to ignore.
-    {
+    
+    // called when 'return' key pressed. return false to ignore.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         self.view.endEditing(true)
         return false
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if (!self.changedLabelPositioning){
+            self.minOutcomeLabel.center.y += 25
+            self.maxOutcomeLabel.center.y += 25
+            self.outcome1Label.center.y += 25
+            self.outcome2Label.center.y += 25
+            self.changedLabelPositioning = true
+        }
+            switch (textField.tag){
+            case outcome2TextFieldTag:
+                animateLabelAppear(label: self.outcome2Label)
+            case outcome1TextFieldTag:
+                animateLabelAppear(label: self.outcome1Label)
+            case minOutcomeTextFieldTag:
+                animateLabelAppear(label: self.minOutcomeLabel)
+            case maxOutcomeTextFieldTag:
+                animateLabelAppear(label: self.maxOutcomeLabel)
+            default:
+                print("do nothing")
+                
+        }
+    }
+    
+    func animateLabelAppear(label: UILabel){
+        if (label.isHidden == true){
+           // label.center.y += 25
+            label.isHidden = false
+            UIView.animate(withDuration: 0.5,
+                           animations:{
+                            label.center.y -= 25
+            })
+        }
+    }
+    
+    func animateLabelDisappear(label: UILabel, textField: UITextField){
+        if (textField.text?.isEmpty)! {
+            label.center.y += 25
+            label.isHidden = true
+        }
+
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch (textField.tag){
+            case outcome2TextFieldTag:
+                animateLabelDisappear(label: self.outcome2Label, textField: self.outcome2TextField)
+            case outcome1TextFieldTag:
+                animateLabelDisappear(label: self.outcome1Label,textField: self.outcome1TextField)
+            case minOutcomeTextFieldTag:
+                animateLabelDisappear(label: self.minOutcomeLabel, textField: self.minOutcomeTextField)
+            case maxOutcomeTextFieldTag:
+                animateLabelDisappear(label: self.maxOutcomeLabel, textField: self.maxOutcomeTextField)
+            default:
+                print("do nothing")
+            
+        }
     }
 }
