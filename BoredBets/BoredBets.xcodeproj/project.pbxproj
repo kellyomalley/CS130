@@ -194,6 +194,7 @@
 		277939301DC9C59000B5A401 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9B5906C51DCFFF5F00877220 /* BetListCell.swift */,
 				277939311DC9C5D400B5A401 /* MenuBar.swift */,
 				277939351DC9CBB400B5A401 /* Cells.swift */,
 				4A87382B1DE3BE96006D1348 /* MediatedBetCellTableViewCell.swift */,
@@ -301,7 +302,6 @@
 				4A6812051DCE9DB2000441AC /* BetFactory.swift */,
 				9B1CE0131DC5B24A004A1A1A /* BetInfoWindow.swift */,
 				9B5906C31DCFDDD700877220 /* BetList.swift */,
-				9B5906C51DCFFF5F00877220 /* BetListCell.swift */,
 				9B0A5BCC1DC5BD8800D12446 /* BetMarker.swift */,
 				22EA486D1DDFBBE300464B6A /* Categories.swift */,
 				4A7B0CC11DBDA012008144C4 /* Comment.swift */,

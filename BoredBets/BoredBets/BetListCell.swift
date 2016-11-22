@@ -13,5 +13,5 @@ class BetListCell: UITableViewCell {
     @IBOutlet var title: UILabel!
     @IBOutlet var pot: UILabel!
     @IBOutlet var distance: UILabel!
-    
+    @IBOutlet weak var coinImageView: UIImageView!
 }
