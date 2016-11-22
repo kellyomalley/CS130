@@ -24,10 +24,16 @@ class ReportResultsViewController: UIViewController {
     
     
     @IBAction func reportResults(_ sender: AnyObject) {
-        User.usersRef().child(self.mediatorId).child("numberComplaints").observeSingleEvent(of: .value, with: { snapshot in
-            var value = snapshot.value as! Int
-            value += 1
-            User.usersRef().child(self.mediatorId).child("numberComplaints").setValue(value)
+        User.usersRef().child(self.mediatorId).observeSingleEvent(of: .value, with: { snapshot in
+            
+            if (snapshot.hasChild("numberComplaints")) {
+                var value = snapshot.childSnapshot(forPath: "numberComplaints").value as! Double
+                value += 1
+                User.usersRef().child(self.mediatorId).child("numberComplaints").setValue(value)
+            }
+            else {
+                User.usersRef().child(self.mediatorId).child("numberComplaints").setValue(1)
+            }
         })
         
         navigationController?.popViewController(animated: true)
