@@ -35,12 +35,25 @@ class BetsInCategoryViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ActiveBetTableViewCell
         let bet = self.bets[indexPath.row]
-        let potText = "Pot: " + String(bet.pot)
-        
-        cell.textLabel?.text = bet.title
-        cell.detailTextLabel?.text = potText
+        cell.titleLabel.text = bet.title
+        cell.potLabel.text = String(bet.pot)
+        if (bet.mediatorId != nil){
+            User.getUsernameById(bet.mediatorId, completion: {
+                username in
+                cell.mediatorLabel.text = username
+            })
+        }
+        if (bet.pot < 50){
+            cell.coinImageView.image = UIImage(named: "coin2")
+        }
+        else if(bet.pot < 400){
+            cell.coinImageView.image = UIImage(named: "SmallStackCoins")
+        }
+        else{
+            cell.coinImageView.image = UIImage(named: "StackedCoins")
+        }
         return cell
     }
     
