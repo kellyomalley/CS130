@@ -14,6 +14,7 @@ class BetResultsViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var finalOutcomeLabel: UILabel!
     @IBOutlet weak var potLabel: UILabel!
     @IBOutlet weak var commentTableView: UITableView!
+    @IBOutlet weak var payoutRatioLabel: UILabel!
     
     
     //force unwrapped b/c this VC should never be initialized unless there is a bet object being passed in
@@ -26,6 +27,7 @@ class BetResultsViewController: UIViewController, UITableViewDelegate, UITableVi
         self.finalOutcomeLabel.text = "\(bet.finalOutcome!)"
         self.potLabel.text = "\(self.bet.pot)"
         self.navigationItem.title = self.bet.title
+        self.payoutRatioLabel.text = self.bet.calculateOdds()
         self.reloadTable()
         // Do any additional setup after loading the view.
     }

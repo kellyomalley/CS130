@@ -1323,7 +1323,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HWD-NE-SsX">
-                                <rect key="frame" x="0.0" y="262" width="375" height="405"/>
+                                <rect key="frame" x="0.0" y="323" width="375" height="344"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="273" id="E2W-Hq-5RY"/>
@@ -1389,15 +1389,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Winner Ratio:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xkq-Hi-kpe">
-                                <rect key="frame" x="16" y="186" width="123" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="MOY-5u-RgC"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Option Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljX-DE-0NV">
                                 <rect key="frame" x="153" y="110" width="206" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1410,48 +1401,51 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ratio Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBZ-jn-MaG">
-                                <rect key="frame" x="153" y="186" width="206" height="30"/>
+                            <button opaque="NO" alpha="0.85000002384185791" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w5N-CC-VrF">
+                                <rect key="frame" x="16" y="285" width="343" height="30"/>
+                                <color key="backgroundColor" red="0.094117647060000004" green="0.59215686270000001" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Report Results"/>
+                                <connections>
+                                    <segue destination="34A-Wi-EjV" kind="show" id="Xkf-q6-YEC"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ratio Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBZ-jn-MaG">
+                                <rect key="frame" x="16" y="186" width="331" height="91"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="91" id="Ewj-fT-SC1"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" alpha="0.85000002384185791" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w5N-CC-VrF">
-                                <rect key="frame" x="16" y="224" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.094117647060000004" green="0.59215686270000001" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Report Results"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Jq1-e3-Pjf" firstAttribute="leading" secondItem="VBZ-jn-MaG" secondAttribute="leading" id="0er-uu-NcQ"/>
-                            <constraint firstItem="xkq-Hi-kpe" firstAttribute="firstBaseline" secondItem="VBZ-jn-MaG" secondAttribute="firstBaseline" id="3bL-Q3-gpL"/>
                             <constraint firstItem="iAb-Ik-EAv" firstAttribute="leading" secondItem="Sfg-3n-NIj" secondAttribute="leading" id="3mH-xE-DP2"/>
+                            <constraint firstItem="w5N-CC-VrF" firstAttribute="top" secondItem="VBZ-jn-MaG" secondAttribute="bottom" constant="8" symbolic="YES" id="41j-QQ-6mS"/>
                             <constraint firstItem="Sfg-3n-NIj" firstAttribute="firstBaseline" secondItem="Jq1-e3-Pjf" secondAttribute="firstBaseline" id="47l-0o-vJh"/>
+                            <constraint firstItem="VBZ-jn-MaG" firstAttribute="leading" secondItem="w5N-CC-VrF" secondAttribute="leading" id="4y4-3g-4fj"/>
                             <constraint firstAttribute="trailing" secondItem="HWD-NE-SsX" secondAttribute="trailing" id="5dc-eV-YMx"/>
                             <constraint firstItem="7co-hu-sqS" firstAttribute="leading" secondItem="ZtK-mr-MhS" secondAttribute="trailing" constant="64" id="6vz-Sh-QuS"/>
                             <constraint firstItem="ljX-DE-0NV" firstAttribute="leading" secondItem="iAb-Ik-EAv" secondAttribute="trailing" constant="14" id="7Nu-Qm-KcO"/>
-                            <constraint firstItem="Jq1-e3-Pjf" firstAttribute="trailing" secondItem="VBZ-jn-MaG" secondAttribute="trailing" id="7UL-p7-9Pt"/>
                             <constraint firstItem="iAb-Ik-EAv" firstAttribute="firstBaseline" secondItem="ljX-DE-0NV" secondAttribute="firstBaseline" id="9gn-mY-UA1"/>
                             <constraint firstItem="ZtK-mr-MhS" firstAttribute="leading" secondItem="u8e-30-fvR" secondAttribute="leadingMargin" id="Cqh-m6-ErG"/>
-                            <constraint firstItem="Sfg-3n-NIj" firstAttribute="leading" secondItem="xkq-Hi-kpe" secondAttribute="leading" id="I86-cG-5zR"/>
                             <constraint firstItem="Sfg-3n-NIj" firstAttribute="baseline" secondItem="Jq1-e3-Pjf" secondAttribute="baseline" id="JNR-9r-ORM"/>
                             <constraint firstItem="ljX-DE-0NV" firstAttribute="trailing" secondItem="Jq1-e3-Pjf" secondAttribute="trailing" id="KvH-rP-OOq"/>
                             <constraint firstItem="ZtK-mr-MhS" firstAttribute="leading" secondItem="iAb-Ik-EAv" secondAttribute="leading" id="MVz-CG-AlN"/>
                             <constraint firstItem="ljX-DE-0NV" firstAttribute="leading" secondItem="Jq1-e3-Pjf" secondAttribute="leading" id="N5R-df-fq3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VBZ-jn-MaG" secondAttribute="trailing" constant="12" id="PUD-Cb-nbh"/>
                             <constraint firstItem="HWD-NE-SsX" firstAttribute="leading" secondItem="u8e-30-fvR" secondAttribute="leading" id="Rto-wx-uYV"/>
                             <constraint firstItem="7co-hu-sqS" firstAttribute="trailing" secondItem="u8e-30-fvR" secondAttribute="trailingMargin" id="TVJ-7k-nDe"/>
                             <constraint firstItem="Sfg-3n-NIj" firstAttribute="top" secondItem="iAb-Ik-EAv" secondAttribute="bottom" constant="8" symbolic="YES" id="VFX-0I-8DP"/>
-                            <constraint firstItem="xkq-Hi-kpe" firstAttribute="baseline" secondItem="VBZ-jn-MaG" secondAttribute="baseline" id="d1i-Tx-oZT"/>
                             <constraint firstItem="ZtK-mr-MhS" firstAttribute="top" secondItem="7co-hu-sqS" secondAttribute="top" id="dxQ-Yi-A9M"/>
-                            <constraint firstItem="xkq-Hi-kpe" firstAttribute="top" secondItem="Sfg-3n-NIj" secondAttribute="bottom" constant="8" symbolic="YES" id="e6I-ri-Aep"/>
                             <constraint firstItem="iAb-Ik-EAv" firstAttribute="trailing" secondItem="Sfg-3n-NIj" secondAttribute="trailing" id="g9g-Vl-liY"/>
                             <constraint firstItem="ZtK-mr-MhS" firstAttribute="top" secondItem="Gwh-sL-TLw" secondAttribute="bottom" constant="8" symbolic="YES" id="iy1-Tu-PCe"/>
+                            <constraint firstItem="VBZ-jn-MaG" firstAttribute="leading" secondItem="Sfg-3n-NIj" secondAttribute="leading" id="kMa-qn-jSf"/>
                             <constraint firstItem="ljX-DE-0NV" firstAttribute="top" secondItem="7co-hu-sqS" secondAttribute="bottom" constant="8" symbolic="YES" id="kkP-CW-dA7"/>
-                            <constraint firstItem="Sfg-3n-NIj" firstAttribute="trailing" secondItem="xkq-Hi-kpe" secondAttribute="trailing" id="kxo-aB-Tfe"/>
                             <constraint firstItem="HWD-NE-SsX" firstAttribute="bottom" secondItem="ZzM-tw-ocy" secondAttribute="top" id="r9n-YI-FxL"/>
+                            <constraint firstItem="VBZ-jn-MaG" firstAttribute="top" secondItem="Sfg-3n-NIj" secondAttribute="bottom" constant="8" symbolic="YES" id="wgX-vB-fkU"/>
                             <constraint firstItem="iAb-Ik-EAv" firstAttribute="baseline" secondItem="ljX-DE-0NV" secondAttribute="baseline" id="wvA-2A-ecZ"/>
                             <constraint firstItem="7co-hu-sqS" firstAttribute="leading" secondItem="ljX-DE-0NV" secondAttribute="leading" id="xXZ-j8-l40"/>
                             <constraint firstItem="7co-hu-sqS" firstAttribute="trailing" secondItem="ljX-DE-0NV" secondAttribute="trailing" id="yc3-Wb-Qcl"/>
@@ -1461,8 +1455,8 @@
                     <connections>
                         <outlet property="commentTableView" destination="HWD-NE-SsX" id="MbI-yh-tFH"/>
                         <outlet property="finalOutcomeLabel" destination="ljX-DE-0NV" id="bDS-4q-5V8"/>
+                        <outlet property="payoutRatioLabel" destination="VBZ-jn-MaG" id="AoP-pI-aQX"/>
                         <outlet property="potLabel" destination="Jq1-e3-Pjf" id="8M7-Po-78v"/>
-                        <segue destination="34A-Wi-EjV" kind="show" id="5kD-v3-Nqc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IhY-aU-mbi" userLabel="First Responder" sceneMemberID="firstResponder"/>
