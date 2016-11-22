@@ -152,28 +152,36 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:BetListCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BetListCell
+        let cell:BetListCell = tableView.dequeueReusableCell(withIdentifier: "listViewCell", for: indexPath) as! BetListCell
         let bet = self.bets[indexPath.row]
-        let potText = "Pot: " + String(bet.pot)
+        let potText = String(bet.pot)
         let userLocation = CLLocation(latitude: lat, longitude: long)
         let betLocation = CLLocation(latitude: bet.lat, longitude: bet.long)
         let distance = userLocation.distance(from: betLocation) / 1609
-        let distanceText = String(format: "%.2f", distance) + " miles away"
-
+        let distanceText = String(format: "%.2f", distance) + " miles"
+        
+        //decides which image to display on the cell
+        if (bet.pot < 50){
+            cell.coinImageView.image = UIImage(named: "coin2")
+        }
+        else if(bet.pot < 400){
+            cell.coinImageView.image = UIImage(named: "SmallStackCoins")
+        }
+        else{
+            cell.coinImageView.image = UIImage(named: "StackedCoins")
+        }
         cell.title?.text = bet.title
-        cell.title?.font = cell.title?.font.withSize(20)
         cell.pot?.text = potText
         cell.distance?.text = distanceText
-        cell.distance?.textAlignment = .right
         return cell
+        
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         return 100.0;//Choose your custom row height
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         self.selectedBet = self.bets[indexPath.row]
         if (self.selectedBet.userIsMediator == true) {
             performSegue(withIdentifier: "mapToEditBet", sender: self)
