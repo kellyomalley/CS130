@@ -17,7 +17,6 @@ class BetsInCategoryViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         Categories.getBetsInCategory(selectedCategory)
         {
             self.bets = $0
@@ -30,12 +29,16 @@ class BetsInCategoryViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.bets.count // your number of cell here
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ActiveBetTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "celly", for: indexPath) as! ActiveBetTableViewCell
         let bet = self.bets[indexPath.row]
         cell.titleLabel.text = bet.title
         cell.potLabel.text = String(bet.pot)
@@ -57,10 +60,10 @@ class BetsInCategoryViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return 70.0;//Choose your custom row height
-    }
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+//    {
+//        return 70.0;//Choose your custom row height
+//    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedBet = self.bets[indexPath.row]
