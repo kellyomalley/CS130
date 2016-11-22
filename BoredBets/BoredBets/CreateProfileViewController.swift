@@ -22,6 +22,9 @@ class CreateProfileViewController: UIViewController {
         {
             BBUtilities.showMessagePrompt("Please enter a Username", controller: self)
         }
+        else if (self.usernameField.text?.characters.count)! > 50 {
+            BBUtilities.showMessagePrompt("Please shorten your username", controller: self)
+        }
         else
         {
             User.usersRef().child(User.currentUser()).child("username").setValue(self.usernameField.text)
