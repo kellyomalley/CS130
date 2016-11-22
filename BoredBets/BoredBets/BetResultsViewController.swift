@@ -15,14 +15,24 @@ class BetResultsViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var potLabel: UILabel!
     @IBOutlet weak var commentTableView: UITableView!
     @IBOutlet weak var payoutRatioLabel: UILabel!
+    @IBOutlet weak var reportResults: UIButton!
+    @IBOutlet weak var buttonToMediatorProfile: UIButton!
     
     
     //force unwrapped b/c this VC should never be initialized unless there is a bet object being passed in
     var bet: Bet!
+    var mediatorId: String!
     var comments: [(String, String, Double)] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        User.getUsernameById(bet.mediatorId) { (username) in
+            self.buttonToMediatorProfile.setTitle(username, for: .normal)
+        }
+        
+        mediatorId = bet.mediatorId
         //grab all wagers
         self.finalOutcomeLabel.text = "\(bet.finalOutcome!)"
         self.potLabel.text = "\(self.bet.pot)"
@@ -60,6 +70,13 @@ class BetResultsViewController: UIViewController, UITableViewDelegate, UITableVi
             DispatchQueue.main.async{
                 self.commentTableView.reloadData()
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "reportUser") {
+            let rrvc = segue.destination as! ReportResultsViewController
+            rrvc.mediatorId = self.mediatorId
         }
     }
     
