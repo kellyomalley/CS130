@@ -237,6 +237,8 @@ class User{
                                     userIsMediator = true
                                 }
                                 mediatorId = v as! String
+                                print("mediator id: \(mediatorId)")
+                                print("current user: \(self.id)")
                             case "settled":
                                 state = BetState.Settled
                             case "finalOutcome":
@@ -244,7 +246,7 @@ class User{
                             case "payout":
                                 payout = v as! Int
                             default:
-                                print("Some other key")
+                                print("Key: \(k as! String)")
                         }
                     }
                     let betFactory = BetFactory.sharedFactory

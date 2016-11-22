@@ -31,16 +31,7 @@ class ActiveBetsViewController: UIViewController, UITableViewDelegate, UITableVi
 
         // Do any additional setup after loading the view.
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        self.navigationItem.setHidesBackButton(true, animated:true)
-//        //        self.navigationController?.setNavigationBarHidden(true, animated: true)
-//    }
-//    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        self.navigationItem.setHidesBackButton(false, animated:true)
-//        //        self.navigationController?.setNavigationBarHidden(false, animated: true)
-//    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -57,9 +48,25 @@ class ActiveBetsViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "activeBetCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "activeBetCell", for: indexPath) as! ActiveBetTableViewCell
         let bet = self.activeBets[indexPath.row]
-        cell.textLabel?.text = bet.title
+        cell.titleLabel.text = bet.title
+        cell.potLabel.text = String(bet.pot)
+        if (bet.mediatorId != nil){
+            User.getUsernameById(bet.mediatorId, completion: {
+                username in
+                    cell.mediatorLabel.text = username
+            })
+        }
+        if (bet.pot < 50){
+            cell.coinImageView.image = UIImage(named: "coin2")
+        }
+        else if(bet.pot < 400){
+            cell.coinImageView.image = UIImage(named: "SmallStackCoins")
+        }
+        else{
+            cell.coinImageView.image = UIImage(named: "StackedCoins")
+        }
         return cell
     }
     

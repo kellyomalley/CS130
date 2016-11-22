@@ -27,6 +27,8 @@ class SearchViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        navigationController?.navigationBar.isTranslucent = true
+        
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         definesPresentationContext = true
@@ -36,6 +38,16 @@ class SearchViewController: UITableViewController {
         tableView.tableHeaderView = searchController.searchBar
         
         self.loadBetsAndUsers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isTranslucent = true
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.isTranslucent = false
+        super.viewWillDisappear(animated)
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,43 +76,76 @@ class SearchViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell: ActiveBetTableViewCell
+        let userCell: UserTableViewCell
         let bet: Bet
         let user: User
-        if (searchController.isActive && searchController.searchBar.text != "") {
-            if (self.scope == "Bets") {
+        if (self.scope == "Bets") {
+            cell = tableView.dequeueReusableCell(withIdentifier: "BetCell", for: indexPath) as! ActiveBetTableViewCell
+            if (searchController.isActive && searchController.searchBar.text != "") {
                 bet = filteredBets[(indexPath as NSIndexPath).row]
-                cell.textLabel!.text = bet.title
-                cell.detailTextLabel!.text = bet.type
             }
             else {
-                user = filteredUsers[(indexPath as NSIndexPath).row]
-                cell.textLabel!.text = user.username
-                cell.detailTextLabel!.text = ""
-            }
-        } else {
-            if (self.scope == "Bets") {
                 bet = self.bets[(indexPath as NSIndexPath).row]
-                cell.textLabel!.text = bet.title
-                cell.detailTextLabel!.text = bet.type
+            }
+            cell.titleLabel.text = bet.title
+            cell.potLabel.text = String(bet.pot)
+            if (bet.mediatorId != nil){
+                User.getUsernameById(bet.mediatorId, completion: {
+                    username in
+                    cell.mediatorLabel.text = username
+                })
+            }
+            if (bet.pot < 50){
+                cell.coinImageView.image = UIImage(named: "coin2")
+            }
+            else if(bet.pot < 400){
+                cell.coinImageView.image = UIImage(named: "SmallStackCoins")
+            }
+            else{
+                cell.coinImageView.image = UIImage(named: "StackedCoins")
+            }
+            return cell
+        }
+        else {
+            userCell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserTableViewCell
+            if (searchController.isActive && searchController.searchBar.text != "") {
+                user = filteredUsers[(indexPath as NSIndexPath).row]
             }
             else {
                 user = users[(indexPath as NSIndexPath).row]
-                cell.textLabel!.text = user.username
-                cell.detailTextLabel!.text = ""
             }
+            userCell.username.text = user.username
+            if ((user.rating) != nil) {
+                userCell.rating.text = "Rating: " + String(user.rating)
+            }
+            else {
+                userCell.rating.text = "Rating: N/A"
+            }
+            return userCell
         }
-        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (self.scope == "Bets") {
-            self.selectedBet = self.bets[indexPath.row]
-            performSegue(withIdentifier: "searchToBet", sender: self)
+            if (searchController.isActive && searchController.searchBar.text != "") {
+                self.selectedBet = self.filteredBets[indexPath.row]
+                performSegue(withIdentifier: "searchToBet", sender: self)
+            }
+            else {
+                self.selectedBet = self.bets[indexPath.row]
+                performSegue(withIdentifier: "searchToBet", sender: self)
+            }
         }
         else {
-            self.selectedUser = self.users[indexPath.row]
-            performSegue(withIdentifier: "searchToUser", sender: self)
+            if (searchController.isActive && searchController.searchBar.text != "") {
+                self.selectedUser = self.filteredUsers[indexPath.row]
+                performSegue(withIdentifier: "searchToUser", sender: self)
+            }
+            else {
+                self.selectedUser = self.users[indexPath.row]
+                performSegue(withIdentifier: "searchToUser", sender: self)
+            }
         }
     }
     

@@ -15,14 +15,12 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIText
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var betTitleLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
-    @IBOutlet weak var categoryPicker: UIPickerView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var betTypePicker: UIPickerView!
+
     var betTypePickerData: [String] = [String]()
-    var categoryPickerData : [String] = []
     var betTypes: [String] = [String]()
     var selectedBetType: String = ""
-    var selectedCategory: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,24 +31,12 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIText
         self.descriptionTextView.textColor = UIColor.gray
         self.titleTextField.delegate = self;
         
-        self.betTypePicker.tag = 0
         self.betTypes = BetFactory.supportedBetTypes()
         self.selectedBetType = self.betTypes[0]
         for type in self.betTypes{
             self.betTypePickerData.append(BetFactory.betTypeUserDisplay(type: type)!)
         }
-        self.categoryPicker.tag = 1
-        Categories.getCategories { (categoriesList) in
-            self.categoryPickerData = categoriesList
-            self.categoryPickerData.insert("None", at: 0)
-            self.categoryPicker.reloadAllComponents()
-            debugPrint(self.categoryPickerData)
-        }
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        //self.descriptionLabel.center.y += 25
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -113,37 +99,16 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIText
     
     // The number of rows of data
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if(pickerView.tag == 0){
             return self.betTypePickerData.count
-        }
-        else{
-            debugPrint(self.categoryPickerData.count)
-            return self.categoryPickerData.count
-        }
-        
     }
     
     // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if(pickerView.tag == 0){
-            return self.betTypePickerData[row]
-        }
-        else{
-            return self.categoryPickerData[row]
-        }
+        return self.betTypePickerData[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if(pickerView.tag == 0){
-            self.selectedBetType = self.betTypes[row]
-        }
-        else{
-            self.selectedCategory = self.categoryPickerData[row]
-            if(self.selectedCategory == "None")
-            {
-                self.selectedCategory = ""
-            }
-        }
+        self.selectedBetType = self.betTypes[row]
     }
     
     @IBAction func continueDidTouch(_ sender: Any) {
@@ -151,19 +116,18 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIText
             BBUtilities.showMessagePrompt("Please enter a title for your bet!", controller: self)
         }
         else{
-            self.performSegue(withIdentifier: "restrictWagers", sender: self)
+            self.performSegue(withIdentifier: "toSelectCategory", sender: self)
         }
     }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "restrictWagers"){
-            let vc = segue.destination as! RestrictWagerOptionsViewController
+        if (segue.identifier == "toSelectCategory"){
+            let vc = segue.destination as! SelectCategoryViewController
             let bet = BetFactory.sharedFactory.makeBet(type: self.selectedBetType)
             bet?.title = self.titleTextField.text
             bet?.state = BetState.Active
-            bet?.category = self.selectedCategory
             vc.bet = bet
         }
     }

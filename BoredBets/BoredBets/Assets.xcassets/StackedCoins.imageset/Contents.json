@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "StackedCoins.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "StackedCoins.png",
       "scale" : "2x"
     },
     {
