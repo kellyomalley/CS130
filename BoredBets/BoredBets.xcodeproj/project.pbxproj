@@ -37,6 +37,7 @@
 		4A83A0021DBD902C0078A616 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A83A0001DBD902C0078A616 /* LaunchScreen.storyboard */; };
 		4A83A00D1DBD902C0078A616 /* BoredBetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A83A00C1DBD902C0078A616 /* BoredBetsTests.swift */; };
 		4A83A0181DBD902C0078A616 /* BoredBetsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A83A0171DBD902C0078A616 /* BoredBetsUITests.swift */; };
+		4A87382C1DE3BE96006D1348 /* MediatedBetCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87382B1DE3BE96006D1348 /* MediatedBetCellTableViewCell.swift */; };
 		4A93E1B51DC5764A00305C7D /* SetBetDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A93E1B41DC5764A00305C7D /* SetBetDetailsViewController.swift */; };
 		4A9B8D2D1DCFB808007F326A /* SettleBetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9B8D2C1DCFB808007F326A /* SettleBetViewController.swift */; };
 		4A9B8D2F1DCFBB26007F326A /* RestrictWagerOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9B8D2E1DCFBB26007F326A /* RestrictWagerOptionsViewController.swift */; };
@@ -119,6 +120,7 @@
 		4A83A0131DBD902C0078A616 /* BoredBetsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoredBetsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A83A0171DBD902C0078A616 /* BoredBetsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoredBetsUITests.swift; sourceTree = "<group>"; };
 		4A83A0191DBD902C0078A616 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4A87382B1DE3BE96006D1348 /* MediatedBetCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediatedBetCellTableViewCell.swift; sourceTree = "<group>"; };
 		4A93E1B41DC5764A00305C7D /* SetBetDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetBetDetailsViewController.swift; sourceTree = "<group>"; };
 		4A9B8D2C1DCFB808007F326A /* SettleBetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettleBetViewController.swift; sourceTree = "<group>"; };
 		4A9B8D2E1DCFBB26007F326A /* RestrictWagerOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestrictWagerOptionsViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			children = (
 				277939311DC9C5D400B5A401 /* MenuBar.swift */,
 				277939351DC9CBB400B5A401 /* Cells.swift */,
+				4A87382B1DE3BE96006D1348 /* MediatedBetCellTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 				4A9B8D331DD3FD5D007F326A /* BetHistoryViewController.swift in Sources */,
 				9B5906C41DCFDDD700877220 /* BetList.swift in Sources */,
 				9B5906C61DCFFF5F00877220 /* BetListCell.swift in Sources */,
+				4A87382C1DE3BE96006D1348 /* MediatedBetCellTableViewCell.swift in Sources */,
 				4AFFFF421DC3DB9000B0438A /* ActiveBetsViewController.swift in Sources */,
 				9B5906C01DCFC88C00877220 /* CreateBetMap.swift in Sources */,
 				277939321DC9C5D400B5A401 /* MenuBar.swift in Sources */,

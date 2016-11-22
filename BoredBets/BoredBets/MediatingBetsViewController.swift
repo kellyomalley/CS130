@@ -57,9 +57,19 @@ class MediatingBetsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellBet", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellBet", for: indexPath) as! MediatedBetCellTableViewCell
         let bet = self.mediatedBets[indexPath.row]
-        cell.textLabel?.text = bet.title
+        cell.titleLabel.text = bet.title
+        cell.potLabel.text = String(bet.pot)
+        if (bet.pot < 50){
+            cell.coinStackImage.image = UIImage(named: "coin2")
+        }
+        else if(bet.pot < 200){
+            cell.coinStackImage.image = UIImage(named: "SmallStackCoins")
+        }
+        else{
+            cell.coinStackImage.image = UIImage(named: "StackedCoins")
+        }
         return cell
     }
     
