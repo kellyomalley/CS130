@@ -87,6 +87,9 @@ class MakeWagerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         else if (betAmount! > self.coinsLeft!) {
             BBUtilities.showMessagePrompt("You don't have enough coins!", controller: self)
         }
+        else if (betAmount! <= 0) {
+            BBUtilities.showMessagePrompt("Please enter a positive number", controller: self)
+        }
         else {
             let newCoinAmount = self.coinsLeft! - betAmount!
             User.usersRef().child(User.currentUser()).child("coins").setValue(newCoinAmount)
