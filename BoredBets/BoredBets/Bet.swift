@@ -45,7 +45,7 @@ import Firebase
         
         var outcome1: String! = ""
         var outcome2: String! = ""
-        var finalOutcome: String?
+        var finalOutcome: String! = ""
         var state: BetState = BetState.Active
         var payout: Int?
 

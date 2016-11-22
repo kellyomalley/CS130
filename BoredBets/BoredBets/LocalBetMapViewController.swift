@@ -175,7 +175,12 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedBet = self.bets[indexPath.row]
-        performSegue(withIdentifier: "mapToBetView", sender: self)
+        if (self.selectedBet.userIsMediator == true) {
+            performSegue(withIdentifier: "mapToEditBet", sender: self)
+        }
+        else {
+            performSegue(withIdentifier: "mapToBetView", sender: self)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
