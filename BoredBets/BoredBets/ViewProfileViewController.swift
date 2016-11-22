@@ -10,13 +10,19 @@ import UIKit
 import Cosmos
 
 
-class ViewProfileViewController: UIViewController {
+class ViewProfileViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     var user: User!
     var userId: String!
     
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var starRating: CosmosView!
     @IBOutlet weak var coinCountLabel: UILabel!
+    
+    //collection view
+    let reuseIdentifier = "achievementCell"
+    //TODO: dynamically load
+    var achievements: [String] = ["notYourFirstRodeo", "hatTrick", "numeroUno", "over9000", "speedRacer"]
+    @IBOutlet weak var achievementCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,15 +49,34 @@ class ViewProfileViewController: UIViewController {
                 // Do any additional setup after loading the view.
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        self.navigationItem.setHidesBackButton(true, animated:true)
-//        //        self.navigationController?.setNavigationBarHidden(true, animated: true)
-//    }
-//    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        self.navigationItem.setHidesBackButton(false, animated:true)
-//        //        self.navigationController?.setNavigationBarHidden(false, animated: true)
-//    }
+    //COLLECTION VIEW FUNCTIONS
+    // MARK: - UICollectionViewDataSource protocol
+    
+    // tell the collection view how many cells to make
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.achievements.count
+    }
+    
+    // make a cell for each cell index path
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        // get a reference to our storyboard cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! AchievementCollectionViewCell
+        
+        // Use the outlet in our custom class to get a reference to the UILabel in the cell
+        cell.achievementImageView.image = UIImage(named: self.achievements[indexPath.item])
+        
+        return cell
+    }
+    
+    // MARK: - UICollectionViewDelegate protocol
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // handle tap events
+        print("You selected the achievement '\(indexPath.item)'!")
+    }
+    //END COLLECTION VIEW FUNCTIONS
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
