@@ -34,7 +34,7 @@ class MenuCell: BaseCell {
     
     override var isHighlighted: Bool {
         didSet {
-            imageView.tintColor = isHighlighted ? UIColor.white : UIColor.rgb(red: 35, green: 125, blue: 35)
+            imageView.tintColor = isHighlighted ? UIColor.rgb(red: 30, green: 130, blue: 30) : UIColor.white
         }
     }
     
