@@ -52,8 +52,9 @@ class ViewProfileViewController: UIViewController, UICollectionViewDataSource, U
         
         starRating.settings.fillMode = .precise
         starRating.settings.updateOnTouch = false
-        //set tag for pop up view
+        //setup for pop up view
         self.achievementPopUpView.tag = self.popUpTag
+        self.achievementPopUpView.center.y += self.view.bounds.height
     }
     
     //COLLECTION VIEW FUNCTIONS
@@ -82,7 +83,7 @@ class ViewProfileViewController: UIViewController, UICollectionViewDataSource, U
         // handle tap events
         print("You selected the achievement '\(indexPath.item)'!")
         self.achievmentPopUpImage.image = UIImage(named: self.achievements[indexPath.item] + "PopUp")
-        self.achievementPopUpView.isHidden = false
+        self.popUpAppear()
     }
     //END COLLECTION VIEW FUNCTIONS
     
@@ -95,13 +96,33 @@ class ViewProfileViewController: UIViewController, UICollectionViewDataSource, U
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             if (touch.view?.tag != self.popUpTag){
-                self.achievementPopUpView.isHidden = true
+                self.popUpDisappear()
             }
         }
         super.touchesBegan(touches, with: event)
     }
     @IBAction func achievementPopUpExitButtonDidTouch(_ sender: Any) {
-        self.achievementPopUpView.isHidden = true
+        self.popUpDisappear()
+    }
+    
+    func popUpAppear(){
+        
+        self.achievementPopUpView.isHidden = false
+        UIView.animate(withDuration: 0.5, animations: {
+            self.achievementPopUpView.center.y -= self.view.bounds.height
+        })
+    }
+    
+    func popUpDisappear(){
+        UIView.animate(withDuration: 0.5, animations: {
+            self.achievementPopUpView.center.y += self.view.bounds.height
+        }, completion: { (finished: Bool) in
+            if (finished){
+                self.achievementPopUpView.isHidden = true
+            }
+        })
+        
+
     }
     
 
