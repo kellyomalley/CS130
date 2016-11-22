@@ -15,7 +15,8 @@ class User{
     var id:String!
     var username:String!
     var rating:Double!
-    var numberRatings:Int!
+    var numberRatings:Double!
+    var numberComplaints:Double!
     
     init(id: String){
         self.id = id
@@ -454,7 +455,8 @@ class User{
                 var tid:String!
                 var tusername:String!
                 var trating:Double!
-                var tnumberRatings:Int!
+                var tnumberRatings:Double!
+                var tnumberComplaints:Double!
                 for (k,v) in dict!{
                     switch k as! String{
                     case "id":
@@ -464,17 +466,20 @@ class User{
                     case "rating":
                         trating = v as! Double
                     case "numberRatings":
-                        tnumberRatings = v as! Int
+                        tnumberRatings = v as! Double
+                    case "numberComplaints":
+                        tnumberComplaints = v as! Double
                     default:
                         print("Some other key")
                     }
                 }
-                //check if the longitude and latitude are within the defined parms
+                
                 if (true) {
                     let tempUser = User(id: child.key)
                     tempUser.username = tusername
                     tempUser.rating = trating
                     tempUser.numberRatings = tnumberRatings
+                    tempUser.numberComplaints = tnumberComplaints
                     users.append(tempUser)
                 }
             }
@@ -547,23 +552,28 @@ class User{
     class func getUserById(_ userId : String, completion: @escaping (User) -> ()) {
         let user = User(id: userId)
         var username = ""
-        var rating = -1.0
-        var numberRatings = 0
+        var numberRatings = 0.0
+        var  numberComplaints = 0.0
         User.usersRef().child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild("username"){
                 username = snapshot.childSnapshot(forPath: "username").value as! String
             }
-            if snapshot.hasChild("rating"){
-                rating = snapshot.childSnapshot(forPath: "rating").value as! Double
-            }
             if snapshot.hasChild("numberRatings"){
-                numberRatings = snapshot.childSnapshot(forPath: "numberRatings").value as! Int
+                numberRatings = snapshot.childSnapshot(forPath: "numberRatings").value as! Double
+            }
+            if snapshot.hasChild("numberComplaints"){
+                numberComplaints = snapshot.childSnapshot(forPath: "numberComplaints").value as! Double
             }
             
             user.username = username
-            user.rating = rating
+            user.numberComplaints = numberComplaints
             user.numberRatings = numberRatings
-            
+            if (numberRatings == 0){
+                user.rating = 5.0
+            }
+            else {
+                user.rating = (numberRatings - numberComplaints) / numberRatings * 5
+            }
             completion(user)
         })
     }

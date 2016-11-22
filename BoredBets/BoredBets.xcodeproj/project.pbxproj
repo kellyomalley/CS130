@@ -60,6 +60,7 @@
 		9B0A5BCD1DC5BD8800D12446 /* BetMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A5BCC1DC5BD8800D12446 /* BetMarker.swift */; };
 		9B1CE0121DC5B196004A1A1A /* InfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B1CE0111DC5B196004A1A1A /* InfoWindow.xib */; };
 		9B1CE0141DC5B24A004A1A1A /* BetInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CE0131DC5B24A004A1A1A /* BetInfoWindow.swift */; };
+		9B2AAB8F1DE3DD940002E186 /* ReportResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AAB8E1DE3DD940002E186 /* ReportResultsViewController.swift */; };
 		9B5906C01DCFC88C00877220 /* CreateBetMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5906BF1DCFC88C00877220 /* CreateBetMap.swift */; };
 		9B5906C21DCFC8AD00877220 /* SetLocationInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B5906C11DCFC8AD00877220 /* SetLocationInfoWindow.xib */; };
 		9B5906C41DCFDDD700877220 /* BetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5906C31DCFDDD700877220 /* BetList.swift */; };
@@ -147,6 +148,7 @@
 		9B0A5BCC1DC5BD8800D12446 /* BetMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetMarker.swift; sourceTree = "<group>"; };
 		9B1CE0111DC5B196004A1A1A /* InfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoWindow.xib; sourceTree = "<group>"; };
 		9B1CE0131DC5B24A004A1A1A /* BetInfoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetInfoWindow.swift; sourceTree = "<group>"; };
+		9B2AAB8E1DE3DD940002E186 /* ReportResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportResultsViewController.swift; sourceTree = "<group>"; };
 		9B5906BF1DCFC88C00877220 /* CreateBetMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateBetMap.swift; sourceTree = "<group>"; };
 		9B5906C11DCFC8AD00877220 /* SetLocationInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetLocationInfoWindow.xib; sourceTree = "<group>"; };
 		9B5906C31DCFDDD700877220 /* BetList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetList.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				4AFFFF431DC3DBA200B0438A /* MediatingBetsViewController.swift */,
 				22CE1D281DC9558100DFCD11 /* MediatorViewController.swift */,
 				4A839FF91DBD902C0078A616 /* ModelController.swift */,
+				9B2AAB8E1DE3DD940002E186 /* ReportResultsViewController.swift */,
 				4A9B8D2E1DCFBB26007F326A /* RestrictWagerOptionsViewController.swift */,
 				4A839FF51DBD902C0078A616 /* RootViewController.swift */,
 				27A1AC071DDED0180051048D /* SearchViewController.swift */,
@@ -633,6 +636,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B2AAB8F1DE3DD940002E186 /* ReportResultsViewController.swift in Sources */,
 				4AFFFF441DC3DBA200B0438A /* MediatingBetsViewController.swift in Sources */,
 				9B1CE0141DC5B24A004A1A1A /* BetInfoWindow.swift in Sources */,
 				4A2FDFD21DBD9CC7004A8835 /* Bet.swift in Sources */,
