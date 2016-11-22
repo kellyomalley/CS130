@@ -28,6 +28,29 @@ class User{
         User.usersRef().child(self.id).setValue(["username": name])
     }
     
+    //give an achievement to the user (store in DB)
+    func add(achievement: String){
+        let userRef = User.usersRef().child(self.id)
+        userRef.child("Achievements").child(achievement).setValue("I'm proud of you son")
+    }
+    
+    //returns all achievements for user
+    func getAchievements(completion: @escaping([String]) -> ()){
+        let userRef = User.usersRef().child(self.id)
+        userRef.child("Achievements").observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            var achievements: [String] = []
+            let value = snapshot.value as? NSDictionary
+            if (value != nil){
+                for (k,_) in value! {
+                    achievements.append(k as! String)
+                }
+            }
+            print ("achievements: \(achievements)")
+            completion(achievements)
+        })
+    }
+    
     //User related bet object retrieval... be careful with using cause they're bad ass asynchronous calls
     //returns bets that a user has bet on that are in an active or closed state
     func activeBets(completion: @escaping ([Bet]) -> ()) {

@@ -21,7 +21,7 @@ class ViewProfileViewController: UIViewController, UICollectionViewDataSource, U
     //collection view
     let reuseIdentifier = "achievementCell"
     //TODO: dynamically load
-    var achievements: [String] = ["notYourFirstRodeo", "hatTrick", "numeroUno", "over9000", "speedRacer"]
+    var achievements: [String] = []
     @IBOutlet weak var achievementCollectionView: UICollectionView!
     
     //popupview for achievements when clicked
@@ -46,12 +46,20 @@ class ViewProfileViewController: UIViewController, UICollectionViewDataSource, U
             user.userCoinCount(completion: {
                 count in
                 self.coinCountLabel.text = String(count)
+                //achievement setup
+                self.user.getAchievements(completion: {
+                    achievements in
+                    self.achievements = achievements
+                    self.achievementCollectionView.reloadData()
+                })
             })
 
         })
         
         starRating.settings.fillMode = .precise
         starRating.settings.updateOnTouch = false
+        
+        
         //setup for pop up view
         self.achievementPopUpView.tag = self.popUpTag
         self.achievementPopUpView.center.y += self.view.bounds.height
@@ -106,7 +114,6 @@ class ViewProfileViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     func popUpAppear(){
-        
         self.achievementPopUpView.isHidden = false
         UIView.animate(withDuration: 0.5, animations: {
             self.achievementPopUpView.center.y -= self.view.bounds.height
