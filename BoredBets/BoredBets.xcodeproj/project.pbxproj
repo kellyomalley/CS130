@@ -23,6 +23,7 @@
 		277939361DC9CBB400B5A401 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277939351DC9CBB400B5A401 /* Cells.swift */; };
 		27A1AC081DDED0180051048D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1AC071DDED0180051048D /* SearchViewController.swift */; };
 		3AA2FC0184F23F6A2A9AC3E6 /* Pods_BoredBetsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23EB6C866FFFAFAF31BD121 /* Pods_BoredBetsTests.framework */; };
+		4A1B9D5C1DE4020100C472A1 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B9D5B1DE4020100C472A1 /* SelectCategoryViewController.swift */; };
 		4A2FDFD21DBD9CC7004A8835 /* Bet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2FDFD11DBD9CC7004A8835 /* Bet.swift */; };
 		4A6812061DCE9DB2000441AC /* BetFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6812051DCE9DB2000441AC /* BetFactory.swift */; };
 		4A7B0CBE1DBD9F38008144C4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7B0CBD1DBD9F38008144C4 /* User.swift */; };
@@ -100,6 +101,7 @@
 		30DC04C337F5B676E9D1EC61 /* Pods-BoredBets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoredBets.release.xcconfig"; path = "Pods/Target Support Files/Pods-BoredBets/Pods-BoredBets.release.xcconfig"; sourceTree = "<group>"; };
 		3A6912D3CCACE242E7CD5EF2 /* Pods-BoredBetsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoredBetsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoredBetsTests/Pods-BoredBetsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3EE1D4CA85B702B2ADBDD973 /* Pods-BoredBetsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoredBetsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BoredBetsUITests/Pods-BoredBetsUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4A1B9D5B1DE4020100C472A1 /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
 		4A2FDFD11DBD9CC7004A8835 /* Bet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bet.swift; sourceTree = "<group>"; };
 		4A6812051DCE9DB2000441AC /* BetFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetFactory.swift; sourceTree = "<group>"; };
 		4A7B0CBD1DBD9F38008144C4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				4AB0CB781DBDC6B8002EB0D2 /* ViewBetHistoryViewController.swift */,
 				4AB0CB701DBDC60D002EB0D2 /* ViewBetViewController.swift */,
 				4AB0CB761DBDC682002EB0D2 /* ViewProfileViewController.swift */,
+				4A1B9D5B1DE4020100C472A1 /* SelectCategoryViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 				4AB0CB7B1DBDC6E5002EB0D2 /* EditBetViewController.swift in Sources */,
 				9B9939801DC56BA1003B0E17 /* Map.swift in Sources */,
 				4A839FFA1DBD902C0078A616 /* ModelController.swift in Sources */,
+				4A1B9D5C1DE4020100C472A1 /* SelectCategoryViewController.swift in Sources */,
 				22EF06C01DDF9CA3002E4116 /* SettingsViewController.swift in Sources */,
 				22EA486C1DDFB44C00464B6A /* BetsInCategoryViewController.swift in Sources */,
 				4AB0CB6F1DBDC5E6002EB0D2 /* CreateBetViewController.swift in Sources */,
