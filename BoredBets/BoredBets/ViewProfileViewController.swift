@@ -128,8 +128,6 @@ class ViewProfileViewController: UIViewController, UICollectionViewDataSource, U
                 self.achievementPopUpView.isHidden = true
             }
         })
-        
-
     }
     
 

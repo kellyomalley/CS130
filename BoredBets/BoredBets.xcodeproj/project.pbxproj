@@ -425,7 +425,7 @@
 					4A839FEF1DBD902B0078A616 = {
 						CreatedOnToolsVersion = 8.0;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;

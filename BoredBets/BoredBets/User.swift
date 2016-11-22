@@ -537,6 +537,38 @@ class User{
         })
     }
     
+    //returns the number of bets a user has placed
+    func userBetsPlaced(completion: @escaping (Int) -> ()){
+        User.usersRef().child(self.id).child("bets_placed").observeSingleEvent(of: .value, with: { snapshot in
+            if let betsPlaced = snapshot.value as? Int {
+                completion(betsPlaced)
+            }
+            else {
+                completion(0)
+            }
+            
+        })
+    }
+    
+    func incrementBetsPlaced(){
+        self.userBetsPlaced(completion: {
+            betsPlaced in
+                User.usersRef().child(self.id).child("bets_placed").setValue(betsPlaced+1)
+                //now assign achievements if numer exceeds certain bounds
+            self.assignAchievements(n_bets: betsPlaced+1)
+        })
+    }
+    
+    //decides whether or not to assign achievements based on number of bets placed
+    func assignAchievements(n_bets: Int){
+        self.getAchievements(completion: {
+            achievements in
+            if (n_bets >= 3 && !achievements.contains("hatTrick")){
+                self.add(achievement: "hatTrick")
+            }
+        })
+    }
+    
     //returns user's coin count
     //if no coin attribute on user, returns -1
     func userCoinCount(completion: @escaping (Int) -> ()){

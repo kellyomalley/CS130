@@ -260,8 +260,11 @@ import Firebase
                 "wager_id" : newWager.id
             ]
             Wager.wagersRef().child(newWager.id).setValue(wagerData)
-            User.usersRef().child(newWager.userId).child("Wagers").child(newWager.id).setValue(userWagerData)
             Bet.betsRef().child(self.id).child("Wagers").child(newWager.id).setValue(betWagerData)
+            User.usersRef().child(newWager.userId).child("Wagers").child(newWager.id).setValue(userWagerData)
+            //update 'bets_placed'
+            let user = User(id: newWager.userId)
+            user.incrementBetsPlaced()
         }
         
         //function updates the pot in the bet object by tallying up all associated wagers
