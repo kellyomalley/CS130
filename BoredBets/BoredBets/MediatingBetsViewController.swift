@@ -64,7 +64,7 @@ class MediatingBetsViewController: UIViewController, UITableViewDataSource, UITa
         if (bet.pot < 50){
             cell.coinStackImage.image = UIImage(named: "coin2")
         }
-        else if(bet.pot < 200){
+        else if(bet.pot < 400){
             cell.coinStackImage.image = UIImage(named: "SmallStackCoins")
         }
         else{
