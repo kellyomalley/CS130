@@ -27,6 +27,8 @@ class SearchViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        navigationController?.navigationBar.isTranslucent = true
+        
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         definesPresentationContext = true
@@ -36,6 +38,16 @@ class SearchViewController: UITableViewController {
         tableView.tableHeaderView = searchController.searchBar
         
         self.loadBetsAndUsers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isTranslucent = true
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.isTranslucent = false
+        super.viewWillDisappear(animated)
     }
     
     override func didReceiveMemoryWarning() {
