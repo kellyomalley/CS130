@@ -24,6 +24,12 @@ class ViewProfileViewController: UIViewController, UICollectionViewDataSource, U
     var achievements: [String] = ["notYourFirstRodeo", "hatTrick", "numeroUno", "over9000", "speedRacer"]
     @IBOutlet weak var achievementCollectionView: UICollectionView!
     
+    //popupview for achievements when clicked
+    @IBOutlet weak var achievementPopUpView: UIView!
+    @IBOutlet weak var achievmentPopUpImage: UIImageView!
+    let popUpTag = 99
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,7 +52,8 @@ class ViewProfileViewController: UIViewController, UICollectionViewDataSource, U
         
         starRating.settings.fillMode = .precise
         starRating.settings.updateOnTouch = false
-                // Do any additional setup after loading the view.
+        //set tag for pop up view
+        self.achievementPopUpView.tag = self.popUpTag
     }
     
     //COLLECTION VIEW FUNCTIONS
@@ -74,6 +81,8 @@ class ViewProfileViewController: UIViewController, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // handle tap events
         print("You selected the achievement '\(indexPath.item)'!")
+        self.achievmentPopUpImage.image = UIImage(named: self.achievements[indexPath.item] + "PopUp")
+        self.achievementPopUpView.isHidden = false
     }
     //END COLLECTION VIEW FUNCTIONS
     
@@ -81,6 +90,18 @@ class ViewProfileViewController: UIViewController, UICollectionViewDataSource, U
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            if (touch.view?.tag != self.popUpTag){
+                self.achievementPopUpView.isHidden = true
+            }
+        }
+        super.touchesBegan(touches, with: event)
+    }
+    @IBAction func achievementPopUpExitButtonDidTouch(_ sender: Any) {
+        self.achievementPopUpView.isHidden = true
     }
     
 
