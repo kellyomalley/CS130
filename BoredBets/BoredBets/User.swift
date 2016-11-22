@@ -569,6 +569,15 @@ class User{
         })
     }
     
+    func assignAchievements(n_coins: Int){
+        self.getAchievements(completion: {
+            achievements in
+            if (n_coins >= 9000 && !achievements.contains("over9000")){
+                self.add(achievement: "over9000")
+            }
+        })
+    }
+    
     //returns user's coin count
     //if no coin attribute on user, returns -1
     func userCoinCount(completion: @escaping (Int) -> ()){

@@ -125,8 +125,6 @@ import Firebase
         
         //given a dictionary of (userIds, earnings), payout those users the amounts specified
         func distributeWinnings(winnings: [String:Int], completion: @escaping() -> ()){
-            print("ENTERING distributeWinnings")
-            print("Winnings: \(winnings)")
             if (winnings.count > 0){
                 var newWinnings = winnings
                 let userId = winnings.keys[winnings.startIndex]
@@ -135,6 +133,10 @@ import Firebase
                     coins += newWinnings[userId]!
                     User.usersRef().child(userId).child("coins").setValue(coins)
                     print("Gave \(newWinnings[userId]!) coins to user \(userId)")
+                    //check if user gets any new achievements:
+                    User(id:userId).assignAchievements(n_coins: coins)
+                    
+                    //continue distributing winnings
                     newWinnings.removeValue(forKey: newWinnings.keys[newWinnings.startIndex])
                     self.distributeWinnings(winnings: newWinnings, completion: {
                         completion()
@@ -170,6 +172,7 @@ import Firebase
             let mediatorPayout = winnings[self.currentUserId]
             self.payout = mediatorPayout
             Bet.betsRef().child(self.id).child("payout").setValue(mediatorPayout)
+            
         }
         
         //updates a wager with 'payout' attribute
