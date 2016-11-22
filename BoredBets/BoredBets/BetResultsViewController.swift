@@ -40,6 +40,7 @@ class BetResultsViewController: UIViewController, UITableViewDelegate, UITableVi
         self.payoutRatioLabel.text = self.bet.calculateOdds()
         self.reloadTable()
         // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTapped()
     }
 
     override func didReceiveMemoryWarning() {

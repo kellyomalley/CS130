@@ -13,6 +13,7 @@ class CreateProfileViewController: UIViewController {
     @IBOutlet weak var usernameField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTapped()
 
         // Do any additional setup after loading the view.
     }

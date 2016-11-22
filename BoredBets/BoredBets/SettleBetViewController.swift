@@ -22,6 +22,7 @@ class SettleBetViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         self.handleBetType()
 
         // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTapped()
     }
 
     override func didReceiveMemoryWarning() {
