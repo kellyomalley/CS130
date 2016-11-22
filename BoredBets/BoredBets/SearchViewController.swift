@@ -107,12 +107,24 @@ class SearchViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (self.scope == "Bets") {
-            self.selectedBet = self.bets[indexPath.row]
-            performSegue(withIdentifier: "searchToBet", sender: self)
+            if (searchController.isActive && searchController.searchBar.text != "") {
+                self.selectedBet = self.filteredBets[indexPath.row]
+                performSegue(withIdentifier: "searchToBet", sender: self)
+            }
+            else {
+                self.selectedBet = self.bets[indexPath.row]
+                performSegue(withIdentifier: "searchToBet", sender: self)
+            }
         }
         else {
-            self.selectedUser = self.users[indexPath.row]
-            performSegue(withIdentifier: "searchToUser", sender: self)
+            if (searchController.isActive && searchController.searchBar.text != "") {
+                self.selectedUser = self.filteredUsers[indexPath.row]
+                performSegue(withIdentifier: "searchToUser", sender: self)
+            }
+            else {
+                self.selectedUser = self.users[indexPath.row]
+                performSegue(withIdentifier: "searchToUser", sender: self)
+            }
         }
     }
     
