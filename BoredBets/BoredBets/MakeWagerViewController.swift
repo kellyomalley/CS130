@@ -26,9 +26,6 @@ class MakeWagerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //dismissing keyboard on tap
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
         
         User.usersRef().child(User.currentUser()).observe(.value, with: { snapshot in
             if let coin = snapshot.childSnapshot(forPath: "coins").value as? Int {
@@ -41,11 +38,7 @@ class MakeWagerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             self.coinsLeftMessage.textAlignment = .center
         })
         self.handleBetTypeRelatedSetup()
-    }
-    
-    func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
+        self.hideKeyboardWhenTapped()
     }
     
     //sets up the view according to the type of bet

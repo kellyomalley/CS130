@@ -37,6 +37,7 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIText
             self.betTypePickerData.append(BetFactory.betTypeUserDisplay(type: type)!)
         }
         // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTapped()
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

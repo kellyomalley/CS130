@@ -48,6 +48,7 @@ class RestrictWagerOptionsViewController: UIViewController, UITextFieldDelegate 
         
         
         // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTapped()
     }
     
     func showRelevantViews(){

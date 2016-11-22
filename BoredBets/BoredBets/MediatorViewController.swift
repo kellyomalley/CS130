@@ -31,6 +31,7 @@ class MediatorViewController: UIViewController {
         })
         self.betTypeLabel.text = self.bet?.type
         self.betTitleLabel.text = self.bet?.title
+        self.hideKeyboardWhenTapped()
     }
 
     override func didReceiveMemoryWarning() {

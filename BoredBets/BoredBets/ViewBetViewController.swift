@@ -23,6 +23,7 @@ class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTapped()
         Bet.betsRef().child(bet.id).observe(.value, with: { snapshot in
             let title = snapshot.childSnapshot(forPath: "title").value as! String
             let pot = snapshot.childSnapshot(forPath: "pot").value as! Int
