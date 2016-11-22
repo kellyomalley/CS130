@@ -10,33 +10,25 @@ import UIKit
 
 class BetResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    
     @IBOutlet weak var finalOutcomeLabel: UILabel!
-    @IBOutlet weak var mediatorPayoutLabel: UILabel!
-    @IBOutlet weak var betTitleLabel: UILabel!
-    @IBOutlet weak var wagerTableView: UITableView!
+    @IBOutlet weak var potLabel: UILabel!
+    @IBOutlet weak var commentTableView: UITableView!
+    @IBOutlet weak var payoutRatioLabel: UILabel!
+    
     
     //force unwrapped b/c this VC should never be initialized unless there is a bet object being passed in
     var bet: Bet!
-    var wagers: [Wager] = []
+    var comments: [(String, String, Double)] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //grab all wagers
-        self.bet.wagerIds(completion: {
-            wagerIds in
-            self.bet.wagersForWagerIds(wagerIds: wagerIds, wagers: [], completion: {
-                wagers in
-                self.wagers = wagers
-                //sort wagers by bet amount
-                self.wagers.sort{ $0.betAmount > $1.betAmount }
-                //reload table
-                self.wagerTableView.reloadData()
-            })
-        })
-        self.finalOutcomeLabel.text = "Final Outcome: \(bet.finalOutcome!)"
-        self.mediatorPayoutLabel.text = "Mediator Payout: \(self.bet.payout!)"
-        self.betTitleLabel.text = self.bet.title
-        
+        self.finalOutcomeLabel.text = "\(bet.finalOutcome!)"
+        self.potLabel.text = "\(self.bet.pot)"
+        self.navigationItem.title = self.bet.title
+        self.payoutRatioLabel.text = self.bet.calculateOdds()
+        self.reloadTable()
         // Do any additional setup after loading the view.
     }
 
@@ -51,14 +43,24 @@ class BetResultsViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.wagers.count
+        return comments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "wagerCell", for: indexPath)
-        let wager = self.wagers[indexPath.row]
-        cell.textLabel?.text = "Bet Amount: \(wager.betAmount)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath)
+        cell.textLabel?.text = comments[indexPath.row].0
+        cell.detailTextLabel?.text = comments[indexPath.row].1
         return cell
+    }
+    
+    func reloadTable()
+    {
+        self.bet.getComments(){(comments: [(String, String, Double)]) in
+            self.comments = comments
+            DispatchQueue.main.async{
+                self.commentTableView.reloadData()
+            }
+        }
     }
     
     //currently no select functionality for rows
