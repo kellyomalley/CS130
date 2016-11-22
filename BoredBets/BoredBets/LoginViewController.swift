@@ -20,7 +20,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         super.viewDidLoad()
         GIDSignIn.sharedInstance().uiDelegate = self
-        self.hideKeyboardWhenTapped()
     }
 
     override func didReceiveMemoryWarning() {
