@@ -22,6 +22,7 @@
 		277939321DC9C5D400B5A401 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277939311DC9C5D400B5A401 /* MenuBar.swift */; };
 		277939361DC9CBB400B5A401 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277939351DC9CBB400B5A401 /* Cells.swift */; };
 		27A1AC081DDED0180051048D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1AC071DDED0180051048D /* SearchViewController.swift */; };
+		27F9D07B1DE44AF900F8D8CB /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F9D07A1DE44AF900F8D8CB /* UserTableViewCell.swift */; };
 		3AA2FC0184F23F6A2A9AC3E6 /* Pods_BoredBetsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23EB6C866FFFAFAF31BD121 /* Pods_BoredBetsTests.framework */; };
 		4A1B9D5C1DE4020100C472A1 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B9D5B1DE4020100C472A1 /* SelectCategoryViewController.swift */; };
 		4A1B9D5E1DE4084300C472A1 /* ActiveBetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B9D5D1DE4084300C472A1 /* ActiveBetTableViewCell.swift */; };
@@ -99,6 +100,7 @@
 		277939311DC9C5D400B5A401 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		277939351DC9CBB400B5A401 /* Cells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		27A1AC071DDED0180051048D /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		27F9D07A1DE44AF900F8D8CB /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		30DC04C337F5B676E9D1EC61 /* Pods-BoredBets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoredBets.release.xcconfig"; path = "Pods/Target Support Files/Pods-BoredBets/Pods-BoredBets.release.xcconfig"; sourceTree = "<group>"; };
 		3A6912D3CCACE242E7CD5EF2 /* Pods-BoredBetsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoredBetsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoredBetsTests/Pods-BoredBetsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3EE1D4CA85B702B2ADBDD973 /* Pods-BoredBetsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoredBetsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BoredBetsUITests/Pods-BoredBetsUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				277939351DC9CBB400B5A401 /* Cells.swift */,
 				4A87382B1DE3BE96006D1348 /* MediatedBetCellTableViewCell.swift */,
 				4A1B9D5D1DE4084300C472A1 /* ActiveBetTableViewCell.swift */,
+				27F9D07A1DE44AF900F8D8CB /* UserTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 				4A839FF61DBD902C0078A616 /* RootViewController.swift in Sources */,
 				4A7B0CBE1DBD9F38008144C4 /* User.swift in Sources */,
 				4AB0CB731DBDC61F002EB0D2 /* MakeWagerViewController.swift in Sources */,
+				27F9D07B1DE44AF900F8D8CB /* UserTableViewCell.swift in Sources */,
 				22EA486E1DDFBBE300464B6A /* Categories.swift in Sources */,
 				4A7B0CC21DBDA012008144C4 /* Comment.swift in Sources */,
 				4A1B9D5E1DE4084300C472A1 /* ActiveBetTableViewCell.swift in Sources */,
