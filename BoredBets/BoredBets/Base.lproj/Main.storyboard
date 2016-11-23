@@ -676,7 +676,7 @@
                                 <color key="textColor" red="0.094117647060000004" green="0.59215686270000001" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="25T-fu-zm6" customClass="CosmosView" customModule="Cosmos">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="25T-fu-zm6" customClass="CosmosView" customModule="Cosmos">
                                 <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
@@ -703,7 +703,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" alpha="0.85000002384185802" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8w-wK-EMu">
+                            <button opaque="NO" alpha="0.85000002384185802" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8w-wK-EMu">
                                 <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                 <color key="backgroundColor" red="0.094117647060000004" green="0.59215686270000001" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -726,10 +726,10 @@
                                 <color key="textColor" red="0.94736842105263153" green="0.78803453947368418" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="coinstack" translatesAutoresizingMaskIntoConstraints="NO" id="gZa-TM-cjP">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="coinstack" translatesAutoresizingMaskIntoConstraints="NO" id="gZa-TM-cjP">
                                 <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                             </imageView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9qR-zU-ktV">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9qR-zU-ktV">
                                 <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FW0-zQ-p7l">
@@ -767,13 +767,13 @@
                                     <outlet property="delegate" destination="esa-xT-N0z" id="hhj-nt-HcU"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Achievements" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sh-nc-eRd">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Achievements" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sh-nc-eRd">
                                 <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.094117647060000004" green="0.59215686270000001" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Rating" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCB-Hx-weh">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Rating" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCB-Hx-weh">
                                 <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.094117647060000004" green="0.59215686270000001" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1939,7 +1939,6 @@
                                 <state key="normal" title="Confirm Wager"/>
                                 <connections>
                                     <action selector="makeWagerDidTouch:" destination="rUQ-O1-kBY" eventType="touchUpInside" id="QfB-9h-fDe"/>
-                                    <segue destination="w5P-N0-BJ9" kind="unwind" unwindAction="saveWagerViewControllerWithSegue:" id="MhP-gI-gUH"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1971,6 +1970,7 @@
                         <outlet property="rangeLabel" destination="aGv-Xn-nif" id="2tW-jJ-TpC"/>
                         <outlet property="userBetPickerView" destination="4j2-b2-YBZ" id="KDJ-vW-VkZ"/>
                         <outlet property="userBetTextField" destination="4eQ-8G-L2x" id="gsr-OF-Lpc"/>
+                        <segue destination="w5P-N0-BJ9" kind="unwind" identifier="makeWagerToBet" unwindAction="saveWagerViewControllerWithSegue:" id="fOQ-5i-TkN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AHR-w9-eGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1983,7 +1983,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mxx-6K-PYM" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zpi-fg-dnK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zpi-fg-dnK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2001,7 +2001,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SEr-uc-c8U" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ES1-cp-xRY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ES1-cp-xRY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -91,6 +91,7 @@ class MakeWagerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             let newCoinAmount = self.coinsLeft! - betAmount!
             User.usersRef().child(User.currentUser()).child("coins").setValue(newCoinAmount)
             self.bet.attachWager(userId: user_id, betAmount: betAmount!, userBet: self.userBet)
+            self.performSegue(withIdentifier: "makeWagerToBet", sender: self)
         }
         
     }
