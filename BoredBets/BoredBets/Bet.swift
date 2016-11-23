@@ -437,6 +437,88 @@ import Firebase
         class func betsRef() -> FIRDatabaseReference{
             return FIRDatabase.database().reference().child("Bets")
         }
+        
+        //returns a betObject for a dictionary corresponding to the db arrangement of bet
+        class func betForDBDict(dict: NSDictionary, betId: String) -> Bet{
+            
+            var category: String = ""
+            var description: String = ""
+            var finalOutcome: String?
+            var lat: Double = 0
+            var long: Double = 0
+            var mediatorId = ""
+            var outcome1: String = ""
+            var outcome2: String = ""
+            var payout: Int?
+            var pot: Int = 0
+            var state: BetState = BetState.Active
+            var title: String = "Bet"
+            var type: String = ""
+            var userIsMediator: Bool = false
+           
+            for (k,v) in dict{
+                switch k as! String{
+                case "title":
+                    title = v as! String
+                case "description":
+                    description = v as! String
+                case "pot":
+                    pot = v as! Int
+                case "lat":
+                    lat = v as! Double
+                case "long":
+                    long = v as! Double
+                case "mediator_id":
+                    if (v as! String == User.currentUser()){
+                        userIsMediator = true
+                    }
+                    mediatorId = v as! String
+                case "type":
+                    type = v as! String
+                case "outcome1":
+                    outcome1 = v as! String
+                case "outcome2":
+                    outcome2 = v as! String
+                case "settled":
+                    state = BetState.Settled
+                case "category":
+                    category = v as! String
+                case "finalOutcome":
+                    finalOutcome = v as! String
+                case "payout":
+                    payout = v as! Int
+                default:
+                    print("Some other key")
+                }
+            }
+            let betFactory = BetFactory.sharedFactory
+            let tempBet: Bet! = betFactory.makeBet(type: type)
+            if (tempBet != nil){
+                tempBet.id = betId
+                tempBet.title = title
+                tempBet.description = description
+                tempBet.pot = pot
+                tempBet.lat = lat
+                tempBet.long = long
+                tempBet.userIsMediator = userIsMediator
+                tempBet.mediatorId = mediatorId
+                tempBet.outcome1 = outcome1
+                tempBet.outcome2 = outcome2
+                tempBet.category = category
+                tempBet.state = state
+                if (finalOutcome != nil){
+                    tempBet.finalOutcome = finalOutcome
+                }
+                if (payout != nil){
+                    tempBet.payout = payout
+                }
+                else if (state == BetState.Settled){
+                    tempBet.payout = 0
+                }
+            }
+            return tempBet
+
+        }
       }
 
       //the bet where something will or will not happen
