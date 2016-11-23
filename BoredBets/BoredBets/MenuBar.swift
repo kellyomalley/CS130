@@ -22,7 +22,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     var view: UINavigationController? = nil
     var currentPos = 0
     let cellId = "cellId"
-    let imageNames = ["trending", "trending", "subscriptions", "account", "account"]
+    let imageNames = ["categories", "mediate", "trending", "account", "newbet"]
     
     init(frame: CGRect, currentPos: Int) {
         self.currentPos = currentPos
