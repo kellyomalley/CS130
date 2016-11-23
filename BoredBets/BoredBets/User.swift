@@ -234,6 +234,7 @@ class User{
                 if(betIds.contains(child.key)){
                     let dict = child.value as? NSDictionary
                     var title: String = "Bet"
+                    var description: String = ""
                     var pot = 0
                     var type = ""
                     var outcome1 = ""
@@ -247,6 +248,8 @@ class User{
                         switch k as! String{
                             case "title":
                                 title = v as! String
+                            case "description":
+                                description = v as! String
                             case "pot":
                                 pot = v as! Int
                             case "type":
@@ -276,6 +279,7 @@ class User{
                     let tempBet: Bet! = betFactory.makeBet(type: type)
                     if (tempBet != nil){
                         tempBet.title = title
+                        tempBet.description = description
                         tempBet.id = child.key
                         tempBet.pot = pot
                         tempBet.outcome1 = outcome1
@@ -307,6 +311,7 @@ class User{
             for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
                 let dict = child.value as? NSDictionary
                 var title: String = "Bet"
+                var description: String = ""
                 var pot: Int = 0
                 var lat: Double = 0
                 var long: Double = 0
@@ -322,6 +327,8 @@ class User{
                     switch k as! String{
                         case "title":
                             title = v as! String
+                        case "description":
+                            description = v as! String
                         case "pot":
                             pot = v as! Int
                         case "lat":
@@ -354,6 +361,7 @@ class User{
                     if (tempBet != nil){
                         tempBet.id = child.key
                         tempBet.title = title
+                        tempBet.description = description
                         tempBet.pot = pot
                         tempBet.lat = lat
                         tempBet.long = long
@@ -383,6 +391,7 @@ class User{
             for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
                 let dict = child.value as? NSDictionary
                 var title: String = "Bet"
+                var description: String = ""
                 var pot: Int = 0
                 var lat: Double = 0
                 var long: Double = 0
@@ -398,6 +407,8 @@ class User{
                     switch k as! String{
                     case "title":
                         title = v as! String
+                    case "description":
+                        description = v as! String
                     case "pot":
                         pot = v as! Int
                     case "lat":
@@ -430,6 +441,7 @@ class User{
                     if (tempBet != nil){
                         tempBet.id = child.key
                         tempBet.title = title
+                        tempBet.description = description
                         tempBet.pot = pot
                         tempBet.lat = lat
                         tempBet.long = long

@@ -407,6 +407,7 @@ import Firebase
             self.id = betId
             let betData : [String: Any] = [
                   "title" : self.title,
+                  "description" : self.description,
                   "mediator_id" : self.currentUserId,
                   "type" : self.type,
                   //consider changing to outcome array (to do this, would have to nest in another json object)
