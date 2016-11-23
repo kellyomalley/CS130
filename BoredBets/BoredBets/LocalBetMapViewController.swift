@@ -207,9 +207,10 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     
     func prepareList(){
         let user = User(id: User.currentUser())
-        user.betsWithinVicinity(latParm: self.lat, longParm: self.long, radMiles: 2, completion: {
+        user.betsWithinVicinity(latParm: self.lat, longParm: self.long, radMiles: radius, completion: {
             bets in
             if (self.betsLoaded == true){
+                self.bets.sort(by: { self.distanceFromUser(bet: $0) < self.distanceFromUser(bet: $1) })
                 self.listView.reloadData()
                 return
             }
@@ -217,9 +218,17 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
                 for bet in bets {
                     self.bets.append(bet)
                 }
+                self.bets.sort(by: { self.distanceFromUser(bet: $0) < self.distanceFromUser(bet: $1) })
                 self.betsLoaded = true
             }
         })
+    }
+    
+    func distanceFromUser(bet: Bet) -> Float{
+        let userLocation = CLLocation(latitude: lat, longitude: long)
+        let betLocation = CLLocation(latitude: bet.lat, longitude: bet.long)
+        let distance = Float(userLocation.distance(from: betLocation) / 1609)
+        return distance
     }
 
 }
