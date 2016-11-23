@@ -39,6 +39,7 @@ class MakeWagerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         })
         self.handleBetTypeRelatedSetup()
         self.hideKeyboardWhenTapped()
+        
     }
     
     //sets up the view according to the type of bet
@@ -58,16 +59,19 @@ class MakeWagerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                 print("BET TYPE NOT SUPPORTED IN MAKE WAGER CONTROLLER")
         }
     }
+
+    
+    @IBAction func userBetEditingChanged(_ sender: Any) {
+        self.userBet = self.userBetTextField.text!
+    }
+
+    
+ 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func userBetFieldEditingDidEnd(_ sender: Any) {
-        if(userBetTextField.text != ""){
-            self.userBet = self.userBetTextField.text!
-        }
-    }
 
     @IBAction func makeWagerDidTouch(_ sender: AnyObject) {
         //retrieve current user:
@@ -86,7 +90,6 @@ class MakeWagerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         else {
             let newCoinAmount = self.coinsLeft! - betAmount!
             User.usersRef().child(User.currentUser()).child("coins").setValue(newCoinAmount)
-            self.userBet = self.userBetTextField.text!
             self.bet.attachWager(userId: user_id, betAmount: betAmount!, userBet: self.userBet)
         }
         
@@ -98,6 +101,9 @@ class MakeWagerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         }
         else if (Int(self.amountTextField.text!) == nil){
             return "Must enter a valid integer amount to bet"
+        }
+        else if(self.userBet == ""){
+            return "You must put a value for your predicted outcome field"
         }
         else{
             switch self.bet.type!{
