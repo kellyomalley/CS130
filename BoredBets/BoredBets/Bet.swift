@@ -404,7 +404,7 @@ import Firebase
             //save bet id in user object so user has reference to it
           User.usersRef().child(self.currentUserId).child("BetsMediating").child(betId).setValue(userBetData)
           if self.category != "" {
-               Categories.categoriesRef().child(category).setValue([betId: betId])
+               Categories.categoriesRef().child(category).child(betId).setValue(betId)
           }
             
         }
