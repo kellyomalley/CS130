@@ -569,11 +569,22 @@ class User{
         })
     }
     
+    //assigns achievements for possessing a certain amount of coins overall
     func assignAchievements(n_coins: Int){
         self.getAchievements(completion: {
             achievements in
             if (n_coins >= 9000 && !achievements.contains("over9000")){
                 self.add(achievement: "over9000")
+            }
+        })
+    }
+    
+    //assigns achievements for winning certain amount of coins in a single bet
+    func assignAchievements(n_coins_in_bet: Int){
+        self.getAchievements(completion: {
+            achievements in
+            if (n_coins_in_bet >= 100 && !achievements.contains("speedRacer")){
+                self.add(achievement: "speedRacer")
             }
         })
     }
