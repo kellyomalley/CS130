@@ -39,6 +39,15 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             BBUtilities.removeOverlay(overlay: self.overlay)
             BBUtilities.showMessagePrompt("Please enter an email and password.", controller: self)
         }
+        else if (self.emailOutlet.text?.characters.count)! > 50 {
+            BBUtilities.removeOverlay(overlay: self.overlay)
+            BBUtilities.showMessagePrompt("Please enter a valid email.", controller: self)
+        }
+        else if (self.passwordOutlet.text?.characters.count)! > 50 {
+            BBUtilities.removeOverlay(overlay: self.overlay)
+            BBUtilities.showMessagePrompt("Please enter a shorter password.", controller: self)
+        }
+
         else
         {
             FIRAuth.auth()?.createUser(withEmail: self.emailOutlet.text!, password: self.passwordOutlet.text!) { (user, error) in

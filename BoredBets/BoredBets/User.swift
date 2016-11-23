@@ -15,7 +15,8 @@ class User{
     var id:String!
     var username:String!
     var rating:Double!
-    var numberRatings:Int!
+    var numberRatings:Double!
+    var numberComplaints:Double!
     
     init(id: String){
         self.id = id
@@ -25,6 +26,29 @@ class User{
     func setUserName(name : String){
         self.username = name
         User.usersRef().child(self.id).setValue(["username": name])
+    }
+    
+    //give an achievement to the user (store in DB)
+    func add(achievement: String){
+        let userRef = User.usersRef().child(self.id)
+        userRef.child("Achievements").child(achievement).setValue("I'm proud of you son")
+    }
+    
+    //returns all achievements for user
+    func getAchievements(completion: @escaping([String]) -> ()){
+        let userRef = User.usersRef().child(self.id)
+        userRef.child("Achievements").observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            var achievements: [String] = []
+            let value = snapshot.value as? NSDictionary
+            if (value != nil){
+                for (k,_) in value! {
+                    achievements.append(k as! String)
+                }
+            }
+            print ("achievements: \(achievements)")
+            completion(achievements)
+        })
     }
     
     //User related bet object retrieval... be careful with using cause they're bad ass asynchronous calls
@@ -454,7 +478,8 @@ class User{
                 var tid:String!
                 var tusername:String!
                 var trating:Double!
-                var tnumberRatings:Int!
+                var tnumberRatings:Double!
+                var tnumberComplaints:Double!
                 for (k,v) in dict!{
                     switch k as! String{
                     case "id":
@@ -464,17 +489,20 @@ class User{
                     case "rating":
                         trating = v as! Double
                     case "numberRatings":
-                        tnumberRatings = v as! Int
+                        tnumberRatings = v as! Double
+                    case "numberComplaints":
+                        tnumberComplaints = v as! Double
                     default:
                         print("Some other key")
                     }
                 }
-                //check if the longitude and latitude are within the defined parms
+                
                 if (true) {
                     let tempUser = User(id: child.key)
                     tempUser.username = tusername
                     tempUser.rating = trating
                     tempUser.numberRatings = tnumberRatings
+                    tempUser.numberComplaints = tnumberComplaints
                     users.append(tempUser)
                 }
             }
@@ -506,6 +534,47 @@ class User{
                 
             }
             completion(userIds)
+        })
+    }
+    
+    //returns the number of bets a user has placed
+    func userBetsPlaced(completion: @escaping (Int) -> ()){
+        User.usersRef().child(self.id).child("bets_placed").observeSingleEvent(of: .value, with: { snapshot in
+            if let betsPlaced = snapshot.value as? Int {
+                completion(betsPlaced)
+            }
+            else {
+                completion(0)
+            }
+            
+        })
+    }
+    
+    func incrementBetsPlaced(){
+        self.userBetsPlaced(completion: {
+            betsPlaced in
+                User.usersRef().child(self.id).child("bets_placed").setValue(betsPlaced+1)
+                //now assign achievements if numer exceeds certain bounds
+            self.assignAchievements(n_bets: betsPlaced+1)
+        })
+    }
+    
+    //decides whether or not to assign achievements based on number of bets placed
+    func assignAchievements(n_bets: Int){
+        self.getAchievements(completion: {
+            achievements in
+            if (n_bets >= 3 && !achievements.contains("hatTrick")){
+                self.add(achievement: "hatTrick")
+            }
+        })
+    }
+    
+    func assignAchievements(n_coins: Int){
+        self.getAchievements(completion: {
+            achievements in
+            if (n_coins >= 9000 && !achievements.contains("over9000")){
+                self.add(achievement: "over9000")
+            }
         })
     }
     
@@ -547,23 +616,28 @@ class User{
     class func getUserById(_ userId : String, completion: @escaping (User) -> ()) {
         let user = User(id: userId)
         var username = ""
-        var rating = -1.0
-        var numberRatings = 0
+        var numberRatings = 0.0
+        var  numberComplaints = 0.0
         User.usersRef().child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild("username"){
                 username = snapshot.childSnapshot(forPath: "username").value as! String
             }
-            if snapshot.hasChild("rating"){
-                rating = snapshot.childSnapshot(forPath: "rating").value as! Double
-            }
             if snapshot.hasChild("numberRatings"){
-                numberRatings = snapshot.childSnapshot(forPath: "numberRatings").value as! Int
+                numberRatings = snapshot.childSnapshot(forPath: "numberRatings").value as! Double
+            }
+            if snapshot.hasChild("numberComplaints"){
+                numberComplaints = snapshot.childSnapshot(forPath: "numberComplaints").value as! Double
             }
             
             user.username = username
-            user.rating = rating
+            user.numberComplaints = numberComplaints
             user.numberRatings = numberRatings
-            
+            if (numberRatings == 0){
+                user.rating = 5.0
+            }
+            else {
+                user.rating = (numberRatings - numberComplaints) / numberRatings * 5
+            }
             completion(user)
         })
     }

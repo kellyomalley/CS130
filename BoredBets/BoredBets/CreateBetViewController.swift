@@ -21,6 +21,7 @@ class CreateBetViewController: UIViewController, MapDelegate {
         map = CreateBetMap(mapView: mapView, showMarkers: false)
         map.delegate = self
         // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTapped()
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -22,6 +22,7 @@ class SettleBetViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         self.handleBetType()
 
         // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTapped()
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,6 +63,13 @@ class SettleBetViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                 let nextvc = storyboard.instantiateViewController(withIdentifier: "betResultsView") as! BetResultsViewController
                 nextvc.bet = self.bet
                 self.navigationController?.setViewControllers([baseViewController!, nextvc], animated: true)
+                let user = User(id: User.currentUser())
+                user.getAchievements(completion:{
+                    achievements in
+                    if (!achievements.contains("numeroUno")){
+                        user.add(achievement: "numeroUno")
+                    }
+                })
                 //self.performSegue(withIdentifier: "settleBetToBetResults", sender: self)
             })
             

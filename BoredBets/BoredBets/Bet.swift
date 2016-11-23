@@ -125,8 +125,6 @@ import Firebase
         
         //given a dictionary of (userIds, earnings), payout those users the amounts specified
         func distributeWinnings(winnings: [String:Int], completion: @escaping() -> ()){
-            print("ENTERING distributeWinnings")
-            print("Winnings: \(winnings)")
             if (winnings.count > 0){
                 var newWinnings = winnings
                 let userId = winnings.keys[winnings.startIndex]
@@ -135,6 +133,10 @@ import Firebase
                     coins += newWinnings[userId]!
                     User.usersRef().child(userId).child("coins").setValue(coins)
                     print("Gave \(newWinnings[userId]!) coins to user \(userId)")
+                    //check if user gets any new achievements:
+                    User(id:userId).assignAchievements(n_coins: coins)
+                    
+                    //continue distributing winnings
                     newWinnings.removeValue(forKey: newWinnings.keys[newWinnings.startIndex])
                     self.distributeWinnings(winnings: newWinnings, completion: {
                         completion()
@@ -150,8 +152,9 @@ import Firebase
         //updates the wager objects to show a final return on their bet:
             //losers get 0 as payout
             //winners get their winnings
-        func concludeBet(losers: [Wager], winners: [Wager], winnings: [String:Int]){
+        func concludeBet(losers: [Wager], winners: [Wager], winnings: [String:Int], numParticipants: Int){
             //update losers' wagers to give them a payout of 0
+            updateNumberParticipants(numParticipants: numParticipants)
             for loser in losers{
                 updateWagerPaidOut(wager: loser, payout: 0)
             }
@@ -169,11 +172,20 @@ import Firebase
             let mediatorPayout = winnings[self.currentUserId]
             self.payout = mediatorPayout
             Bet.betsRef().child(self.id).child("payout").setValue(mediatorPayout)
+            
         }
         
         //updates a wager with 'payout' attribute
         func updateWagerPaidOut(wager: Wager, payout: Int){
             Wager.wagersRef().child(wager.id).child("payout").setValue(payout)
+        }
+        
+        func updateNumberParticipants(numParticipants: Int) {
+            User.usersRef().child(self.mediatorId).child("numberRatings").observeSingleEvent(of: .value, with: { snapshot in
+                var value = snapshot.value as! Int
+                value = value + numParticipants
+                User.usersRef().child(self.mediatorId).child("numberRatings").setValue(value)
+            })
         }
         
         //should be the same for every bet type
@@ -251,8 +263,11 @@ import Firebase
                 "wager_id" : newWager.id
             ]
             Wager.wagersRef().child(newWager.id).setValue(wagerData)
-            User.usersRef().child(newWager.userId).child("Wagers").child(newWager.id).setValue(userWagerData)
             Bet.betsRef().child(self.id).child("Wagers").child(newWager.id).setValue(betWagerData)
+            User.usersRef().child(newWager.userId).child("Wagers").child(newWager.id).setValue(userWagerData)
+            //update 'bets_placed'
+            let user = User(id: newWager.userId)
+            user.incrementBetsPlaced()
         }
         
         //function updates the pot in the bet object by tallying up all associated wagers
@@ -277,11 +292,12 @@ import Firebase
         func settleBet(bet: Bet, completion: @escaping() -> ()){
             self.wagerIds(completion: { wagerIds in
                 self.wagersForWagerIds(wagerIds: wagerIds, wagers: [], completion: { wagers in
+                    let numParticipants = wagers.count
                     let winners = self.determineWinners(wagers: wagers)
                     let losers = self.removeWagers(wagers: winners, from: wagers)
                     let winnings = self.assignWinnings(winners: winners)
                     self.distributeWinnings(winnings: winnings, completion: {
-                        self.concludeBet(losers: losers, winners: winners, winnings: winnings)
+                        self.concludeBet(losers: losers, winners: winners, winnings: winnings, numParticipants: numParticipants)
                         completion()
                     })
                 })
