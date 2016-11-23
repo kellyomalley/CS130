@@ -130,12 +130,13 @@ import Firebase
                 let userId = winnings.keys[winnings.startIndex]
                 User.usersRef().child(userId).child("coins").observeSingleEvent(of: .value, with: { (snapshot) in
                     var coins = snapshot.value as! Int
-                    coins += newWinnings[userId]!
+                    let coins_gained = newWinnings[userId]!
+                    coins += coins_gained
                     User.usersRef().child(userId).child("coins").setValue(coins)
-                    print("Gave \(newWinnings[userId]!) coins to user \(userId)")
+                    print("Gave \(coins_gained) coins to user \(userId)")
                     //check if user gets any new achievements:
                     User(id:userId).assignAchievements(n_coins: coins)
-                    
+                    //User(id:userId).assignAchievements(n_coins_in_bet: coins_gained)
                     //continue distributing winnings
                     newWinnings.removeValue(forKey: newWinnings.keys[newWinnings.startIndex])
                     self.distributeWinnings(winnings: newWinnings, completion: {
@@ -178,6 +179,12 @@ import Firebase
         //updates a wager with 'payout' attribute
         func updateWagerPaidOut(wager: Wager, payout: Int){
             Wager.wagersRef().child(wager.id).child("payout").setValue(payout)
+            
+                //check if the user with the wager made enough money to earn himself an achievement
+            let user = User(id:wager.userId)
+            let coins_gained = payout - wager.betAmount
+            user.assignAchievements(n_coins_in_bet: coins_gained)
+            
         }
         
         func updateNumberParticipants(numParticipants: Int) {
