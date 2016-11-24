@@ -29,7 +29,14 @@ class MediatorViewController: UIViewController {
             //updating bet member variables
             self.bet.title = title
         })
-        self.betTypeLabel.text = self.bet?.type
+        var typeName: String = ""
+        if self.bet?.type == "YesNoBet" {
+            typeName = "Yes/No Bet"
+        }
+        if self.bet?.type == "ExactNumericalBet" {
+            typeName = "Numerical Bet"
+        }
+        self.betTypeLabel.text = typeName
         self.betTitleLabel.text = self.bet?.title
         self.hideKeyboardWhenTapped()
     }
