@@ -13,6 +13,7 @@ class MediatorViewController: UIViewController {
     
     @IBOutlet weak var betTitleLabel: UILabel!
     
+    @IBOutlet weak var descriptionLabel: UITextView!
     @IBOutlet weak var potLabel: UILabel!
     @IBOutlet weak var betTypeLabel: UILabel!
     
@@ -24,6 +25,7 @@ class MediatorViewController: UIViewController {
             
             //updating fields on view
             self.betTitleLabel.text = title
+            self.descriptionLabel.text = self.bet?.description
             self.potLabel.text = String(pot)
             
             //updating bet member variables
