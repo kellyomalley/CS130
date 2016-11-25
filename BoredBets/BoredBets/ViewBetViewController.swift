@@ -19,6 +19,7 @@ class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commentField: UITextField!
     @IBOutlet weak var betMediatorUserName: UIButton!
+    @IBOutlet weak var descriptionLabel: UITextView!
 
     
     override func viewDidLoad() {
@@ -50,6 +51,7 @@ class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
 
         self.betTitleLabel.text = self.bet?.title
+        self.descriptionLabel.text = self.bet?.description
         self.betTypeLabel.text = typeName
         
         self.commentField.delegate = self;

@@ -129,7 +129,12 @@ class SetBetDetailsViewController: UIViewController, UITextFieldDelegate, UIText
             let bet = BetFactory.sharedFactory.makeBet(type: self.selectedBetType)
             bet?.title = self.titleTextField.text
             bet?.state = BetState.Active
-            bet?.description = self.descriptionTextView.text
+            if !self.descriptionTextView.text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty {
+                bet?.description = self.descriptionTextView.text
+            }
+            else{
+                bet?.description = ""
+            }
             vc.bet = bet
         }
     }
