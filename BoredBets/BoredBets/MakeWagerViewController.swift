@@ -11,6 +11,7 @@ import UIKit
 class MakeWagerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var userBetPickerView: UIPickerView!
 
+    @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var coinsLeftMessage: UILabel!
     @IBOutlet weak var amountTextField: UITextField!
     
@@ -23,9 +24,13 @@ class MakeWagerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     var outcomes: [String] = []
     var pickerIsActive = false
     var userBet: String = ""
+    var amountLabelAnimation: TextFieldLabelAnimation!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //setup amount label animation:
+        amountLabelAnimation = TextFieldLabelAnimation(field: self.amountTextField, label: self.amountLabel)
+        
         
         User.usersRef().child(User.currentUser()).observe(.value, with: { snapshot in
             if let coin = snapshot.childSnapshot(forPath: "coins").value as? Int {
@@ -40,6 +45,15 @@ class MakeWagerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         self.handleBetTypeRelatedSetup()
         self.hideKeyboardWhenTapped()
         
+    }
+
+    
+    @IBAction func amountFieldEditingDidBegin(_ sender: Any) {
+        self.amountLabelAnimation.animateLabelAppear()
+    }
+
+    @IBAction func amountFieldEditingDidEnd(_ sender: Any) {
+        self.amountLabelAnimation.animateLabelDisappear()
     }
     
     //sets up the view according to the type of bet
