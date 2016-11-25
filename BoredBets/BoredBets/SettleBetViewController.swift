@@ -53,7 +53,6 @@ class SettleBetViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             BBUtilities.showMessagePrompt(checkInput(), controller: self)
         }
         else{
-            self.finalBetOutcome = self.outcomeTextField.text!
             self.bet.finalOutcome = self.finalBetOutcome
             Bet.betsRef().child(self.bet.id).child("finalOutcome").setValue(self.finalBetOutcome)
             self.bet.settleBet(bet: bet, completion: {
@@ -87,7 +86,12 @@ class SettleBetViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     func checkInput() -> String{
         switch self.bet.type{
         case "YesNoBet":
-            return "valid"
+            if(self.finalBetOutcome == ""){
+                return "Must select an outcome!"
+            }
+            else{
+                return "valid"
+            }
         case "ExactNumericalBet":
             if (self.finalBetOutcome == ""){
                 return "Must enter a final bet outcome"
