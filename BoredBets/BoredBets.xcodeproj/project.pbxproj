@@ -438,7 +438,7 @@
 				TargetAttributes = {
 					4A839FEF1DBD902B0078A616 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 8YXPR9XYQK;
+						DevelopmentTeam = L92X78ACWU;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -856,8 +856,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BoredBets/BoredBets.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8YXPR9XYQK;
+				DEVELOPMENT_TEAM = L92X78ACWU;
 				INFOPLIST_FILE = BoredBets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nottiApps.BoredBets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -875,8 +876,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BoredBets/BoredBets.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8YXPR9XYQK;
+				DEVELOPMENT_TEAM = L92X78ACWU;
 				INFOPLIST_FILE = BoredBets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nottiApps.BoredBets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
