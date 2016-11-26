@@ -233,66 +233,8 @@ class User{
             for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
                 if(betIds.contains(child.key)){
                     let dict = child.value as? NSDictionary
-                    var title: String = "Bet"
-                    var description: String = ""
-                    var pot = 0
-                    var type = ""
-                    var outcome1 = ""
-                    var outcome2 = ""
-                    var userIsMediator = false
-                    var mediatorId = ""
-                    var state = BetState.Active
-                    var payout = 0
-                    var finalOutcome = ""
-                    for (k,v) in dict!{
-                        switch k as! String{
-                            case "title":
-                                title = v as! String
-                            case "description":
-                                description = v as! String
-                            case "pot":
-                                pot = v as! Int
-                            case "type":
-                                type = v as! String
-                            case "outcome1":
-                                outcome1 = v as! String
-                            case "outcome2":
-                                outcome2 = v as! String
-                            case "mediator_id":
-                                if (v as! String == self.id){
-                                    userIsMediator = true
-                                }
-                                mediatorId = v as! String
-                                print("mediator id: \(mediatorId)")
-                                print("current user: \(self.id)")
-                            case "settled":
-                                state = BetState.Settled
-                            case "finalOutcome":
-                                finalOutcome = v as! String
-                            case "payout":
-                                payout = v as! Int
-                            default:
-                                print("Key: \(k as! String)")
-                        }
-                    }
-                    let betFactory = BetFactory.sharedFactory
-                    let tempBet: Bet! = betFactory.makeBet(type: type)
-                    if (tempBet != nil){
-                        tempBet.title = title
-                        tempBet.description = description
-                        tempBet.id = child.key
-                        tempBet.pot = pot
-                        tempBet.outcome1 = outcome1
-                        tempBet.outcome2 = outcome2
-                        tempBet.userIsMediator = userIsMediator
-                        tempBet.mediatorId = mediatorId
-                        tempBet.state = state
-                        tempBet.payout = payout
-                        if (finalOutcome != ""){
-                            tempBet.finalOutcome = finalOutcome
-                        }
-                        bets.append(tempBet)
-                    }
+                    let bet = Bet.betForDBDict(dict: dict!, betId: child.key)
+                    bets.append(bet)
                 }
             }
             completion(bets)
@@ -310,68 +252,10 @@ class User{
             var bets: [Bet] = []
             for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
                 let dict = child.value as? NSDictionary
-                var title: String = "Bet"
-                var description: String = ""
-                var pot: Int = 0
-                var lat: Double = 0
-                var long: Double = 0
-                var userIsMediator: Bool = false
-                var mediatorId = ""
-                var type: String = ""
-                var outcome1: String = ""
-                var outcome2: String = ""
-                var category: String = ""
-                
-                var state: BetState = BetState.Active
-                for (k,v) in dict!{
-                    switch k as! String{
-                        case "title":
-                            title = v as! String
-                        case "description":
-                            description = v as! String
-                        case "pot":
-                            pot = v as! Int
-                        case "lat":
-                            lat = v as! Double
-                        case "long":
-                            long = v as! Double
-                        case "mediator_id":
-                            if (v as! String == self.id){
-                                userIsMediator = true
-                            }
-                            mediatorId = v as! String
-                        case "type":
-                            type = v as! String
-                        case "outcome1":
-                            outcome1 = v as! String
-                        case "outcome2":
-                            outcome2 = v as! String
-                        case "settled":
-                            state = BetState.Settled
-                        case "category":
-                            category = v as! String
-                        default:
-                            print("Some other key")
-                    }
-                }
+                let bet = Bet.betForDBDict(dict: dict!, betId: child.key)
                 //check if the longitude and latitude are within the defined parms
-                if (self.withinVicinity(latParm: latParm, longParm: longParm, lat: lat, long: long, radMiles: radMiles) && state == BetState.Active){
-                    let betFactory = BetFactory.sharedFactory
-                    let tempBet: Bet! = betFactory.makeBet(type: type)
-                    if (tempBet != nil){
-                        tempBet.id = child.key
-                        tempBet.title = title
-                        tempBet.description = description
-                        tempBet.pot = pot
-                        tempBet.lat = lat
-                        tempBet.long = long
-                        tempBet.userIsMediator = userIsMediator
-                        tempBet.mediatorId = mediatorId
-                        tempBet.outcome1 = outcome1
-                        tempBet.outcome2 = outcome2
-                        tempBet.category = category
-                        bets.append(tempBet)
-                    }
+                if (self.withinVicinity(latParm: latParm, longParm: longParm, lat: bet.lat, long: bet.long, radMiles: radMiles) && bet.state == BetState.Active){
+                    bets.append(bet)
                 }
             }
             print("Bets included in vicinity:")
@@ -390,69 +274,9 @@ class User{
             var bets: [Bet] = []
             for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
                 let dict = child.value as? NSDictionary
-                var title: String = "Bet"
-                var description: String = ""
-                var pot: Int = 0
-                var lat: Double = 0
-                var long: Double = 0
-                var userIsMediator: Bool = false
-                var mediatorId = ""
-                var type: String = ""
-                var outcome1: String = ""
-                var outcome2: String = ""
-                var category: String = ""
-                
-                var state: BetState = BetState.Active
-                for (k,v) in dict!{
-                    switch k as! String{
-                    case "title":
-                        title = v as! String
-                    case "description":
-                        description = v as! String
-                    case "pot":
-                        pot = v as! Int
-                    case "lat":
-                        lat = v as! Double
-                    case "long":
-                        long = v as! Double
-                    case "mediator_id":
-                        if (v as! String == self.id){
-                            userIsMediator = true
-                        }
-                        mediatorId = v as! String
-                    case "type":
-                        type = v as! String
-                    case "outcome1":
-                        outcome1 = v as! String
-                    case "outcome2":
-                        outcome2 = v as! String
-                    case "settled":
-                        state = BetState.Settled
-                    case "category":
-                        category = v as! String
-                    default:
-                        print("Some other key")
-                    }
-                }
-                //check if the longitude and latitude are within the defined parms
-                if (category == selectedCategory){
-                    let betFactory = BetFactory.sharedFactory
-                    let tempBet: Bet! = betFactory.makeBet(type: type)
-                    if (tempBet != nil){
-                        tempBet.id = child.key
-                        tempBet.title = title
-                        tempBet.description = description
-                        tempBet.pot = pot
-                        tempBet.lat = lat
-                        tempBet.long = long
-                        tempBet.userIsMediator = userIsMediator
-                        tempBet.mediatorId = mediatorId
-                        tempBet.outcome1 = outcome1
-                        tempBet.outcome2 = outcome2
-                        tempBet.category = category
-                        
-                        bets.append(tempBet)
-                    }
+                let bet = Bet.betForDBDict(dict: dict!, betId: child.key)
+                if (bet.category == selectedCategory){
+                   bets.append(bet)
                 }
             }
             for bet in bets{

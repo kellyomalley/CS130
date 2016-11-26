@@ -36,6 +36,7 @@ class CreateBetViewController: UIViewController, MapDelegate {
     func createBetAtLocation() {
         self.bet.lat = self.map.marker.position.latitude
         self.bet.long = self.map.marker.position.longitude
+        self.bet.mediatorId = User.currentUser()
         self.bet.saveNewBetToFB()
         
         let baseViewController = self.navigationController?.viewControllers[0]

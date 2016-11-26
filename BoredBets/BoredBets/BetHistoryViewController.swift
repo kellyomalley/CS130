@@ -60,21 +60,22 @@ class BetHistoryViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "wagerCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "wagerCell", for: indexPath) as! BetHistoryTableViewCell
             let wager = self.wagers[indexPath.row]
             let diff = wager.payout! - wager.betAmount
             if (diff >= 0){
-                cell.textLabel?.text = "Bet Amount: \(wager.betAmount) Payout: +\(diff)"
+                cell.coinDiffLabel.text = "+\(diff)"
             }
             else{
-                cell.textLabel?.text = "Bet Amount: \(wager.betAmount) Payout: \(diff)"
+                cell.coinDiffLabel.text = "\(diff)"
+                cell.coinDiffLabel.textColor = UIColor.red
             }
             return cell
         }
         else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "mediatedBetsCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "mediatedBetsCell", for: indexPath) as! BetHistoryTableViewCell
             let bet = self.mediatedBets[indexPath.row]
-            cell.textLabel?.text = "Mediator Cut: +\(bet.payout!)"
+            cell.coinDiffLabel.text =  "+\(bet.payout!)"
             return cell
         }
     }

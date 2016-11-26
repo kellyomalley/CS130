@@ -13,6 +13,7 @@ class MediatorViewController: UIViewController {
     
     @IBOutlet weak var betTitleLabel: UILabel!
     
+    @IBOutlet weak var descriptionLabel: UITextView!
     @IBOutlet weak var potLabel: UILabel!
     @IBOutlet weak var betTypeLabel: UILabel!
     
@@ -24,12 +25,20 @@ class MediatorViewController: UIViewController {
             
             //updating fields on view
             self.betTitleLabel.text = title
+            self.descriptionLabel.text = self.bet?.description
             self.potLabel.text = String(pot)
             
             //updating bet member variables
             self.bet.title = title
         })
-        self.betTypeLabel.text = self.bet?.type
+        var typeName: String = ""
+        if self.bet?.type == "YesNoBet" {
+            typeName = "Yes/No Bet"
+        }
+        if self.bet?.type == "ExactNumericalBet" {
+            typeName = "Numerical Bet"
+        }
+        self.betTypeLabel.text = typeName
         self.betTitleLabel.text = self.bet?.title
         self.hideKeyboardWhenTapped()
     }
