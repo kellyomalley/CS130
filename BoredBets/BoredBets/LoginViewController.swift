@@ -10,13 +10,15 @@ import UIKit
 import Firebase
 import GoogleSignIn
 
-class LoginViewController: UIViewController, GIDSignInUIDelegate {
+class LoginViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
 
     var overlay: UIView!
     
     @IBOutlet weak var emailOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     override func viewDidLoad() {
+        self.emailOutlet.delegate = self
+        self.passwordOutlet.delegate = self
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         super.viewDidLoad()
         GIDSignIn.sharedInstance().uiDelegate = self
@@ -29,6 +31,12 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     func storeCurrentUserId(user_id : String){
         UserDefaults.standard.set(user_id, forKey: "user_id")
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
+    {
+        textField.resignFirstResponder()
+        return true;
     }
 
     @IBAction func createAccountAction(_ sender: AnyObject)
