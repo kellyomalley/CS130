@@ -92,7 +92,7 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        map.mapView.clear()
+        //map.mapView.clear()
         map.locationManager.startUpdatingLocation()
         locationManager.startUpdatingLocation()
         betsLoaded = false

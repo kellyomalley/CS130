@@ -23,6 +23,7 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
     var locationManager: CLLocationManager!
     var showMarkers: Bool!
     var delegate: MapDelegate?
+    var betCount: Int = 0
     
     let betIconWagered = GMSMarker.markerImage(with: UIColor.green)
     let betIconMediated = GMSMarker.markerImage(with: UIColor.purple)
@@ -74,21 +75,26 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
         let user = User(id: User.currentUser())
         user.betsWithinVicinity(latParm: self.lat, longParm: self.long, radMiles: self.radius, completion: {
             bets in
-            for bet in bets{
-                user.userIdsForBetId(betId: bet.id, completion: {
-                    userIds in
-                    if (userIds.contains(user.id) && !bet.userIsMediator!){
-                        bet.userHasWagered = true
-                        self.addMarkers(lat: bet.lat, long: bet.long, bet: bet, markerImage: self.betIconWagered)
-                    }
-                    else if(bet.userIsMediator!){
-                        self.addMarkers(lat: bet.lat, long: bet.long, bet: bet, markerImage: self.betIconMediated)
-                    }
-                    else{
-                        self.addMarkers(lat: bet.lat, long: bet.long, bet: bet, markerImage: self.betIconNormal)
-                    }
-                })
+            if (bets.count != self.betCount) {
+                self.mapView.clear()
+                self.betCount = bets.count
+                for bet in bets{
+                    user.userIdsForBetId(betId: bet.id, completion: {
+                        userIds in
+                        if (userIds.contains(user.id) && !bet.userIsMediator!){
+                            bet.userHasWagered = true
+                            self.addMarkers(lat: bet.lat, long: bet.long, bet: bet, markerImage: self.betIconWagered)
+                        }
+                        else if(bet.userIsMediator!){
+                            self.addMarkers(lat: bet.lat, long: bet.long, bet: bet, markerImage: self.betIconMediated)
+                        }
+                        else{
+                            self.addMarkers(lat: bet.lat, long: bet.long, bet: bet, markerImage: self.betIconNormal)
+                        }
+                    })
+                }
             }
+            
         })
     }
     
