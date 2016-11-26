@@ -47,7 +47,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        let rootViewController = self.window!.rootViewController as! UINavigationController
+        let view = rootViewController.visibleViewController?.view
+        let overlay = BBUtilities.showOverlay(view: view!)
+        
         if let error = error {
+            BBUtilities.removeOverlay(overlay: overlay)
             print(error.localizedDescription)
             return
         }
@@ -60,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         FIRAuth.auth()?.signIn(with: credential) { (user, error) in
             if let error = error {
+                BBUtilities.removeOverlay(overlay: overlay)
                 print(error.localizedDescription)
                 return
             }
@@ -77,6 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 }
                 
             }) { (error) in
+                BBUtilities.removeOverlay(overlay: overlay)
                 print(error.localizedDescription)
             }
         }
