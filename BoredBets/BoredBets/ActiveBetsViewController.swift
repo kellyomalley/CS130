@@ -12,7 +12,8 @@ class ActiveBetsViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var activeBetsTableView: UITableView!
     var activeBets: [Bet] = [Bet()]
-
+    var dataLoaded = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let user = User(id: User.currentUser())
@@ -25,6 +26,7 @@ class ActiveBetsViewController: UIViewController, UITableViewDelegate, UITableVi
             }
             self.activeBets = bets
             print(self.activeBets)
+            self.dataLoaded = true
             self.activeBetsTableView.reloadData()
         }
 
@@ -40,6 +42,9 @@ class ActiveBetsViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //TABLE VIEW STUFF
     func numberOfSections(in tableView: UITableView) -> Int {
+        if (self.dataLoaded == false){
+            return 0
+        }
         return 1
     }
     

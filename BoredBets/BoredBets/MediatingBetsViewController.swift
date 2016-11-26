@@ -10,11 +10,13 @@ import UIKit
 
 class MediatingBetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    var dataLoaded = false
     @IBOutlet weak var betsTableView: UITableView!
     var mediatedBets: [Bet] = [Bet()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //TODO: for testing
         let user = User(id: User.currentUser())
         user.activeMediatedBets{
@@ -25,6 +27,7 @@ class MediatingBetsViewController: UIViewController, UITableViewDataSource, UITa
                 print(bet.id)
             }
             self.mediatedBets = bets
+            self.dataLoaded = true
             self.betsTableView.reloadData()
         }
         //TODO: end testing
@@ -49,6 +52,9 @@ class MediatingBetsViewController: UIViewController, UITableViewDataSource, UITa
     
     //TABLE VIEW STUFF
     func numberOfSections(in tableView: UITableView) -> Int {
+        if (self.dataLoaded == false) {
+            return 0
+        }
         return 1
     }
     
