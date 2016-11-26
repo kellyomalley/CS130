@@ -15,6 +15,7 @@ class User{
     var id:String!
     var username:String!
     var rating:Double!
+    var numberCoins:Int!
     var numberRatings:Double!
     var numberComplaints:Double!
     
@@ -463,11 +464,15 @@ class User{
     class func getUserById(_ userId : String, completion: @escaping (User) -> ()) {
         let user = User(id: userId)
         var username = ""
+        var coins = 0
         var numberRatings = 0.0
         var  numberComplaints = 0.0
         User.usersRef().child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild("username"){
                 username = snapshot.childSnapshot(forPath: "username").value as! String
+            }
+            if snapshot.hasChild("coins"){
+                coins = snapshot.childSnapshot(forPath: "coins").value as! Int
             }
             if snapshot.hasChild("numberRatings"){
                 numberRatings = snapshot.childSnapshot(forPath: "numberRatings").value as! Double
@@ -477,6 +482,7 @@ class User{
             }
             
             user.username = username
+            user.numberCoins = coins
             user.numberComplaints = numberComplaints
             user.numberRatings = numberRatings
             if (numberRatings == 0){

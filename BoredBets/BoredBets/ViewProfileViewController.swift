@@ -33,12 +33,8 @@ class ViewProfileViewController: UIViewController, UICollectionViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if (userId == nil) {
-            self.userId = User.currentUser()
-            
-        }
-        
-        User.getUserById(userId, completion: { (user) in
+        if (user == nil) {
+            User.getUserById(userId, completion: { (user) in
             self.user = user
             self.userNameLabel.text = user.username
             self.starRating.rating = user.rating
@@ -53,9 +49,28 @@ class ViewProfileViewController: UIViewController, UICollectionViewDataSource, U
                     self.achievementCollectionView.reloadData()
                 })
             })
+            })
+        }
+        else {
+            self.userNameLabel.text = user.username
+            self.starRating.rating = user.rating
+            self.starRating.text = String(user.rating)
+            self.coinCountLabel.text = String(user.numberCoins)
+            User.getUserById(user.id, completion: { (user) in
+                user.userCoinCount(completion: {
+                    count in
+                    self.coinCountLabel.text = String(count)
+                    //achievement setup
+                    self.user.getAchievements(completion: {
+                        achievements in
+                        self.achievements = achievements
+                        self.achievementCollectionView.reloadData()
+                    })
+                })
+            })
 
-        })
-        
+        }
+
         starRating.settings.fillMode = .precise
         starRating.settings.updateOnTouch = false
         

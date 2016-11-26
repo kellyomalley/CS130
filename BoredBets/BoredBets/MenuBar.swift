@@ -23,6 +23,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     var currentPos = 0
     let cellId = "cellId"
     let imageNames = ["categories", "mediate", "trending", "account", "newbet"]
+    var currentUser: User!
     
     init(frame: CGRect, currentPos: Int) {
         self.currentPos = currentPos
@@ -31,6 +32,9 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        User.getUserById(User.currentUser()) { (user) in
+            self.currentUser = user
+        }
         collectionView.register(MenuCell.self, forCellWithReuseIdentifier: cellId)
         
         addSubview(collectionView)
@@ -67,6 +71,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         }
         else if (n == 3) {
             let vc = storyboard.instantiateViewController(withIdentifier: "viewProfile") as! ViewProfileViewController
+            vc.user = self.currentUser
             self.view?.pushViewController(vc, animated: true)
         }
         else if (n == 4) {
