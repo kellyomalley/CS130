@@ -122,6 +122,7 @@ class LocalBetMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
         if (segue.identifier == "mapToBetView")
         {
             let vc = segue.destination as! ViewBetViewController
+            vc.reloadMap = false
             vc.bet = self.selectedBet
         }
         else if (segue.identifier == "mapToEditBet") {

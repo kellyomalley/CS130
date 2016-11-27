@@ -27,6 +27,7 @@ class MakeWagerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     var amountLabelAnimation: TextFieldLabelAnimation!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         //setup amount label animation:
         amountLabelAnimation = TextFieldLabelAnimation(field: self.amountTextField, label: self.amountLabel)
@@ -46,7 +47,6 @@ class MakeWagerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         self.hideKeyboardWhenTapped()
         
     }
-
     
     @IBAction func amountFieldEditingDidBegin(_ sender: Any) {
         self.amountLabelAnimation.animateLabelAppear()
@@ -172,16 +172,15 @@ class MakeWagerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         self.userBet = outcomes[row]
     }
     
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "makeWagerToBet") {
+            let vbvc = segue.destination as! ViewBetViewController
+            vbvc.reloadMap = true
+        }
     }
-    */
     
     
 }

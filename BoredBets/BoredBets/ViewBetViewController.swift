@@ -8,10 +8,11 @@
 
 import UIKit
 
-class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate {
     var bet:Bet!
     var mediatorId: String!
     var comments: [(String, String, Double)] = []
+    var reloadMap = false
 
     @IBOutlet weak var betTypeLabel: UILabel!
     @IBOutlet weak var betTitleLabel: UILabel!
@@ -25,6 +26,7 @@ class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTapped()
+        navigationController?.delegate = self
         Bet.betsRef().child(bet.id).observe(.value, with: { snapshot in
             let title = snapshot.childSnapshot(forPath: "title").value as! String
             let pot = snapshot.childSnapshot(forPath: "pot").value as! Int
@@ -58,6 +60,12 @@ class ViewBetViewController: UIViewController, UITableViewDelegate, UITableViewD
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if let controller = viewController as? LocalBetMapViewController {
+            controller.map.reloadMap = self.reloadMap    // Here you pass the data back to your original view controller
+        }
     }
     
     func keyboardWillShow(notification: NSNotification) {

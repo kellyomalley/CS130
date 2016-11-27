@@ -24,6 +24,7 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
     var showMarkers: Bool!
     var delegate: MapDelegate?
     var betCount: Int = 0
+    var reloadMap = false
     
     let betIconWagered = GMSMarker.markerImage(with: UIColor.green)
     let betIconMediated = GMSMarker.markerImage(with: UIColor.purple)
@@ -75,7 +76,8 @@ class Map: NSObject, CLLocationManagerDelegate, GMSMapViewDelegate {
         let user = User(id: User.currentUser())
         user.betsWithinVicinity(latParm: self.lat, longParm: self.long, radMiles: self.radius, completion: {
             bets in
-            if (bets.count != self.betCount) {
+            if (bets.count != self.betCount || self.reloadMap) {
+                self.reloadMap = false
                 self.mapView.clear()
                 self.betCount = bets.count
                 for bet in bets{
