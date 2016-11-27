@@ -76,7 +76,7 @@ import Firebase
         }
        
         //should always be overridden
-        func calculateOdds() -> String{
+        func calculateOdds(_ completion : @escaping (String) -> ()){
             preconditionFailure()
         }
         
@@ -549,39 +549,40 @@ import Firebase
         
          - Returns: A string of the form "Odds: 2:1, Pool: $1234"
        */
-        override func calculateOdds() -> String{
-            var numberOfYes: Int = 0
-            var numberOfNo: Int = 0
-            var totalPool: Int = 0
-            
-            for wager in wagerArray {
-                totalPool += wager.getBetAmount()
-                
-                if wager.getUserBet() == self.outcome1 {
-                    numberOfNo += 1
-                }
-                else if wager.getUserBet() == self.outcome2 {
-                    numberOfYes += 1
-                }
-                else {
-                    //let test = wager.getUserBet()
-                    preconditionFailure("YesNo bet failure : input was not 0 or 1")
-                }
-            }
-            
-            var resString = ""
-            if numberOfNo == 0 {
-                resString = "Odds: \(numberOfYes) : 0, Pool: $\(totalPool)"
-            }
-            else if numberOfYes == 0 {
-                resString = "Odds: 0 : \(numberOfNo), Pool: $\(totalPool)"
-            }
-            else {
-                let getSimple = simplify(num: numberOfYes, denom: numberOfNo)
-                //return looks like Odds: 2:1, Pool: $1234
-                resString = "Odds: \(getSimple.newNum) : \(getSimple.newDenom), Pool: $\(totalPool)"
-            }
-            return resString
+        override func calculateOdds(_ completion : @escaping (String) -> ()){
+            self.wagerIds(completion: {
+                wagerIds in
+                self.wagersForWagerIds(wagerIds: wagerIds, wagers: [], completion: {
+                    wagers in
+                    
+                    var numberOfYes: Int = 0
+                    var numberOfNo: Int = 0
+                    
+                    for wager in wagers{
+                        if wager.getUserBet() == self.outcome1 {
+                            numberOfYes += wager.betAmount
+                            print("got a yes")
+                        }
+                        else if wager.getUserBet() == self.outcome2 {
+                            numberOfNo += wager.betAmount
+                            print("got a no")
+                        }
+                    }
+                    var resString = ""
+                    if numberOfNo == 0 {
+                        resString = "Odds: \(numberOfYes) : 0"
+                    }
+                    else if numberOfYes == 0 {
+                        resString = "Odds: 0 : \(numberOfNo)"
+                    }
+                    else {
+                        let getSimple = simplify(num: numberOfYes, denom: numberOfNo)
+                        //return looks like Odds: 2:1, Pool: $1234
+                        resString = "Odds: \(getSimple.newNum) : \(getSimple.newDenom)"
+                    }
+                    completion(resString)
+                })
+            })
         }
       }
       
@@ -602,28 +603,33 @@ import Firebase
          
          - Returns: A string of the form "Number of wagers for each outcome: 2: 0; 3: 1; 4: 3; Pool: $1234"
          */
-        override func calculateOdds() -> String{
-            var totalPool: Int = 0
-            let max = Int(self.outcome2)!
-            let min = Int(self.outcome1)!
+        override func calculateOdds(_ completion : @escaping (String) -> ()){
             
-            var allWagers: [Int:Int] = [:]
-            
-            for index in min...max {
-                allWagers[index] = 0
-            }
-            
-            for wager in wagerArray {
-                totalPool += wager.getBetAmount()
-                //TODO: getting error on this line
-                //allWagers[wager.getUserBet()] = allWagers[wager.getUserBet()]! + 1
-            }
-            var resString = "Number of wagers for each outcome: "
-            for (key, value) in allWagers {
-                resString += "\(key): \(value); "
-            }
-            resString += "Pool: \(totalPool)"
-            return resString
+            self.wagerIds(completion: {
+                wagerIds in
+                self.wagersForWagerIds(wagerIds: wagerIds, wagers: [], completion: {
+                    wagers in
+                    let max = Int(self.outcome2)!
+                    let min = Int(self.outcome1)!
+                    
+                    let allWagers: NSDictionary = [:]
+                    
+                    for index in min...max {
+                        allWagers.setValue(0, forKey: String(index))
+                    }
+                    
+                    for wager in wagers{
+                        
+                        let betGuess = wager.getUserBet()
+                        allWagers.setValue(allWagers[betGuess] as! Int + wager.getBetAmount(), forKey: String(betGuess))
+                        var resString : String = "Bet Distribution: \n| "
+                        for (_, value) in allWagers {
+                            resString += "\(value) | "
+                        }
+                        completion(resString)
+                    }
+                })
+            })
         }
         
         override func determineWinners(wagers: [Wager]) -> [Wager] {
@@ -657,24 +663,24 @@ import Firebase
             self.type = "RangedBet"
         }
 
-        override func calculateOdds() -> String{
-            return " "
+        override func calculateOdds(_ completion : @escaping (String) -> ()){
         }
       }
       
       func simplify(num:Int, denom:Int) -> (newNum:Int, newDenom:Int) {
-        
-        var x: Int = num
-        var y: Int = denom
-        while (y != 0) {
-            let temp: Int = y
-            y = x % y
-            x = temp
+        func gcdfunc(_ a: Int, _ b: Int) -> Int {
+            if b == 0 {
+                return a
+            } else {
+                if a > b {
+                    return gcdfunc(a-b, b)
+                } else {
+                    return gcdfunc(a, b-a)
+                }
+            }
         }
-        let round = x
-        let newNum = num/round
-        let newDenom = denom/round
-        return(newNum, newDenom)
+        
+        let gcd = gcdfunc(num, denom)
+        return(num / gcd, denom / gcd)
       }
-      
       

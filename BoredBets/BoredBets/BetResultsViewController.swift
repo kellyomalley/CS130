@@ -37,8 +37,10 @@ class BetResultsViewController: UIViewController, UITableViewDelegate, UITableVi
         self.finalOutcomeLabel.text = "\(bet.finalOutcome!)"
         self.potLabel.text = "\(self.bet.pot)"
         self.navigationItem.title = self.bet.title
-        self.payoutRatioLabel.text = self.bet.calculateOdds()
-        self.reloadTable()
+        self.bet.calculateOdds({(text) -> () in
+            self.payoutRatioLabel.text = text
+            self.reloadTable()
+        })
         // Do any additional setup after loading the view.
         self.hideKeyboardWhenTapped()
     }
