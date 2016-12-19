@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SEr-uc-c8U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SEr-uc-c8U">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -687,7 +687,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jzQ-C8-LZW">
-                                <rect key="frame" x="16" y="87" width="343" height="20.5"/>
+                                <rect key="frame" x="16" y="87" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.094117647060000004" green="0.59215686270000001" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -734,7 +734,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coin Count" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZJ-Ex-FYE">
-                                <rect key="frame" x="103" y="139.5" width="147" height="21"/>
+                                <rect key="frame" x="103" y="140" width="147" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="zAf-sK-VAz"/>
                                 </constraints>
@@ -796,10 +796,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xMn-qM-0ys">
-                                <rect key="frame" x="37" y="130.5" width="301" height="443.5"/>
+                                <rect key="frame" x="37" y="131" width="301" height="443"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sFQ-vW-DIq">
-                                        <rect key="frame" x="0.0" y="0.0" width="301" height="443.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="301" height="443"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyC-yp-UvS">
                                         <rect key="frame" x="273" y="8" width="20" height="20"/>
@@ -1957,7 +1957,7 @@
                                 <rect key="frame" x="16" y="160" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <connections>
                                     <action selector="amountFieldEditingDidBegin:" destination="rUQ-O1-kBY" eventType="editingDidBegin" id="MfV-Ia-85e"/>
                                     <action selector="amountFieldEditingDidEnd:" destination="rUQ-O1-kBY" eventType="editingDidEnd" id="Q0u-Z6-mOi"/>
